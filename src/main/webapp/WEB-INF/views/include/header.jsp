@@ -19,7 +19,7 @@
 					<!-- navbar toggler -->
 					<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 						<ul class="navbar-nav m-auto">
-							<li class="nav-item active"><a class="nav-link" href="${contextPath}/">Home</a>
+							<li class="nav-item active"><a class="nav-link" href="${contextPath}/">홈</a>
 							<ul class="sub-menu">
 								<li><a href="index.html">Home 1</a></li>
 								<li><a href="index-2.html">Home 2</a></li>
