@@ -19,10 +19,11 @@
 					<!-- navbar toggler -->
 					<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 						<ul class="navbar-nav m-auto">
-							<li class="nav-item active"><a class="nav-link" href="${contextPath}/">홈</a>
+							<li class="nav-item active"><a class="nav-link" href="${contextPath}/">Home</a>
 							<ul class="sub-menu">
-								<li><a href="index.html">Home 1</a></li>
+								<li><a href="${contextPath}/">Home 1</a></li>
 								<li><a href="index-2.html">Home 2</a></li>
+								<li><a href="index-2.html">cherry test</a></li>
 							</ul>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
