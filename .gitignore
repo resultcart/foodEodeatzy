@@ -1,4 +1,5 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java-web,eclipse
+# Created by https://www.toptal.com/developers/gitignore/api/java-web,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java-web,eclipse
 
 ### Eclipse ###
@@ -158,4 +159,3 @@ target/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/java-web,eclipse
-[출처] [GitHub] gitignore 국민 설정|작성자 jee
