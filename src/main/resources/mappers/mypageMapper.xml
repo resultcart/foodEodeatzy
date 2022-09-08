@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.mypageMapper">
+	
+	<!-- 회원정보 조회 -->
+	<select id="userInfo" parameterType="String" resultType="userInfoDTO">
+		select *
+		FROM
+		tb_user_p
+		where u_p_id =#{u_p_id}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="update_u_info" parameterType="userInfoDTO" >
+		update tb_user_p set 
+		u_p_name = #{u_p_name} , 
+		u_p_email = #{u_p_email} ,
+		u_p_number =  #{u_p_number} ,
+		u_p_regi_num = #{u_p_regi_num}
+		where (u_p_id =#{u_p_id})
+	</update>
+	
+	<!-- 회원탈퇴 처리 -->
+	<update id="u_unregister" parameterType="String">
+		update tb_user_p 
+		set u_p_access = 9999 
+		where (u_p_id = #{u_p_id})
+	</update>
+
+
+
+
+</mapper>

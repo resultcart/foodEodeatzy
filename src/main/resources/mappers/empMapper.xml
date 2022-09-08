@@ -4,10 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.eodeatzy.empMapper">
 	
-	<select id="empcount" resultType="java.lang.Integer">
+	<select id="userInfo" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(*) 
 		FROM
-		EMP
+		tb_user_p
+		where u_p_id =#{u_p_id}
 	</select>
 
 

@@ -43,6 +43,7 @@ public class HomeController {
 		
 		return "testpage";
 	}	
+	
 	@RequestMapping(value = "returnhome", method = RequestMethod.GET)
 	public String returnhome(Locale locale,Model model) {
 		Date date = new Date();
