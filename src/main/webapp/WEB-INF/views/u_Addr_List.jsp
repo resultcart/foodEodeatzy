@@ -5,6 +5,17 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!doctype html><html lang="en">
+<script>
+
+	function sendVal(addrName, addr){
+		console.log("addrname :" + addrName); 
+		console.log("addr :" + addr); 
+		
+		document.getElementById("insertName").value = addrName;
+		document.getElementById("insertAddr").value = addr;
+	}
+	
+</script>
 <!-- head-->
 <%@ include file="include/head.jsp" %>
 <body>
@@ -67,12 +78,12 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="input-box mt-30">
-										<label>address name</label><input type="text" placeholder="주소별칭">
+										<label>address name</label><input type="text" placeholder="주소별칭" id="insertName" name="insertName">
 									</div>
 								</div>
 								<div class="col-lg-12">
 									<div class="input-box mt-30">
-										<label>address</label><input type="text" placeholder="주소">
+										<label>address</label><input type="text" placeholder="주소" id="insertAddr" name="insertAddr">
 									</div>
 								</div>
 								<div class="col-lg-12">
@@ -94,86 +105,30 @@
 							<div class="col-lg-12">
 								<div class="food-menu-box">
 									<div class="row grid">
-										<div class="col-lg-12">
-											<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center">
-												<div class="col-lg-9">
-													<div class="food-menu-content">
-														<a href="#">
-														<h4 class="title">기본</h4>
-														</a>
-														<ul>
-															<li>기본주소기본주소기본주소기본주소기본주소기본주소기본주소기본주소</li>
-															<li>Delivery time:60 Minutes,Delivery Cost:Free</li>
-														</ul>
+										<c:forEach items="${addrList}" var="addr" varStatus="status">
+											<div class="col-lg-12"> 
+												<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center" 
+												     name="divclick" onclick="sendVal('${addr.u_p_add_id}' , '${addr.u_p_address}' );" >
+													<div class="col-lg-9">
+														<div class="food-menu-content">
+															<a href="#">
+															
+															 <h4 id="addr_id${status.count}" name="addr_id${status.count}">${addr.u_p_add_id}</h4>
+															</a>
+															<ul>
+																<li name="addr_addr${status.count}">${addr.u_p_address}</li>
+																<li name="addr_flag${status.count}" hidden>${addr.u_p_flag}</li>
+															</ul>
+														</div>
 													</div>
+													<div class="col-lg-2">
+														<div class="food-menu-thumb">
+															<a href="#">delete</a>
+														</div>
+													</div>	
 												</div>
-												<div class="col-lg-2">
-													<div class="food-menu-thumb">
-														<a href="#">delete</a>
-													</div>
-												</div>	
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center">
-												<div class="col-lg-9">
-													<div class="food-menu-content">
-														<a href="#">
-														<h4 class="title">학원</h4>
-														</a>
-														<ul>
-															<li>학원주소학원주소학원주소학원주소</li>
-															<li>Delivery time:60 Minutes,Delivery Cost:Free</li>
-														</ul>
-													</div>
-												</div>
-												<div class="col-lg-2">
-													<div class="food-menu-thumb">
-														<a href="#">delete</a>
-													</div>
-												</div>	
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center">
-												<div class="col-lg-9">
-													<div class="food-menu-content">
-														<a href="#">
-														<h4 class="title">집</h4>
-														</a>
-														<ul>
-															<li>집주소집주소집주소집주소집주소집주소</li>
-															<li>Delivery time:60 Minutes,Delivery Cost:Free</li>
-														</ul>
-													</div>
-												</div>
-												<div class="col-lg-2">
-													<div class="food-menu-thumb">
-														<a href="#">delete</a>
-													</div>
-												</div>	
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center">
-												<div class="col-lg-9">
-													<div class="food-menu-content">
-														<a href="#">
-														<h4 class="title">집2</h4>
-														</a>
-														<ul>
-															<li>집주소집주소집주소집주소집주소집주소</li>
-															<li>Delivery time:60 Minutes,Delivery Cost:Free</li>
-														</ul>
-													</div>
-												</div>
-												<div class="col-lg-2">
-													<div class="food-menu-thumb">
-														<a href="#">delete</a>
-													</div>
-												</div>	
-											</div>
-										</div>
+											</div>										
+										</c:forEach>
 									</div>
 								</div>
 							</div>

@@ -1,5 +1,6 @@
 package kr.co.eodeatzy.mypageU;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,6 +27,16 @@ public class mypageUDAOImpl implements mypageUDAO {
 	@Override
 	public int u_unregister(String u_p_id) throws Exception {
 		return session.update(namespace + ".u_unregister" , u_p_id);
+	}
+	@Override
+	public List<userAddrDTO> u_Addr_List(String u_p_id) throws Exception {
+		return session.selectList(namespace + ".u_Addr_List", u_p_id);
+	}
+
+	@Override
+	public int update_u_Addr_List(userAddrDTO userAddrDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

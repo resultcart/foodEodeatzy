@@ -63,9 +63,7 @@
 				</h2>
 				<br>
 				<form role="form" method="post">
-				
 					<button type="submit" class="btn btn-outline-danger btn-fw">쌩까고탈퇴하기^^</button>				
-					<a href="${contextPath}/mypageU/u_unregister" met>쌩까고탈퇴하기^^</a>
 				</form>
 			</div>
 		</div>

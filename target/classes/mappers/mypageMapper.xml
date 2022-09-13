@@ -29,7 +29,13 @@
 		where (u_p_id = #{u_p_id})
 	</update>
 
-
+	<!-- 회원주소 조회 -->
+	<select id="u_Addr_List" parameterType="String" resultType="userAddrDTO">
+		select *
+		FROM
+		tb_user_p_address
+		where u_p_id =#{u_p_id}
+	</select>
 
 
 </mapper>

@@ -1,5 +1,7 @@
 package kr.co.eodeatzy.mypageU;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -51,7 +53,7 @@ public class mypageUController {
 		
 		String u_p_id = (String)session.getAttribute("id");
 		
-		//로그인 했다고 치고 u_p_id
+		//debug 로그인 했다고 치고 u_p_id
 		u_p_id = "king";
  		
 		userInfoDTO userInfo = service.userInfo(u_p_id);
@@ -84,7 +86,10 @@ public class mypageUController {
 		} else {
 			return "userInfo";
 		}
-	}		
+	}	
+	
+
+	
 	
 	//===회원탈퇴=======================================================================
 	@RequestMapping(value = "mypageU/u_unregister", method = RequestMethod.GET)
@@ -99,7 +104,7 @@ public class mypageUController {
 		logger.info("mypageU/u_unregister post");
 		String u_p_id = (String)session.getAttribute("id");
 		
-		//로그인 했다고 치고 u_p_id
+		//debug 로그인 했다고 치고 u_p_id
 		u_p_id = "king";
 		
 		int r = service.u_unregister(u_p_id);
@@ -116,12 +121,28 @@ public class mypageUController {
 			return "alert";
 		}
 	}	
+	
+	
+	//===회원주소 조회=======================================================================
 	@RequestMapping(value = "mypageU/u_Addr_List", method = RequestMethod.GET)
-	public String u_Addr_List(Model model) {
-		model.addAttribute("msg","테스트페이지로슝");
+	public ModelAndView u_Addr_List(HttpSession session) throws Exception {
+		logger.info("mypageU/u_Addr_List");
 		
-		return "u_Addr_List";
+		ModelAndView mav = new ModelAndView();
+		
+		String u_p_id = (String)session.getAttribute("id");
+		
+		//debug 로그인 했다고 치고 u_p_id
+		u_p_id = "KING";
+		List<userAddrDTO> addrList = service.u_Addr_List(u_p_id);
+		logger.info("return addrList : " + addrList);
+		
+		mav.addObject("addrList", addrList);
+		mav.setViewName("u_Addr_List");
+		
+		return mav;
 	}	
+	
 	
 	@RequestMapping(value = "mypageU/eatitem", method = RequestMethod.GET)
 	public String eatitem(Model model) {
@@ -129,12 +150,6 @@ public class mypageUController {
 		
 		return "eatitem";
 	}		
-	@RequestMapping(value = "alert", method = RequestMethod.GET)
-	public String alert(Model model) {
-		logger.info("Controller- alert");
-		
-		return "alert";
-	}		
-	
+
 
 }

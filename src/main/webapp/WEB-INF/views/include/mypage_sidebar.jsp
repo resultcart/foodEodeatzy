@@ -14,11 +14,11 @@
 				<div class="blog-sidebar-list-item">
 					<ul>
 						<li><a href="${contextPath}/mypageU/userInfo">회원정보수정</a></li>
-						<li><a href="#">찜목록</a></li>
-						<li><a href="#">주문내역</a></li>
+						<li><a href="mypage">찜목록</a></li>
+						<li><a href="mypage">주문내역</a></li>
 						<li><a href="${contextPath}/mypageU/u_Addr_List">주소관리</a></li>
 						<li><a href="${contextPath}/mypageU/eatitem">오늘 뭐 먹을까?</a></li>
-						<li><a href="#">제보하기</a></li>
+						<li><a href="mypage">제보하기</a></li>
 						<li><a href="${contextPath}/mypageU/u_unregister">회원탈퇴</a></li>
 					</ul>
 				</div>
