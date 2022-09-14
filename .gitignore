@@ -29,7 +29,7 @@ pom.properties
 # 기본 ip jdbc:mysql://192.168.0.162:3306/foodb?
 # 모바일핫스팟 ip jdbc:mysql://192.168.137.1:3306/foodb?
 root-context.xml
-MANIFEST.MF
+MANIFEST
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
