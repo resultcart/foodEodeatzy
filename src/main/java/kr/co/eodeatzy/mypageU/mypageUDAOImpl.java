@@ -34,11 +34,14 @@ public class mypageUDAOImpl implements mypageUDAO {
 	}
 
 	@Override
-	public int update_u_Addr_List(userAddrDTO userAddrDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update_uAddr(userAddrDTO userAddrDTO) throws Exception {
+		return session.update(namespace + ".update_uAddr", userAddrDTO);
 	}
-	
+
+	@Override
+	public int delete_uAddr(userAddrDTO userAddrDTO) throws Exception {
+		return session.delete(namespace + ".delete_uAddr", userAddrDTO);
+	}
 	
 
 }

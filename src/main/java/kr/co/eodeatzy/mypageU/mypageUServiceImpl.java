@@ -34,9 +34,13 @@ public class mypageUServiceImpl implements mypageUService {
 	}
 
 	@Override
-	public int update_u_Addr_List(userAddrDTO userAddrDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update_uAddr(userAddrDTO userAddrDTO) throws Exception {
+		return dao.update_uAddr(userAddrDTO);
+	}
+
+	@Override
+	public int delete_uAddr(userAddrDTO userAddrDTO) throws Exception {
+		return dao.delete_uAddr(userAddrDTO);
 	}
 
 }

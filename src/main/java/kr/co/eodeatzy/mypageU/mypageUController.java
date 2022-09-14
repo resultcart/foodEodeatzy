@@ -142,7 +142,88 @@ public class mypageUController {
 		
 		return mav;
 	}	
-	
+	//===회원주소 추가/수정=======================================================================
+	@RequestMapping(value = "mypageU/update_uAddr", method = RequestMethod.POST)
+	public ModelAndView update_uAddr(HttpSession session, @RequestParam("insertName")String insertName
+			, @RequestParam("insertAddr")String insertAddr) throws Exception {
+		logger.info("mypageU/update_uAddr");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String u_p_id = (String)session.getAttribute("id");
+		//debug 로그인 했다고 치고 u_p_id
+		u_p_id = "KING";
+
+		
+		
+		//주소 등록할 dto만듬
+		userAddrDTO dto =  new userAddrDTO();
+		dto.setU_p_id(u_p_id);
+		dto.setU_p_add_id(insertName);
+		dto.setU_p_address(insertAddr);
+		dto.setU_p_flag(2);
+		logger.info("mypageU/update_uAddr dto : " + dto);
+		
+		List<userAddrDTO> addrList = service.u_Addr_List(u_p_id);
+		
+	    // 주소등록 max값 확인 
+		int addrMax = addrList.size();
+		if (addrMax >= 5) {
+			
+			mav.addObject("msg", "주소를 저장 할수있는 최대값은 5개까지 입니다.  사용하지 않는 주소를 삭제 후 등록해주세요." );
+			mav.addObject("url", "/mypageU/u_Addr_List");
+			mav.setViewName("alert");
+			
+			return mav;
+		}
+		int r = service.update_uAddr(dto);
+		
+		logger.info("update_uAddr return : " + r);
+		
+		if (r>0) {
+			mav.setViewName("redirect:u_Addr_List?u_p_id=" + dto.getU_p_id());
+		} else {
+			mav.setViewName("u_Addr_List");
+		}		
+		
+		return mav;
+	}	
+	//mypageU/delete_uAddr
+	//===회원주소 삭제=======================================================================
+	@RequestMapping(value = "mypageU/delete_uAddr", method = RequestMethod.POST)
+	public ModelAndView delete_uAddr(HttpSession session, @RequestParam("delName")String delName
+			, @RequestParam("delAddr")String delAddr) throws Exception {
+		logger.info("mypageU/delete_uAddr");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String u_p_id = (String)session.getAttribute("id");
+		//debug 로그인 했다고 치고 u_p_id
+		u_p_id = "KING";
+
+		
+		//주소 등록할 dto만듬
+		userAddrDTO dto =  new userAddrDTO();
+		dto.setU_p_id(u_p_id);
+		dto.setU_p_add_id(delName);
+		dto.setU_p_address(delAddr);
+		dto.setU_p_flag(1);
+		logger.info("mypageU/delete_uAddr dto : " + dto);
+		
+		int r = service.delete_uAddr(dto);
+		
+		logger.info("delete_uAddr return : " + r);
+		
+		if (r>0) {
+			mav.setViewName("redirect:u_Addr_List?u_p_id=" + dto.getU_p_id());
+		} else {
+			mav.setViewName("u_Addr_List");
+		}	
+		
+		return mav;
+	}	
+
+
 	
 	@RequestMapping(value = "mypageU/eatitem", method = RequestMethod.GET)
 	public String eatitem(Model model) {

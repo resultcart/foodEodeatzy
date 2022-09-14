@@ -14,6 +14,36 @@
 		document.getElementById("insertName").value = addrName;
 		document.getElementById("insertAddr").value = addr;
 	}
+
+		
+	function delAddr(delName, delAddr){
+		console.log("del btn delName :" + delName); 
+		console.log("del btn delAddr :" + delAddr); 
+		var url ='${contextPath}/mypageU/delete_uAddr';
+		var paramData ={
+			"delName"   : delName,
+			"delAddr"   : delAddr
+		}
+		
+		
+		$.ajax({
+			url : url,
+			data : paramData,
+			dataType : 'json',
+			type : 'POST',
+			success : function(result){
+				console.log(result);				
+				
+			},
+			error : function(result){
+				console.log(result);				
+				alert('주소 삭제실패');			
+			}
+		}); // end of $.ajax({
+		
+	
+	} // end of function delAddr(addrName, addr){
+	
 	
 </script>
 <!-- head-->
@@ -74,7 +104,7 @@
 					</div>		
 					<hr>	
 					<div class="blog-details-form-item mt-30">
-						<form action="#">
+						<form action="${contextPath}/mypageU/update_uAddr" method="post">
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="input-box mt-30">
@@ -123,7 +153,8 @@
 													</div>
 													<div class="col-lg-2">
 														<div class="food-menu-thumb">
-															<a href="#">delete</a>
+															<button type="button" id="delete_uAddr"  onclick="delAddr('${addr.u_p_add_id}' , '${addr.u_p_address}')">delete</button></td>
+															<a href="#" id="delAddr" onclick="delAddr('${addr.u_p_add_id}' , '${addr.u_p_address}')">delete</a>
 														</div>
 													</div>	
 												</div>

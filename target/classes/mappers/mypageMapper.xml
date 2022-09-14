@@ -37,7 +37,34 @@
 		where u_p_id =#{u_p_id}
 	</select>
 	
-
+	<!-- 회원주소 중복조회 -->
+	<select id="u_Addr_duplicate" parameterType="userAddrDTO" resultType="userAddrDTO">
+		select *
+		FROM
+		tb_user_p_address
+		where u_p_id =#{u_p_id}
+		and u_p_address =#{u_p_address}
+	</select>
+	
+	<!-- 회원주소 추가/수정 -->
+	<insert id="update_uAddr" parameterType="userAddrDTO">
+		insert into tb_user_p_address
+		 (u_p_id, u_p_add_id, u_p_address, u_p_flag) 
+		 values ( #{u_p_id}, #{u_p_add_id}, #{u_p_address}, 2 )
+		 on duplicate key 
+		 update 
+		 u_p_address= #{u_p_address}
+	</insert>
+	
+	
+	<!--  회원 주소 삭제 -->
+	<delete id="delete_uAddr" parameterType="userAddrDTO">
+		 delete from tb_user_p_address
+		 where (u_p_id = #{u_p_id})
+		 and (u_p_add_id = #{u_p_add_id})
+	</delete>
+	
+	
 	
 
 
