@@ -88,7 +88,7 @@
 								</div>
 								<div class="col-lg-12">
 									<div class="input-box mt-30">
-										<button class="main-btn mt-30">추가</button>
+										<button class="main-btn mt-30">추가/수정</button>
 									</div>
 								</div>						
 							</div>

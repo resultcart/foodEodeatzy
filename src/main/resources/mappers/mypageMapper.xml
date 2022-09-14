@@ -36,6 +36,9 @@
 		tb_user_p_address
 		where u_p_id =#{u_p_id}
 	</select>
+	
+
+	
 
 
 </mapper>

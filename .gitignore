@@ -25,8 +25,16 @@
 
 pom.properties
 
+# 사람마다 접속 이달라서 바꿔놔요
+# 기본 ip jdbc:mysql://192.168.0.162:3306/foodb?
+# 모바일핫스팟 ip jdbc:mysql://192.168.137.1:3306/foodb?
+root-context.xml
+
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
 
 # End of https://www.toptal.com/developers/gitignore/api/java
