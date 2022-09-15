@@ -37,6 +37,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "home", method = RequestMethod.GET)
+	public String home(Model model) {
+		logger.info("여긴 홈");
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "home";
+	}
+	
 	@RequestMapping(value = "testpage", method = RequestMethod.GET)
 	public String testpage(Model model) {
 		model.addAttribute("msg","테스트페이지로슝");
@@ -55,5 +63,85 @@ public class HomeController {
 		return "home";
 	}	
 	
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	public String cart(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "cart";
+	}	
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public String mypage(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "mypage";
+	}	
+	@RequestMapping(value = "userInfo", method = RequestMethod.GET)
+	public String userInfo(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "userInfo";
+	}	
+	
+//  ===========================================================
+
+	
+	@RequestMapping(value = "login/findID", method = RequestMethod.GET)
+	public String findID(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "findID";
+	}
+	
+	@RequestMapping(value = "login/findPW", method = RequestMethod.GET)
+	public String findPW(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "findPW";
+	}
+	
+	
+	@RequestMapping(value = "login/findResult", method = RequestMethod.GET)
+	public String findResult(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "findResult";
+	}
+
+//  ===========================================================
+	@RequestMapping(value="main/notice_One")
+	public String notice_One(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value="main/u_Addr_One")
+	public String u_Addr_One(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "home";
+	}
+
+	@RequestMapping(value="main/store_type")
+	public String store_type(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "store_type";
+	}
+	
+	@RequestMapping(value="main/category")
+	public String category(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "category";
+	}
+	
+	@RequestMapping(value="main/store_info")
+	public String store_info(Model model) {
+		model.addAttribute("msg","테스트페이지로슝");
+		
+		return "store_info";
+	}
+
 
 }

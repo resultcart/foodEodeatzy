@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.loginMapper">
+
+	<!-- 개인 로그인 -->
+	<select id="user_login" parameterType="java.util.Map" resultType="java.util.Map">
+		select u_p_id, u_p_pw
+		from tb_user_p
+		where u_p_id=#{u_p_id} and u_p_pw=#{u_p_pw} 
+	</select>
+
+	<!-- 사업자 로그인 -->
+	<select id="busi_Login"  parameterType="java.util.Map" resultType="java.util.Map">
+		select u_b_id, u_b_pw
+		from tb_user_b
+		where u_b_id=#{u_b_id} and u_b_pw=#{u_b_pw} 
+	</select>
+	
+	<!-- id찾기 -->
+	<!-- pw찾기 -->
+	
+</mapper>  
+  
