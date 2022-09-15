@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <header class="header-area">
 
@@ -12,7 +12,7 @@
 			<div class="col-lg-12">
 				<div class="navigation">
 				
-					<nav class="navbar navbar-expand-lg navbar-light "><a class="navbar-brand" href=home>
+					<nav class="navbar navbar-expand-lg navbar-light "><a class="navbar-brand" href="${contextPath}/">
 					 <img src="${assetsPath}/images/logo-e.png" alt=""> <!-- logo  -->
 				
 					</a>
