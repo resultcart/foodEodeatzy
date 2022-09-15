@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.mainMapper">
+
+	<!-- 개인이용자 주소보기 -->
+	<select id="u_Addr_One" parameterType="String" resultType="u_Addr_OneDTO">
+	select u_p_id, u_p_add_id, u_p_address, u_p_flag
+	from tb_user_p_address
+	where (u_p_id=#{u_p_id}) and (u_p_flag=#{2})
+	</select>
+
+	<!-- 사업자 주소보기 -->
+
+</mapper>

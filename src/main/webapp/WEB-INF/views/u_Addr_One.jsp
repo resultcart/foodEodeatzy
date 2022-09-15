@@ -3,18 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 
-<%
-	request.setCharacterEncoding("utf-8");
-	
-	String u_p_id = request.getParameter("u_p_id");
-	String u_p_add_id = request.getParameter("u_p_add_id");
-	String u_p_address = request.getParameter("u_p_address");
-	String u_p_flag = request.getParameter("u_p_flag");
-
-
-
-%>
-
 <!doctype html><html lang="en">
 <!-- head-->
 <%@ include file="include/head.jsp" %>
@@ -54,7 +42,7 @@
 		<div class="col-lg-8">
 			<div class="section-title text-center">
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-				<a class="mt-4" href=u_Addr_One id="u_p_id" value=${main.u_p_id }>내주소</a><br>
+				<a class="mt-4" href="#">RB</a><br>
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
 				<a class="mt-4" href="#">공지사항 하나 보고 클릭하면 보러갈거</a> <br>
 			</div>
@@ -71,7 +59,7 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="row">
               <div class="col-md-12">
-                <br> <h3 class="footer-heading mb-4">MENU CATEGOTY</h3>
+                <br> <h3 class="footer-heading mb-4">MENU CATEㅋㅋㅋGOTY</h3>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
