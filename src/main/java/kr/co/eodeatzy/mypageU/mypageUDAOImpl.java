@@ -42,6 +42,16 @@ public class mypageUDAOImpl implements mypageUDAO {
 	public int delete_uAddr(userAddrDTO userAddrDTO) throws Exception {
 		return session.delete(namespace + ".delete_uAddr", userAddrDTO);
 	}
+
+	@Override
+	public List<userAddrDTO> u_Addr_duplicate(userAddrDTO userAddrDTO) throws Exception {
+		return session.selectList(namespace+ ".u_Addr_duplicate", userAddrDTO);
+	}
+
+	@Override
+	public int init_Addr(String u_p_id) throws Exception {
+		return session.update(namespace + ".init_Addr", u_p_id);
+	}
 	
 
 }

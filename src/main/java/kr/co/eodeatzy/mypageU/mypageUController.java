@@ -165,11 +165,18 @@ public class mypageUController {
 		dto.setU_p_flag(2);
 		logger.info("mypageU/update_uAddr dto : " + dto);
 		
-		List<userAddrDTO> addrList = service.u_Addr_List(u_p_id);
 		
-	    // 주소등록 max값 확인 
+		//필요한 전체 주소 갯수 받아오기
+		List<userAddrDTO> addrList = service.u_Addr_List(u_p_id);  
+
+		// 지금 추가인지 수정인지 판별 중복된 주소가 있엇을때는 수정으로 판정.
+		List<userAddrDTO> checkList = service.u_Addr_duplicate(dto);
 		int addrMax = addrList.size();
-		if (addrMax >= 5) {
+		int exist = checkList.size();
+		logger.info("mypageU/update_uAddr addr count : " + addrMax + " updateitem :  " + exist);
+		
+		//수정이 아닌경우 리스트보다 많으면 삭제요청
+		if ((addrMax >= 5) && (exist<=0))  {
 			
 			mav.addObject("msg", "주소를 저장 할수있는 최대값은 5개까지 입니다.  사용하지 않는 주소를 삭제 후 등록해주세요." );
 			mav.addObject("url", "/mypageU/u_Addr_List");
@@ -177,6 +184,11 @@ public class mypageUController {
 			
 			return mav;
 		}
+		
+		// 수정전 대표 주소를없앰
+		service.init_Addr(u_p_id);
+		
+		//수정한 주소가 대표 주소로 설정.
 		int r = service.update_uAddr(dto);
 		
 		logger.info("update_uAddr return : " + r);

@@ -37,23 +37,31 @@
 		where u_p_id =#{u_p_id}
 	</select>
 	
+	<!-- 회원주소 대표주소 초기화 -->
+	<update id="init_Addr" parameterType="String" >
+		update tb_user_p_address 
+        set u_p_flag = 1 
+        where (u_p_id = #{u_p_id})		
+	</update>	
+	
 	<!-- 회원주소 중복조회 -->
 	<select id="u_Addr_duplicate" parameterType="userAddrDTO" resultType="userAddrDTO">
 		select *
 		FROM
 		tb_user_p_address
 		where u_p_id =#{u_p_id}
-		and u_p_address =#{u_p_address}
+		and (u_p_address =#{u_p_address}) 
 	</select>
 	
 	<!-- 회원주소 추가/수정 -->
-	<insert id="update_uAddr" parameterType="userAddrDTO">
+	<insert id="update_uAddr" parameterType="userAddrDTO">		 
 		insert into tb_user_p_address
 		 (u_p_id, u_p_add_id, u_p_address, u_p_flag) 
-		 values ( #{u_p_id}, #{u_p_add_id}, #{u_p_address}, 2 )
+		 values ( #{u_p_id}, #{u_p_add_id}, #{u_p_address}, 2)
 		 on duplicate key 
 		 update 
-		 u_p_address= #{u_p_address}
+         u_p_add_id= #{u_p_add_id},
+		 u_p_flag= 2		 
 	</insert>
 	
 	

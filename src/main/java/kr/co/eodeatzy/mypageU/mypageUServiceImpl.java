@@ -43,4 +43,14 @@ public class mypageUServiceImpl implements mypageUService {
 		return dao.delete_uAddr(userAddrDTO);
 	}
 
+	@Override
+	public List<userAddrDTO> u_Addr_duplicate(userAddrDTO userAddrDTO) throws Exception {
+		return dao.u_Addr_duplicate(userAddrDTO);
+	}
+
+	@Override
+	public int init_Addr(String u_p_id) throws Exception {
+		return dao.init_Addr(u_p_id);
+	}
+
 }
