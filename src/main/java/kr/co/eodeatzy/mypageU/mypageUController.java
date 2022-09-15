@@ -1,6 +1,7 @@
 package kr.co.eodeatzy.mypageU;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -191,9 +192,11 @@ public class mypageUController {
 	//mypageU/delete_uAddr
 	//===회원주소 삭제=======================================================================
 	@RequestMapping(value = "mypageU/delete_uAddr", method = RequestMethod.POST)
-	public ModelAndView delete_uAddr(HttpSession session, @RequestParam("delName")String delName
-			, @RequestParam("delAddr")String delAddr) throws Exception {
+	public ModelAndView delete_uAddr(HttpSession session,
+			@RequestParam("staCount") String staCount, userAddrDTO dto) throws Exception {
 		logger.info("mypageU/delete_uAddr");
+		logger.info("mypageU/delete_uAddr staCount : " + staCount);
+		logger.info("mypageU/delete_uAddr dto : " + dto);
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -201,15 +204,6 @@ public class mypageUController {
 		//debug 로그인 했다고 치고 u_p_id
 		u_p_id = "KING";
 
-		
-		//주소 등록할 dto만듬
-		userAddrDTO dto =  new userAddrDTO();
-		dto.setU_p_id(u_p_id);
-		dto.setU_p_add_id(delName);
-		dto.setU_p_address(delAddr);
-		dto.setU_p_flag(1);
-		logger.info("mypageU/delete_uAddr dto : " + dto);
-		
 		int r = service.delete_uAddr(dto);
 		
 		logger.info("delete_uAddr return : " + r);

@@ -20,27 +20,9 @@
 		console.log("del btn delName :" + delName); 
 		console.log("del btn delAddr :" + delAddr); 
 		var url ='${contextPath}/mypageU/delete_uAddr';
-		var paramData ={
-			"delName"   : delName,
-			"delAddr"   : delAddr
-		}
+
 		
-		
-		$.ajax({
-			url : url,
-			data : paramData,
-			dataType : 'json',
-			type : 'POST',
-			success : function(result){
-				console.log(result);				
-				
-			},
-			error : function(result){
-				console.log(result);				
-				alert('주소 삭제실패');			
-			}
-		}); // end of $.ajax({
-		
+
 	
 	} // end of function delAddr(addrName, addr){
 	
@@ -137,27 +119,32 @@
 									<div class="row grid">
 										<c:forEach items="${addrList}" var="addr" varStatus="status">
 											<div class="col-lg-12"> 
-												<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center" 
-												     name="divclick" onclick="sendVal('${addr.u_p_add_id}' , '${addr.u_p_address}' );" >
-													<div class="col-lg-9">
-														<div class="food-menu-content">
-															<a href="#">
-															
-															 <h4 id="addr_id${status.count}" name="addr_id${status.count}">${addr.u_p_add_id}</h4>
-															</a>
-															<ul>
-																<li name="addr_addr${status.count}">${addr.u_p_address}</li>
-																<li name="addr_flag${status.count}" hidden>${addr.u_p_flag}</li>
-															</ul>
+												<form action="${contextPath}/mypageU/delete_uAddr" method="post">
+													<div class="food-menu-item mt-30 d-block d-sm-flex align-items-center" 
+													     name="divclick" onclick="sendVal('${addr.u_p_add_id}' , '${addr.u_p_address}' );" >
+														<div class="col-lg-9">
+															<div class="food-menu-content">
+																<a href="#">
+																	<input type="text" name="staCount" value="${status.count}" hidden >
+																	<input type="text" name="u_p_id" value="${addr.u_p_id}" hidden >
+																	<input type="text" name="u_p_add_id" value="${addr.u_p_add_id}" hidden >
+																	<input type="text" name="u_p_address" value="${addr.u_p_address}" hidden >
+																	<input type="text" name="u_p_flag" value="${addr.u_p_flag}" hidden >
+																 	<h4 id="addr_id${status.count}" name="addr_id${status.count}">${addr.u_p_add_id}</h4>
+																</a>
+																<ul>
+																	<li name="addr_addr${status.count}">${addr.u_p_address}</li>
+																	<li name="addr_flag${status.count}" hidden>${addr.u_p_flag}</li>
+																</ul>
+															</div>
 														</div>
+														<div class="col-lg-2">
+															<div class="food-menu-thumb">
+																<button type="submit" class="btn btn-link btn-fw" >delete</button></td>
+															</div>
+														</div>	
 													</div>
-													<div class="col-lg-2">
-														<div class="food-menu-thumb">
-															<button type="button" id="delete_uAddr"  onclick="delAddr('${addr.u_p_add_id}' , '${addr.u_p_address}')">delete</button></td>
-															<a href="#" id="delAddr" onclick="delAddr('${addr.u_p_add_id}' , '${addr.u_p_address}')">delete</a>
-														</div>
-													</div>	
-												</div>
+												</form>			
 											</div>										
 										</c:forEach>
 									</div>
