@@ -15,8 +15,8 @@ public class LoginDAOImpl implements LoginDAO{
 	private static final String namespace = "kr.co.eodeatzy.loginMapper";
 
 	@Override
-	public Map user_login(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	// 개인 로그인
+	public LoginDTO_p user_login(Map<String, Object> map) {
 		return sqlSession.selectOne(namespace + ".user_login", map);
 	}
 

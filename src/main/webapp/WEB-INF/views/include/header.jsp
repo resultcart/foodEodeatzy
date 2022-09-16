@@ -34,13 +34,13 @@
 						</ul>
 						
 						<c:if test="${user_lo == null}">
-						<a class="main-btn" href="login">Login</a>
+						<a class="main-btn" href="${contextPath}/login">Login</a>
 						</c:if>
 						
 						
 						<c:if test="${user_lo != null}">
 						${user_lo.u_p_name} 님 환영합니다.<br>
-						<a class="main-btn" href=logout>Logout</a>
+						<a class="main-btn" href="${contextPath}/logout">Logout</a>
 						</c:if>
 						
 						

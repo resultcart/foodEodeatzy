@@ -20,6 +20,11 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.project
+.classpath
+
+# Compiled class file
+*.class
 
 # External tool builders
 .externalToolBuilders/
@@ -74,4 +79,19 @@ local.properties
 # Spring Boot Tooling
 .sts4-cache/
 
-# End of https://www.toptal.com/developers/gitignore/api/eclipse
+### Java-Web ###
+## ignoring target file
+target/
+
+
+# End of https://www.toptal.com/developers/gitignore/api/java-web,eclipse
+
+# Spring Boot Tooling
+.sts4-cache/
+
+### Java-Web ###
+## ignoring target file
+target/
+
+
+# End of https://www.toptal.com/developers/gitignore/api/java-web,eclipse

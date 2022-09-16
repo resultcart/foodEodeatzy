@@ -6,6 +6,8 @@
    <typeAliases>
      <typeAlias alias="userInfoDTO" type="kr.co.eodeatzy.mypageU.userInfoDTO"/>
      <typeAlias alias="userAddrDTO" type="kr.co.eodeatzy.mypageU.userAddrDTO"/>
-   	 <typeAlias type="kr.co.eodeatzy.main.u_Addr_OneDTO" alias="u_Addr_OneDTO"/>
+   	 <typeAlias alias="u_Addr_OneDTO" type="kr.co.eodeatzy.main.u_Addr_OneDTO" />
+   	 
+   	 <typeAlias alias="LoginDTO_p" type="kr.co.eodeatzy.login.LoginDTO_p" />
    </typeAliases>
 </configuration>

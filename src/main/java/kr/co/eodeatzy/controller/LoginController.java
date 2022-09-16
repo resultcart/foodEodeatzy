@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.eodeatzy.HomeController;
+import kr.co.eodeatzy.login.LoginDTO_p;
 import kr.co.eodeatzy.login.LoginService;
 
 @Controller
@@ -53,15 +54,24 @@ public class LoginController {
 	public String user_Login(@RequestParam Map<String, Object> map, 
 							 HttpServletRequest request,
 							 HttpSession session) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		Map user_lo = service.user_login(map);
+		logger.info("login/user_Login");
+		logger.info("login/user_Login Map " + map);
 		
-		if(user_lo == null) {
+		request.setCharacterEncoding("utf-8");
+		
+		//Map {u_p_id=king, u_p_pw=12345}
+		LoginDTO_p loginDTO_p = service.user_login(map);
+		logger.info("login/user_Login loginDTO_p " + loginDTO_p);
+		
+		if(loginDTO_p == null) {
+			logger.info("로그인실패");
 			return "redirect:login";
 		}
 		else {
-			session.setAttribute("user_lo", user_lo);
-			return "login";
+			logger.info("로그인성공");
+			session.setAttribute("user_lo", loginDTO_p.getU_p_id());
+			session.setAttribute("loginDTO_p", loginDTO_p);
+			return "home";
 		}
 	}
 	

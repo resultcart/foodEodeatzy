@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!doctype html>
 <html lang="en">
@@ -90,22 +90,22 @@
                                             개인사용자 로그인
                                         </h1>
                                         <form name="f1" action="post">
-                                        <label class="block text-sm">
-                                            <span class="text-gray-700 dark:text-gray-400">ID</span>
-                                            <input type="text" name="u_p_id" placeholder="id를 입력하세요" value="${login.u_p_id}" onKeyDown="if(event.keyCode == 13) loginChk()"
-                                             	   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"  />
-                                        </label>
-                                        <label class="block mt-4 text-sm">
-                                            <span class="text-gray-700 dark:text-gray-400">Password</span>
-                                            <input type="password" name="u_p_pw" placeholder="pw를 입력하세요" value="${login.u_p_pw}" onKeyDown="if(event.keyCode == 13) loginChk()" 
-                                            	   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
-                                        </label>
-
-                                        <!-- You should use a button here, as the anchor is only used for the example  -->
-                                        <br> <button type="button" class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">로그인</button>
-                                        <a class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">
-                                            Log in
-                                        </a>
+	                                        <label class="block text-sm">
+	                                            <span class="text-gray-700 dark:text-gray-400">ID</span>
+	                                            <input type="text" name="u_p_id" placeholder="id를 입력하세요" value="${login.u_p_id}" onKeyDown="if(event.keyCode == 13) loginChk()"
+	                                             	   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"  />
+	                                        </label>
+	                                        <label class="block mt-4 text-sm">
+	                                            <span class="text-gray-700 dark:text-gray-400">Password</span>
+	                                            <input type="password" name="u_p_pw" placeholder="pw를 입력하세요" value="${login.u_p_pw}" onKeyDown="if(event.keyCode == 13) loginChk()" 
+	                                            	   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" />
+	                                        </label>
+	
+	                                        <!-- You should use a button here, as the anchor is only used for the example  -->
+	                                        <br> <button type="button" class="btn btn-outline-warning btn-fw" onclick="loginChk()">로그인</button>
+	                                        <a class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">
+	                                            Log in
+	                                        </a>
                                         </form>
 
 										<script>
@@ -121,8 +121,9 @@
 													form.u_p_pw.focus();
 												return;
 												}	
-											form.action = "home";
-											form.submit();
+												form.method = "post";
+												form.action = "${contextPath}/login/user_Login";
+												form.submit();
 											}
 										</script>
 										

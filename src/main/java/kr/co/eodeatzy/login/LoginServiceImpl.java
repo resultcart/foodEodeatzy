@@ -13,8 +13,7 @@ public class LoginServiceImpl implements LoginService{
 
 	// 개인 로그인
 	@Override
-	public Map user_login(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+	public LoginDTO_p user_login(Map<String, Object> map) {;
 		return dao.user_login(map);
 	}
 
