@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8"  session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
@@ -77,6 +77,7 @@
                 </head>
 
                 <body>
+                
                     <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
                         <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
                             <div class="flex flex-col overflow-y-auto md:flex-row">
@@ -103,9 +104,54 @@
 	
 	                                        <!-- You should use a button here, as the anchor is only used for the example  -->
 	                                        <br> <button type="button" class="btn btn-outline-warning btn-fw" onclick="loginChk()">로그인</button>
-	                                        <a class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">
-	                                            Log in
-	                                        </a>
+
+	                                        <br>
+	                                        <br>
+											<!-- google -->
+											    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+												<a href="#" onclick="signOut();">Sign out</a>
+											    <script>
+											    
+											  //처음 실행하는 함수
+											    function init() {
+											    	gapi.load('auth2', function() {
+											    		gapi.auth2.init();
+											    		options = new gapi.auth2.SigninOptionsBuilder();
+											    		options.setPrompt('select_account');
+											            // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+											    		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+											            // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+											            // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+											    		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+											    	})
+											    }
+											    
+											    
+											      function onSignIn(googleUser) {
+											        // Useful data for your client-side scripts:
+											        var profile = googleUser.getBasicProfile();
+											        
+											        alert("ID: " + profile.getId());
+											        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+											        console.log('Full Name: ' + profile.getName());
+											        console.log('Given Name: ' + profile.getGivenName());
+											        console.log('Family Name: ' + profile.getFamilyName());
+											        console.log("Image URL: " + profile.getImageUrl());
+											        console.log("Email: " + profile.getEmail());
+											      }
+												
+												  function signOut() {
+												    var auth2 = gapi.auth2.getAuthInstance();
+												    
+												    alert('dfsfdf');
+												    alert(auth2);
+												    auth2.signOut().then(function () {
+												      console.log('User signed out.');
+												    });
+												  }
+												</script>		
+												<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>									    
+																							                                          
                                         </form>
 
 										<script>
@@ -130,18 +176,18 @@
                                         <hr class="my-8" />
 
                                         <p class="mt-4">
-                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=findID>
+                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="${contextPath}/login/findID">
                                                 id찾기
                                             </a>
                                         </p>
 
                                         <p class="mt-4">
-                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=findPW>
+                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="${contextPath}/login/findPW">
                                                 pw찾기
                                             </a>
                                         </p>
                                         <p class="mt-1">
-                                            <br> <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=register_u>
+                                            <br> <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="${contextPath}/login/register_u">
                                                 개인사용자회원가입
                                             </a>
                                         </p>

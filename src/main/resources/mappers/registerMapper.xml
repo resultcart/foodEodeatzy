@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.registerMapper">
+
+	<!-- 사업자 등록 -->
+	<insert id="insertBussijoin" parameterType="registerB_DTO">
+		insert into tb_user_b(u_b_id, u_b_name, u_b_pw, u_b_number, u_b_email, u_b_access, u_b_join_dttm)
+		values(#{u_b_id}, #{u_b_name}, #{u_b_pw}, #{u_b_number}, #{u_b_email}, #{u_b_access}, now())
+	</insert>
+
+   <!-- 사업장 등록 -->
+	<insert id="insertStore" parameterType="registerS_DTO" >
+		insert into tb_store(u_s_id, u_b_id, s_regi_num, s_name, s_number, c_id, s_state, s_time, u_b_img_upload, s_desc)
+		values(#{u_s_id}, #{u_b_id}, #{s_regi_num}, #{s_name}, #{s_number}, #{c_id}, #{s_state}, #{s_time}, #{u_b_img_upload}, #{s_desc})
+	</insert>
+	
+   <!-- 아이디 중복 확인시 id만 가지고 올 때  -->
+   <select id="idCheck"  resultType="java.lang.Integer">
+   select count(*)
+   from tb_user_b
+   where u_b_id = #{u_b_id}
+   
+   </select>
+	
+	<!-- 가게아이디 중복 확인시 -->
+	 <select id="storeCheck"  resultType="java.lang.Integer">
+   select count(*)
+   from tb_store
+   where u_s_id = #{u_s_id}
+   
+   </select>
+</mapper>

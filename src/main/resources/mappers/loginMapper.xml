@@ -11,8 +11,71 @@
 		where u_p_id=#{u_p_id} 
 		and   u_p_pw=#{u_p_pw} 
 	</select>
+	
+	<!-- 개인 로그인 일시 업데이트 -->
+	<update id="user_logintime" parameterType="String">
+        update tb_user_p set 
+        u_p_login_dttm =  now()
+        where (u_p_id = #{u_p_id})
+	</update>
+	
+	<!-- 개인 로그아웃 일시 업데이트 -->
+	<update id="user_logouttime" parameterType="String">
+        update tb_user_p set 
+        u_p_logout_dttm =  now()
+        where (u_p_id = #{u_p_id})
+	</update>
+	
+	<!-- 사업자 로그인 -->
+	<select id="busi_Login" parameterType="LoginDTO_b" resultType="LoginDTO_b">
+		select * 
+		from tb_user_b
+		where u_b_id =#{u_b_id}
+		and u_b_pw =#{u_b_pw}
+	</select>
+	
+	<!-- 개인 ID찾기 -->
+	<select id="find_ID_U" parameterType="java.util.Map" resultType="String">
+		select u_p_id
+		from tb_user_p
+		where u_p_name =#{u_p_name}
+		and u_p_number=#{u_p_number}			
+	</select>
+	
+	<!-- 사업자 ID찾기 -->
+	<select id="find_ID_B" parameterType="java.util.Map" resultType="String">
+		select u_b_id
+		from tb_user_b
+		where u_b_name =#{u_b_name}
+		and u_b_number=#{u_b_number}	
+	</select>
 
-
+	<!-- 개인 PW찾기 -->
+	<select id="find_PW_U" parameterType="java.util.Map" resultType="String">
+		select u_p_pw
+		from tb_user_p
+		where u_p_id =#{u_p_id}
+		and u_p_name =#{u_p_name} 
+		and u_p_number=${u_p_number}
+	</select>	
+	
+	<!-- 사업자 PW찾기 -->
+	<select id="find_PW_B" parameterType="java.util.Map" resultType="String">
+		select u_b_pw
+		from tb_user_b
+		where u_b_id =#{u_b_id}
+		and u_b_name =#{u_b_name}
+		and u_b_number=#{u_b_number}
+	</select>	
+	
+	<!-- 회원가입 -->
+	<insert id="ins_mem_u" parameterType="ins_mem_uDTO">
+		insert into tb_user_p (u_p_id, u_p_pw, u_p_name, u_p_regi_num, u_p_number, u_p_email, u_p_access, u_p_ad_yn, u_p_ad_media, u_p_join_dttm)
+		value (#{u_p_id}, #{u_p_pw}, #{u_p_name}, #{u_p_regi_num}, #{u_p_number}, #{u_p_email}, 1, #{u_p_ad_yn}, #{u_p_ad_media}, now())
+		<selectKey keyColumn="u_p_ad_yn, u_p_ad_media" resultType="int" order="AFTER">
+			select u_p_ad_yn, u_p_ad_media from tb_user_p
+		</selectKey>
+	</insert>
 	
 </mapper>  
   

@@ -18,7 +18,14 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources location="/resources/js/" mapping="/js/**"/>	
+	<resources location="/resources/css/" mapping="/css/**"/>	
+	<resources location="/resources/scss/" mapping="/scss/**"/>	
+	<resources location="/resources/images/" mapping="/images/**"/>
+	<resources location="/resources/vendors/" mapping="/vendors/**"/>
+	<resources location="/resources/fonts/" mapping="/fonts/**"/>
+	
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -28,5 +35,18 @@
 	<context:component-scan base-package="kr.co.eodeatzy" />
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 인터셉터 설정 -->
+	<beans:bean class="kr.co.eodeatzy.common.AuthenticationInterceptor"  id ="auth"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypageU/userInfo"/>	
+			<mapping path="/mypageU/u_Addr_List"/>	
+			<mapping path="/mypageU/eatitem"/>	
+			<mapping path="/mypageU/mypage"/>	
+			<mapping path="/mypageU/u_unregister"/>	
+			<beans:ref bean="auth"/>	
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

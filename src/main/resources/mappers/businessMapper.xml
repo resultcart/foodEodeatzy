@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.businessMapper">
+        
+        <!-- 사업자 정보 조회 -->
+        <select id="businessList" resultType="businessDTO">
+                select u_b_id, 
+                		u_b_name, 
+                		u_b_pw, 
+                		u_b_number,
+                		u_b_email,
+                		u_b_access,
+                		u_b_join_dttm                		
+                from tb_user_b
+              where u_b_id = "busijin"           
+        </select>
+        
+        <!-- 사업자 정보 수정 -->
+        <update id="businessUpdate" parameterType="businessDTO">
+                update tb_user_b
+                set 	u_b_pw = #{u_b_pw},
+                        u_b_number = #{u_b_number},
+                        u_b_email = #{u_b_email}
+                where u_b_id = "busijin"
+        </update>
+        
+      <!-- 메뉴 정보 조회 -->
+      <select id="selectMenu" parameterType="businessDTO" resultType="businessDTO">
+            select *
+            from tb_menu
+            where m_state = 1
+            order by u_s_id
+      </select>
+      
+      <!-- 메뉴 상세 조회 -->
+      <select id="menudetail" parameterType="java.util.Map" resultType="java.util.Map">
+      		select m_name, m_price, m_stock, m_ltime
+      		from tb_menu
+      		where u_s_id = #{u_s_id}
+      		and m_id = #{m_id}      		    
+      </select>
+      
+      <!-- 메뉴 삭제 -->
+        <update id="menudelete" parameterType="java.util.Map">
+              update tb_menu
+              set m_state = 2 
+              where m_id = #{m_id} 
+              and u_s_id = #{u_s_id}                          
+        </update>                  
+        
+       <!-- 메뉴 정보 수정 -->
+       <update id="updatemenu" parameterType="java.util.Map">
+               update tb_menu
+               set m_name = #{m_name},
+                   m_price = #{m_price},
+                   m_stock = #{m_stock},
+                   m_ltime = #{m_ltime}           
+               where m_id = #{m_id}
+               and u_s_id = #{u_s_id}
+        </update>
+        
+        <!-- 메뉴 추가 -->
+        <insert id="insertmenu" parameterType="java.util.Map">
+        	insert into tb_menu(u_s_id,
+        						m_id,
+        						m_name,
+        						m_price,
+        						m_stock,
+        						m_ltime,
+        						m_state)
+        						
+        				values(#{u_s_id},
+        						#{m_id},        						
+        						#{m_name},
+        						#{m_price},
+        						#{m_stock},
+        						#{m_ltime},
+        						1)
+        </insert>
+        
+        <!-- 가게 정보 조회 -->
+        <select id="storeList" resultType="businessDTO">
+                select u_s_id,
+                		u_b_id,
+                		s_regi_num,
+                		s_name,
+                		s_number,
+                		c_id,
+                		s_state,
+                		s_time,
+                		u_b_img_upload
+                from tb_store
+        </select>
+        
+        <!-- 가게 정보 수정 -->
+        <update id="storeNameUpdate" parameterType="java.util.Map">
+                update tb_store
+                set s_regi_num = #{s_regi_num},
+                        s_name = #{s_name},
+                        s_number = #{s_number},
+                        s_state = #{s_state},
+                        s_time = #{s_time},
+                        u_b_img_upload = #{u_b_img_upload}
+               where u_b_id = "busijin"
+        </update>
+        
+        
+        <!-- 주문 확인 -->
+        <select id="orderCheck" parameterType="businessDTO" resultType="businessDTO">
+        	select tb_order.o_number,
+        			tb_order.u_s_id,
+        			tb_order.u_p_id,
+        			tb_order.o_cnt_total,
+        			tb_order.o_amt_total,
+        			tb_order.o_ltime_total,
+        			tb_order.o_state,
+        			tb_order.o_desc,
+        			tb_order.o_datetime,
+        			tb_p_memo.p_memo
+        	from tb_order
+        	left outer join tb_p_memo 
+        	on tb_order.u_s_id = tb_p_memo.u_s_id
+        	and tb_order.u_p_id = tb_p_memo.u_p_id
+        	order by 
+        	tb_order.u_s_id     
+        </select>
+      		
+      
+      <!-- 주문 확인 상세 내역 -->
+      <select id="orderdetail" parameterType="businessDTO" resultType="businessDTO">
+      	select *
+      	from tb_order_detail      	
+	    where o_number = #{o_number}
+      </select>
+      
+      <!-- 주문 확인 고객 메모 -->
+      <select id="orderMemo" parameterType="java.util.Map" resultType="java.util.Map">
+      	select u_p_id,
+      			p_memo
+      	from tb_p_memo
+      	where u_s_id = #{u_s_id}
+      	and u_p_id = #{u_p_id}      
+      </select>
+      
+      <!-- 주문 확인 고객 메모 수정 -->
+      <update id="updateMemo" parameterType="java.util.Map">
+      	update tb_p_memo
+      	set p_memo = #{p_memo}
+      	where u_s_id = #{u_s_id}
+      	and u_p_id = #{u_p_id}
+      </update>
+      
+
+</mapper>

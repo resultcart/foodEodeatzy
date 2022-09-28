@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
+<c:set var="assets_shPath" value="${pageContext.request.contextPath }/resources/assets_sh" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -10,7 +12,6 @@
 	String u_p_add_id = request.getParameter("u_p_add_id");
 	String u_p_address = request.getParameter("u_p_address");
 	String u_p_flag = request.getParameter("u_p_flag");
-
 
 
 %>
@@ -51,84 +52,102 @@
 <section class="download-area">
 <div class="container">
 	<div class="row justify-content-center">
+	   <img src="${assetsPath}/images/푸드트럭.jpg" alt="푸드트럭">
 		<div class="col-lg-8">
 			<div class="section-title text-center">
+				
+				<br><br><br><br>
+				<c:if test="${sessionScope.user_id == null}">
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-				<a class="mt-4" href=u_Addr_One id="u_p_id" value=${main.u_p_id }>내주소</a><br>
+					<a class="mt-4" href="${contextPath }/login">로그인 후 내주소 보러가기</a><br>
+				</c:if>
+				
+				
+				<c:if test="${sessionScope.user_id != null}">
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-				<a class="mt-4" href="#">공지사항 하나 보고 클릭하면 보러갈거</a> <br>
+					<a class="mt-4" href="${contextPath }/mypageU/u_Addr_List">내주소 보러가기</a><br>
+					<form action="u_Addr_One" method="get">
+ 							<h6 class="footer-heading mb-4">${tb_user_p.u_p_id} | ${tb_user_p_address.u_p_add_id} | ${tb_user_p_address.u_p_address}</h6>
+					</form>
+				</c:if>
+
+				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
+				<a class="mt-4" href="${contextPath }/main/notice_One">공지사항 보러가기</a> <br>
+				<form action="notice_One" method="get">
+	  				<h6 class="footer-heading mb-4">${notice_one.b_writer} | ${notice_one.b_title} | ${notice_one.b_content}</h6>
+				</form>
+
+				
+				
 			</div>
-		</div>
-	</div>
-</div>
-
-
+		  </div>
+	  </div>
+  </div>
+<br>
 <!--====== CATEGORY START ======-->
+	<section class="site-footer border-top"> <br>
+	   <div class="container">
+	      <div class="page-title-box text-center">
+	      	 <h4 class="title">MENU CATEGOTY</h4> <br>
+			     <c:forEach var="ca" items="${catego}"> 
+		            <tr>
+		              <th><a href="${contextPath }/main/category_One?c_id=${ca.c_id}" class="btn btn-outline-warning btn-fw"> ${ca.c_name }</a></th>
+		            </tr>
+	             </c:forEach>
+		     </div>
+	    </div>
+	  <br>
+	</section>
 
-<footer class="site-footer border-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-md-12">
-                <br> <h3 class="footer-heading mb-4">MENU CATEGOTY</h3>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">한식</a></li>
-                  <li><a href="#">중식</a></li>
-                  <li><a href="#">일식</a></li>
-                  <li><a href="#">양식</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">퓨전</a></li>
-                  <li><a href="#">디저트</a></li>
-                  <li><a href="#">분식</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">야식</a></li>
-                  <li><a href="#">타코야끼</a></li>
-                  <li><a href="#">붕어빵</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-         
-          
-        </div>
-      </div>
-    </footer>
 
 <!--====== CATEGORY ENDS======-->
-
+<!--====== STORETYPE START======-->
 <hr>
 <div class="download-item-area bg_cover mt-30">
 	<div class="container">
 		<div class="row align-items-center">
-			<div class="col-lg-6">
-				<div class="download-item-thumb">
-					<img src="${assetsPath}/images/download-thumb.png" alt="thumb">
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="download-item-content">
-					<h3 class="title">Rondhon Now In Your Hand</h3>
-					<p>
-						food 
-					</p>
 	
-				</div>
-			</div>
+		  <!-- 가게조회 -->
+			<div class="card-body">
+                  <h4 class="card-title">STORE LIST</h4>
+		                <p>
+							<i class="fas fa-map-marker-alt"></i>뀨잉
+						</p>
+                  
+                  <div class="table-responsive">
+                    
+	                  <table class="table">
+	                        <tr>
+	                          <th>가게명</th>
+	                          <th>전화번호</th>
+	                          <th>오픈 여부</th>
+	                        </tr>
+	                      
+						<c:forEach var="st" items="${storetype }">
+							<tr>
+								<td><a href="${contextPath }/store/menu_list?u_s_id=${st.u_s_id }">${st.s_name }</a></td>
+								<td>${st.s_number }</td>
+									<c:if test="${st.s_state eq '1'}">
+										<td><label class="badge badge-warning">OPEN</label></td>
+									</c:if>
+									
+									<c:if test="${st.s_state eq '2'}">
+										<td><label class="badge badge-danger">CLOSE</label></td>
+									</c:if>
+							</tr>
+						</c:forEach>
+	                      
+	                    </table>
+                    
+               
+                  </div>
+                </div>	
+			 <!-- 가게조회 끝 -->
 		</div>
 	</div>
 </div>
 </section>
-<!--====== DOWNLOAD PART ENDS ======-->
+<!--====== STORETYPE ENDS ======-->
 
 
 <!--====== FOOTER PART START ======-->
@@ -225,7 +244,7 @@
 		<div class="col-lg-12">
 			<div class="footer-copyright d-block d-sm-flex justify-content-between align-items-center">
 				<p>
-					© 2020 Rondhon All Right <a href="http://www.bootstrapmb.com" title="">Reserved</a>
+					ⓒ 2020 Rondhon All Right <a href="http://www.bootstrapmb.com" title="">Reserved</a>
 				</p>
 				<a href="#"><img src="${assetsPath}/images/payment.png" alt=""></a>
 			</div>

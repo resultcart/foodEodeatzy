@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
@@ -103,9 +103,7 @@
 
                                         <!-- You should use a button here, as the anchor is only used for the example  -->
                                         <br> <button type="button" class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">로그인</button>
-                                        <a class="btn btn-outline-warning btn-fw" href=home onclick="loginChk()">
-                                            Log in
-                                        </a>
+
                                         </form>
                                         
                                         <script>
@@ -121,26 +119,30 @@
 													form.u_b_pw.focus();
 												return;
 												}	
-											form.action = "home";
-											form.submit();
+												form.method = "post";
+												form.action = "${contextPath}/login/busi_Login";
+												form.submit();
 											}
 										</script>
 
                                         <hr class="my-8" />
 
                                         <p class="mt-4">
-                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=findID>
+                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" 
+                                            href="${contextPath}/login/findID">
                                                 id찾기
                                             </a>
                                         </p>
 
                                         <p class="mt-4">
-                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=findPW>
+                                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                             href="${contextPath}/login/findPW">
                                                 pw찾기
                                             </a>
                                         </p>
                                         <p class="mt-1">
-                                            <br> <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href=register_u>
+                                            <br> <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                             href="${contextPath}/login/register_u">
                                                 사업자회원가입
                                             </a>
                                         </p>

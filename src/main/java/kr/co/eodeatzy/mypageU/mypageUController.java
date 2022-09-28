@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.tools.sjavac.Log;
 
-import kr.co.eodeatzy.HomeController;
+import kr.co.eodeatzy.controller.HomeController;
 
 @Controller
 public class mypageUController {
@@ -52,10 +52,11 @@ public class mypageUController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
+		logger.info("mypageU/userInfo session id : " + u_p_id);
 		
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "king";
+//		u_p_id = "king";
  		
 		userInfoDTO userInfo = service.userInfo(u_p_id);
 		logger.info("userInfo: " + userInfo);
@@ -103,12 +104,15 @@ public class mypageUController {
 	@RequestMapping(value = "mypageU/u_unregister", method = RequestMethod.POST)
 	public String u_unregister(HttpSession session, Model model) throws Exception {
 		logger.info("mypageU/u_unregister post");
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
+		logger.info("mypageU/u_unregister session id : " + u_p_id);
 		
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "king";
+//		u_p_id = "king";
 		
 		int r = service.u_unregister(u_p_id);
+		//로그아웃처리
+		session.invalidate();
 		
 		if (r>0) {
 			logger.info("회원탈퇴 완료");
@@ -131,10 +135,12 @@ public class mypageUController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
 		
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "KING";
+//		u_p_id = "KING";
+		logger.info("mypageU/u_Addr_List session id : " + u_p_id);
+		
 		List<userAddrDTO> addrList = service.u_Addr_List(u_p_id);
 		logger.info("return addrList : " + addrList);
 		
@@ -151,9 +157,10 @@ public class mypageUController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "KING";
+//		u_p_id = "KING";
+		logger.info("mypageU/update_uAddr session id : " + u_p_id);
 
 		
 		
@@ -212,9 +219,10 @@ public class mypageUController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "KING";
+//		u_p_id = "KING";
+		logger.info("mypageU/delete_uAddr session id : " + u_p_id);
 
 		int r = service.delete_uAddr(dto);
 		

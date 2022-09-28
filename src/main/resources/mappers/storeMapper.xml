@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.storeMapper">
+	
+	<!-- 가게 검색(조회) -->
+	<select id="store_info" parameterType="String" resultType="StoreDTO">
+		select *
+		from tb_store                    
+		where s_name=#{s_name}
+	</select>
+	
+	<!-- 가게별 메뉴 리스트 -->
+	<select id="menu_list" parameterType="String" resultType="storeMenuDTO">
+	select *
+	from tb_menu
+	where u_s_id =#{u_s_id}
+	</select>
+	
+	<!-- 가게 상세 정보/메모 -->
+	<select id="store_info_detail" parameterType="String" resultType="StoreDTO">
+	select *
+	from tb_store
+	where u_s_id=#{u_s_id}
+	</select>
+
+	
+</mapper>

@@ -15,7 +15,6 @@ public class LoginDTO_p {
 	private int u_p_access;
 	private int u_p_ad_yn;
 	private int u_p_ad_media;
-	private String 	u_p_desc;
 	private String 	u_p_join_dttm;
 	private String 	u_p_login_dttm;
 	private String 	u_p_logout_dttm;

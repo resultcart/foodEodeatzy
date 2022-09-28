@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
@@ -59,11 +59,11 @@
 				<!-- 내용쓰기 -->
 				<h2>진짜로 이 맛있는 푸드트럭 음식을 놔두고 탈퇴 하시겠습니까?<br>
 				<br>
-				다시 생각해보고오세용 ^^<br>
+				<br>
 				</h2>
 				<br>
 				<form role="form" method="post">
-					<button type="submit" class="btn btn-outline-danger btn-fw">쌩까고탈퇴하기^^</button>				
+					<button type="submit" class="btn btn-outline-danger btn-fw">그냥탈퇴하기^^</button>				
 				</form>
 			</div>
 		</div>

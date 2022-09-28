@@ -6,11 +6,41 @@
 
 	<!-- 개인이용자 주소보기 -->
 	<select id="u_Addr_One" parameterType="String" resultType="u_Addr_OneDTO">
-	select u_p_id, u_p_add_id, u_p_address, u_p_flag
-	from tb_user_p_address
-	where (u_p_id=#{u_p_id}) and (u_p_flag=#{2})
+		select tb_user_p.u_p_id, tb_user_p_address.u_p_address, tb_user_p_address.u_p_flag from tb_user_p
+		inner join tb_user_p_address
+		on tb_user_p.u_p_id = tb_user_p_address.u_p_id
+		where tb_user_p.u_p_id=#{u_p_id} and u_p_flag=2
 	</select>
 
 	<!-- 사업자 주소보기 -->
 
+	<!-- 공지사항 하나 보기 -->
+	<select id="notice_One" parameterType="String" resultType="notice_OneDTO">
+		select b_writer, b_title, b_content
+		from tb_board
+		where b_id = (select max(#{b_id}) 
+					  from tb_board) and (b_type=1) and (b_state=10)
+	</select>
+
+	<!-- 카테고리 조회 -->
+	<select id="category" resultType="categoryDTO">
+		select c_id, c_name, c_use
+		from tb_category
+		where c_use=2
+	</select>
+
+	<!-- 홈에서 가게정보 -->
+	<select id="store_type" resultType="store_typeDTO">
+		select u_s_id, s_name, s_number, s_state
+		from tb_store
+	</select>
+	
+	<!-- 카테고리 누르면 해당하는 c_id의 가게정보 보여주기 -->
+	<select id="category_One" resultType="category_OneDTO">
+		select *
+		from tb_store
+		where c_id=#{c_id}
+	</select>
+
+	
 </mapper>

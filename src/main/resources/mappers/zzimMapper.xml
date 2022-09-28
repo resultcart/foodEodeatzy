@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.zzimMapper">
+
+<resultMap type="kr.co.eodeatzy.Zzim.zzimStoreDTO" id="zzimStoreDTO">
+<result property = "u_s_id" column="u_s_id"/>
+<result property = "u_p_id" column="u_p_id"/>
+<result property = "s_name" column="s_name"/>
+<result property = "s_number" column="s_number"/>
+<result property = "s_state" column="s_state"/>
+<result property = "s_time" column="s_time"/>
+</resultMap>
+
+<resultMap type="kr.co.eodeatzy.Zzim.zzimDTO" id="zzim">
+<result property = "u_s_id" column="u_s_id"/>
+<result property = "u_p_id" column="u_p_id"/>
+<result property = "z_desc" column="z_desc"/>
+<collection property="zzimStoreDTO" resultMap="zzimStoreDTO"/>
+</resultMap>
+
+	<!-- 찜 목록 전체보기 -->
+	<select id="ListAll" parameterType="java.lang.String" resultMap="zzim">
+		select 
+		s.s_name,
+		z.u_p_id, 
+		z.u_s_id,
+		z.z_desc
+		from tb_store s , tb_zzim z
+		where s.u_s_id = z.u_s_id
+		and z.u_p_id = #{z.u_p_id}
+	</select>
+
+	<!-- 찜목록 수정시 개인이 선택한 찜정보 상세보기 -->
+	<select id="detailzzim" parameterType="java.lang.String" resultType="zzimDTO">
+		select u_p_id,
+		u_s_id,
+		z_desc
+        from tb_zzim 
+        where u_p_id = #{u_p_id} 
+        and u_s_id= #{u_s_id}
+	</select>
+
+	<!-- 찜 목록 추가 -->
+	<insert id="addZzim" parameterType="zzimDTO" >
+		insert into tb_zzim(u_p_id, u_s_id, z_desc)
+		values(#{u_p_id}, #{u_s_id}, #{z_desc})
+	</insert>
+
+
+	<!-- 찜 수정 -->
+	<update id="updatezdesc" parameterType="zzimDTO">
+		update tb_zzim
+		set
+		z_desc = #{z_desc}
+		where u_p_id = #{u_p_id}
+		and u_s_id = #{u_s_id}
+	</update>
+	
+
+	<!-- 찜 삭제 -->
+	<delete id="deleteZzim" parameterType="zzimDTO">
+	delete from foodb.tb_zzim
+	where u_p_id = #{u_p_id} 
+	and u_s_id = #{u_s_id}
+	</delete>
+	
+	
+
+
+</mapper>

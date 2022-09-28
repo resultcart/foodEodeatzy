@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <!doctype html>
 <html :class="{ 'theme-dark': dark }" x-data="data()"  lang="en">
@@ -41,7 +42,7 @@
 				<h3 class="title">LOGIN</h3>
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="${contextPath}/">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Login</li>
 				</ol>
 				</nav>
@@ -111,13 +112,13 @@
               <hr>
 
                             
-              <a class="btn btn-outline-warning btn-fw" href=user_Login>
+              <a class="btn btn-outline-warning btn-fw" href="${contextPath}/login/user_Login">
                 개인사용자 로그인
               </a>
 
               <hr class="my-8" />
 
-				<a class="btn btn-outline-warning btn-fw" href=busi_Login>
+				<a class="btn btn-outline-warning btn-fw" href="${contextPath}/login/busi_Login">
                 사업자 로그인
               </a>
 
@@ -125,23 +126,23 @@
 
               <p class="mt-4">
                 <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href=findID >
+                  href="${contextPath}/login/findID" >
                   ID찾기
                 </a>
               </p>
 
               <p class="mt-4">
                 <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href=findPW >
+                  href="${contextPath}/login/findPW" >
                   PW찾기
                 </a>
               </p>
-
+                
               <p class="mt-1">
               <br>  <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href=register_u >
+                  href=register>
                   회원가입
-                </a>
+                </a>                
               </p>
             </div>
           </div>

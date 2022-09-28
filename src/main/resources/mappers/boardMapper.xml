@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.boardMapper">
+
+	<!-- 콤보리스트 테이블_전체조회 -->
+	<select id="comboList" parameterType="java.lang.String" resultType="acomboDTO">
+		SELECT *
+		  FROM tb_combo
+		 WHERE cb_id		= #{cb_id} 
+		   AND cb_use_yn	= 1
+	</select>	
+
+	<select id="noticeSelectList" resultType="aboardBDTO">
+		SELECT *
+		  FROM tb_board
+		 WHERE b_type	= 1
+		   AND b_state	= 10
+	</select>
+	
+	<select id="noticeSelect" parameterType="java.lang.Integer" resultType="aboardBDTO">
+		SELECT *
+		  FROM tb_board
+		 WHERE b_state	= 10
+		   AND b_id		= #{id}
+	</select>
+	
+	<!-- 공지사항_입력 -->
+	<insert id="noticeInsert" parameterType="aboardBDTO">
+		INSERT INTO tb_board (b_id, b_writer, b_type, b_title, b_content, b_img_upload, b_state, b_datetime) 
+			 VALUES (#{b_id},#{b_writer},1,#{b_title},#{b_content},'',#{b_state},curdate())
+	</insert>
+	
+	<!-- 공지사항_수정 -->
+	<update id="noticeUpdate" parameterType="aboardBDTO">
+		UPDATE	tb_board
+		   SET	b_writer		= #{b_writer}, 
+		   		b_title 		= #{b_title}, 
+		   		b_content 		= #{b_content}, 
+		   		b_img_upload	= #{b_img_upload},
+		   		b_datetime 		= curdate() 
+		 WHERE	b_id 			= #{b_id}
+	</update>
+
+	<!-- 공지사항_삭제 -->
+	<update id="noticeDelete" parameterType="aboardBDTO">
+		UPDATE tb_board
+		   SET b_state	= 99
+		 WHERE b_id 	= #{b_id}
+	</update>
+	
+	<!-- 제보게시판_전체조회 -->
+	<select id="boardSelectList" resultType="aboardBDTO">
+		SELECT *
+		  FROM tb_board
+		 WHERE b_type	= 2
+		   AND b_state	= 10
+	</select>
+
+	<!-- 제보게시판_입력 -->
+	<insert id="boardInsert" parameterType="aboardBDTO">
+		INSERT INTO tb_board (b_id, b_writer, b_type, b_title, b_content, b_img_upload, b_state, b_datetime) 
+			 VALUES (#{b_id},#{b_writer},2,#{b_title},#{b_content},#{b_img_upload},10,curdate())
+	</insert>
+	
+	<!-- 댓글테이블_전체조회 -->
+	<select id="commentSelectList" parameterType="java.lang.Integer" resultType="acommentBDTO">
+		SELECT *
+		  FROM tb_comment
+		 WHERE b_id		= #{b_id}
+	</select>
+	
+	<!-- 댓글_입력 -->
+	<insert id="commentInsert" parameterType="acommentBDTO">
+		INSERT INTO tb_comment (bc_id, bc_writer, b_id, bc_content, bc_datetime, bc_use) 
+			 VALUES (#{bc_id},#{bc_writer},#{b_id},#{bc_content},curdate(),2)
+	</insert>
+	
+	<!-- 댓글_수정 -->
+	<update id="commentUpdate" parameterType="acommentBDTO">
+		UPDATE	tb_comment
+		   SET	bc_writer 	= #{bc_writer}, 
+		   		bc_content 	= #{bc_content}, 
+		   		bc_datetime	= curdate(), 		
+		   		bc_use		= #{bc_use}
+		 WHERE	bc_id 		= #{bc_id}
+	</update>
+	
+	<!-- 댓글_삭제 -->
+	<delete id="commentDelete" parameterType="acommentBDTO">
+		DELETE FROM tb_comment
+		 WHERE bc_id	= #{bc_id}
+	</delete>
+
+</mapper>

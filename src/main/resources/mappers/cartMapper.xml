@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.eodeatzy.cartMapper">
+
+	<!-- 장바구니 조회 -->
+	<resultMap type="menuDTO" id="menuDTO">
+		<result column="m_id" property="m_id"/>
+		<result column="u_s_id" property="u_s_id"/>
+		<result column="m_name" property="m_name"/>
+		<result column="m_price" property="m_price"/>
+		<result column="m_stock" property="m_stock"/>
+		<result column="m_ltime" property="m_ltime"/>
+		<result column="m_state" property="m_state"/>	
+	</resultMap>
+
+	<resultMap type="cartDTO" id="cartDTO">
+		<result column="u_p_id" property="u_p_id"/>
+		<result column="u_s_id" property="u_s_id"/>
+		<result column="m_id" property="m_id"/>
+		<result column="ct_count" property="ct_count"/>
+		<collection property="menuDTO" resultMap="menuDTO"/>
+	</resultMap>
+	
+	<select id="sel_cartList" parameterType="String" resultMap="cartDTO">
+	select *
+	from tb_cart as c 
+	inner join tb_menu as m
+	on c.u_s_id=m.u_s_id and c.m_id=m.m_id
+	where c.u_s_id=#{u_s_id}
+	</select>
+	
+	<!-- 장바구니 추가 -->
+	<insert id="ins_cartList" parameterType="cartDTO">	
+	insert into tb_cart (u_p_id, u_s_id, m_id, ct_count)
+	values (#{u_p_id}, #{u_s_id}, #{m_id}, #{ct_count})
+	</insert>
+	
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="del_cartList" parameterType="java.lang.Integer" >
+	delete 
+	from tb_cart
+	where m_id=#{m_id}
+	</delete>
+</mapper>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
@@ -52,7 +52,7 @@
 </div>
 <!--====== PRELOADER PART ENDS ======-->
 <!--====== HEADER PART START ======-->
-<%@ include file="include/header2.jsp" %>
+<%@ include file="include/header.jsp" %>
 <!--====== HEADER PART ENDS ======-->
 <!--====== PAGE TITLE PART START ======-->
 <section class="page-title-area bg_cover" style="background-image: url(${assetsPath}/images/page-bg-2.jpg);">

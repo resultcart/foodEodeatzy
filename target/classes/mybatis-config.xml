@@ -6,8 +6,48 @@
    <typeAliases>
      <typeAlias alias="userInfoDTO" type="kr.co.eodeatzy.mypageU.userInfoDTO"/>
      <typeAlias alias="userAddrDTO" type="kr.co.eodeatzy.mypageU.userAddrDTO"/>
-   	 <typeAlias alias="u_Addr_OneDTO" type="kr.co.eodeatzy.main.u_Addr_OneDTO" />
-   	 
    	 <typeAlias alias="LoginDTO_p" type="kr.co.eodeatzy.login.LoginDTO_p" />
+   	 <typeAlias alias="LoginDTO_b" type="kr.co.eodeatzy.login.LoginDTO_b" />
+     
+     
+   	 <typeAlias alias="u_Addr_OneDTO" type="kr.co.eodeatzy.main.u_Addr_OneDTO" />
+   	 <typeAlias alias="notice_OneDTO" type="kr.co.eodeatzy.main.notice_OneDTO"/>
+   	 <typeAlias alias="store_typeDTO" type="kr.co.eodeatzy.main.store_typeDTO"/>
+   	 <typeAlias alias="categoryDTO" type="kr.co.eodeatzy.main.categoryDTO"/>
+   	<typeAlias alias="category_OneDTO" type="kr.co.eodeatzy.main.category_OneDTO"/>
+   	 <typeAlias alias="ins_mem_uDTO" type="kr.co.eodeatzy.login.ins_mem_uDTO"/>   	 
+   	 
+     <typeAlias alias="StoreDTO" type="kr.co.eodeatzy.store.StoreDTO"/>
+     <typeAlias alias="storeMenuDTO" type="kr.co.eodeatzy.store.storeMenuDTO"/>
+     <typeAlias alias="cartDTO" type="kr.co.eodeatzy.cart.cartDTO"/>
+     <typeAlias alias="menuDTO" type="kr.co.eodeatzy.cart.menuDTO"/>
+     <typeAlias alias="orderDTO" type="kr.co.eodeatzy.payment.orderDTO"/>   	 
+     
+   	 <typeAlias alias="registerB_DTO" type="kr.co.eodeatzy.registerbussi.registerB_DTO"/>
+     <typeAlias alias="registerS_DTO" type="kr.co.eodeatzy.registerstore.registerS_DTO"/>
+     <typeAlias alias="zzimDTO" type="kr.co.eodeatzy.Zzim.zzimDTO"/>
+     <typeAlias alias="zzimStoreDTO" type="kr.co.eodeatzy.Zzim.zzimStoreDTO"/>     
+     
+	   <typeAlias alias="businessDTO" type="kr.co.eodeatzy.business.businessDTO"/>
+	     
+     <typeAlias alias="auserInfoDTO" type="kr.co.eodeatzy.mypageU.userInfoDTO"/>
+     <typeAlias alias="aboardDTO" type="kr.co.eodeatzy.manage.boardDTO"/>
+     <typeAlias alias="auserPDTO" type="kr.co.eodeatzy.manage.userPDTO"/>
+     <typeAlias alias="acartDTO" type="kr.co.eodeatzy.manage.cartDTO"/>
+     <typeAlias alias="acategoryDTO" type="kr.co.eodeatzy.manage.categoryDTO"/>
+     <typeAlias alias="acomboDTO" type="kr.co.eodeatzy.manage.comboDTO"/>
+     <typeAlias alias="acommentDTO" type="kr.co.eodeatzy.manage.commentDTO"/>
+     <typeAlias alias="ainputDTO" type="kr.co.eodeatzy.manage.inputDTO"/>
+     <typeAlias alias="amenuDTO" type="kr.co.eodeatzy.manage.menuDTO"/>
+     <typeAlias alias="aorderDetailDTO" type="kr.co.eodeatzy.manage.orderDetailDTO"/>
+     <typeAlias alias="aorderDTO" type="kr.co.eodeatzy.manage.orderDTO"/>
+     <typeAlias alias="astoreAdresDTO" type="kr.co.eodeatzy.manage.storeAdresDTO"/>
+     <typeAlias alias="astoreDTO" type="kr.co.eodeatzy.manage.storeDTO"/>
+     <typeAlias alias="auserBDTO" type="kr.co.eodeatzy.manage.userBDTO"/>
+     <typeAlias alias="auserPAdresDTO" type="kr.co.eodeatzy.manage.userPAdresDTO"/>
+     <typeAlias alias="azzimDTO" type="kr.co.eodeatzy.manage.zzimDTO"/>
+     
+     <typeAlias alias="aboardBDTO" type="kr.co.eodeatzy.board.boardBDTO"/>
+     <typeAlias alias="acommentBDTO" type="kr.co.eodeatzy.board.commentBDTO"/>	     
    </typeAliases>
 </configuration>

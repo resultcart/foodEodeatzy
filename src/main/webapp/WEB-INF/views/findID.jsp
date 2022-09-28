@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" session="false" %>
+    pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
-<!DOCTYPE html>
+<!doctype html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 <!-- head-->
 <%@ include file="include/head.jsp" %>
@@ -41,7 +42,7 @@
 				<h3 class="title">LOGIN</h3>
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="${contextPath}/">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">findID</li>
 				</ol>
 				</nav>
@@ -66,7 +67,7 @@
 		  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forgot id - Windmill Dashboard</title>
+    <title>아이디 찾기</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -105,28 +106,66 @@
               >
                 Forgot id
               </h1>
+              <form name="find1" action="post">
+              		<span class="text-gray-700 dark:text-gray-400">사용자유형</span>
+				         	<select class="form-control" name="usertype"  value="${map.usertype}">
+                      <option>개인</option>
+                      <option>사업자</option>
+                  </select>     
+				        	<br>
+	              <label class="block text-sm">
+	                <span class="text-gray-700 dark:text-gray-400">이름</span>
+	                <input
+	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+	                   name="findname" 
+	                   value="${map.findname}"
+	                  placeholder="이름을 입력해주세요"
+	                />
+	              </label>
+	
+					 <label class="block text-sm">
+	                <span class="text-gray-700 dark:text-gray-400">연락처</span>
+	                <input
+	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+	                   name="findnum" 
+	                   value="${map.findnum}"
+	                  placeholder="연락처를 입력해주세요"
+	                />
+	              </label>
+	
+	              <!-- You should use a button here, as the anchor is only used for the example  -->
+	              <br> <a class="btn btn-outline-warning btn-fw"  onclick="findID1()">
+	               다음
+	              </a>
+	              
+	              
+              </form>
               
-
-              <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">이름</span>
-                <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="이름을 입력해주세요"
-                />
-              </label>
-
-				 <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">연락처</span>
-                <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="연락처를 입력해주세요"
-                />
-              </label>
-
-              <!-- You should use a button here, as the anchor is only used for the example  -->
-              <br> <a class="btn btn-outline-warning btn-fw" href=findResult>
-               다음
-              </a>
+				<script>
+					function findID1() {
+					var form = document.find1;
+						//alert("hi");
+						if (!form.usertype.value) {
+							alert("사용자 유형을 선택해주세요.");
+							form.usertype.focus();
+						return;
+						}
+						if (!form.findname.value) {
+							alert("이름을 입력해주세요.");
+							form.findname.focus();
+						return;
+						}
+						if (!form.findnum.value) {
+							alert("연락처를 입력해주세요");
+							form.findnum.focus();
+						return;
+						}	
+						form.method = "post";
+						form.action = "${contextPath}/login/findID";
+						form.submit();
+					}
+				</script>              
+              
             </div>
           </div>
         </div>
