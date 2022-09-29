@@ -3,6 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.eodeatzy.manageMapper">
+
+	<!-- 콤보리스트 테이블_전체조회 -->
+	<select id="comboTbList" parameterType="java.lang.String" resultType="acomboDTO">
+		SELECT *
+		  FROM tb_combo
+		 WHERE cb_id		= #{cb_id} 
+		   AND cb_use_yn	= 1
+	</select>
+
 	<!-- 개인사용자정보_테이블_전체조회 -->
 	<select id="tbUserPSelect" resultType="auserPDTO">
 		SELECT *
@@ -103,22 +112,22 @@
 
 	<!-- 개인사용자정보_테이블_입력 -->
 	<insert id="tbUserPInsert" parameterType="auserPDTO">
-		INSERT INTO tb_user_p (`U_P_ID`,`U_P_PW`,`U_P_NAME`,`U_P_REGI_NUM`,`U_P_NUMBER`,`U_P_EMAIL`,`U_P_ACCESS`,`U_P_AD_YN`,`U_P_AD_MEDIA`,`U_P_DESC`,`U_P_JOIN_DTTM`,`U_P_LOGIN_DTTM`,`U_P_LOGOUT_DTTM`) 
+		INSERT INTO tb_user_p (U_P_ID,U_P_PW,U_P_NAME,U_P_REGI_NUM,U_P_NUMBER,U_P_EMAIL,U_P_ACCESS,U_P_AD_YN,U_P_AD_MEDIA,U_P_DESC,U_P_JOIN_DTTM,U_P_LOGIN_DTTM,U_P_LOGOUT_DTTM) 
      		 VALUES (#{u_p_id},#{u_p_pw},#{u_p_name},#{u_p_regi_num},#{u_p_number},#{u_p_email},#{u_p_access},#{u_p_ad_yn},#{u_p_ad_media},#{u_p_desc},now(),now(),'')
 	</insert>
 	<!-- 개인사용자_주소_테이블_입력 -->
 	<insert id="tbUserPAdresInsert" parameterType="auserPAdresDTO">
-		INSERT INTO tb_user_p_address (`U_P_ID`,`U_P_ADD_ID`,`U_P_ADDRESS`,`U_P_FLAG`) 
+		INSERT INTO tb_user_p_address (U_P_ID,U_P_ADD_ID,U_P_ADDRESS,U_P_FLAG) 
 			 VALUES (#{u_p_id},#{u_p_add_id},#{u_p_address},#{u_p_flag})
 	</insert>
 	<!-- 사업자정보_테이블_입력 -->
 	<insert id="tbUserBInsert" parameterType="auserBDTO">
-		INSERT INTO tb_user_b (`U_B_ID`,`U_B_NAME`,`U_B_PW`,`U_B_NUMBER`,`U_B_EMAIL`,`U_B_ACCESS`,`U_B_JOIN_DTTM`,`U_B_LOGIN_DTTM`,`U_B_LOGOUT_DTTM`) 
+		INSERT INTO tb_user_b (U_B_ID,U_B_NAME,U_B_PW,U_B_NUMBER,U_B_EMAIL,U_B_ACCESS,U_B_JOIN_DTTM,U_B_LOGIN_DTTM,U_B_LOGOUT_DTTM) 
 			 VALUES (#{u_b_id},#{u_b_name},#{u_b_pw},#{u_b_number},#{u_b_email},#{u_b_access},now(),now(),'')
 	</insert>
 	<!-- 사업장정보_테이블_입력 -->
 	<insert id="tbStoreInsert" parameterType="astoreDTO">
-		INSERT INTO tb_store_address (`U_S_ID`,`U_S_ADD_ID`,`U_S_ADDRESS`,`U_S_FLAG`) 
+		INSERT INTO tb_store_address (U_S_ID,U_S_ADD_ID,U_S_ADDRESS,U_S_FLAG) 
 			 VALUES (#{u_s_id},#{u_s_add_id},#{u_s_address},#{u_s_flag})
 	</insert>
 	<!-- 사업장주소_테이블_입력 -->
@@ -126,47 +135,47 @@
 	</insert>
 	<!-- 찜목록_테이블_입력 -->
 	<insert id="tbZzimInsert" parameterType="azzimDTO">
-		INSERT INTO tb_zzim (`U_P_ID`,`U_S_ID`,`Z_DESC`) 
+		INSERT INTO tb_zzim (U_P_ID,U_S_ID,Z_DESC) 
 			 VALUES (#{u_p_id},#{u_s_id},#{z_desc})
 	</insert>
 	<!-- 주문내역_테이블_입력 -->
 	<insert id="tbOrderInsert" parameterType="aorderDTO">
-		INSERT INTO tb_order (`O_NUMBER`,`U_S_ID`,`U_P_ID`,`O_CNT_TOTAL`,`O_AMT_TOTAL`,`O_LTIME_TOTAL`,`O_STATE`,`O_DESC`,`O_DATETIME`) 
+		INSERT INTO tb_order (O_NUMBER,U_S_ID,U_P_ID,O_CNT_TOTAL,O_AMT_TOTAL,O_LTIME_TOTAL,O_STATE,O_DESC,O_DATETIME) 
 			 VALUES (#{o_number},#{u_s_id},#{u_p_id},#{o_cnt_total},#{o_amt_total},#{o_ltime_total},#{o_state},#{o_desc},#{o_datetime})
 	</insert>
 	<!-- 주문상세_테이블_입력 -->
 	<insert id="tbOrderDtlInsert" parameterType="aorderDetailDTO">
-		INSERT INTO tb_order_detail (`O_NUMBER`,`M_ID`,`O_CNT`) 
+		INSERT INTO tb_order_detail (O_NUMBER,M_ID,O_CNT) 
 			 VALUES (#{o_number},#{m_id},#{o_cnt})
 	</insert>
 	<!-- 메뉴_테이블_입력 -->
 	<insert id="tbMenuInsert" parameterType="amenuDTO">
-		INSERT INTO tb_menu (`M_ID`,`U_S_ID`,`M_NAME`,`M_PRICE`,`M_STOCK`,`M_LTIME`,`M_STATE`) 
+		INSERT INTO tb_menu (M_ID,U_S_ID,M_NAME,M_PRICE,M_STOCK,M_LTIME,M_STATE) 
 			 VALUES (#{m_id},#{u_s_id},#{m_name},#{m_price},#{m_stock},#{m_ltime},#{m_state})
 	</insert>
 	<!-- 카테고리_테이블_입력 -->
 	<insert id="tbCategoryInsert" parameterType="acategoryDTO">
-		INSERT INTO tb_category (`C_ID`,`C_NAME`,`C_USE`) 
+		INSERT INTO tb_category (C_ID,C_NAME,C_USE) 
 			 VALUES (#{c_id},#{c_name},#{c_use})
 	</insert>
 	<!-- 장바구니_테이블_입력 -->
 	<insert id="tbCartInsert" parameterType="acartDTO">
-		INSERT INTO tb_cart (`U_P_ID`,`U_S_ID`,`M_ID`,`CT_COUNT`) 
+		INSERT INTO tb_cart (U_P_ID,U_S_ID,M_ID,CT_COUNT) 
 		VALUES (#{u_p_id},#{u_s_id},#{m_id},#{ct_count})
 	</insert>
 	<!-- 게시판_테이블_입력 -->
 	<insert id="tbBoardInsert" parameterType="aboardDTO">
-		INSERT INTO tb_board (`B_ID`,`B_WRITER`,`B_TYPE`,`B_TITLE`,`B_CONTENT`,`B_IMG_UPLOAD`,`B_STATE`,`B_DATETIME`) 
+		INSERT INTO tb_board (B_ID,B_WRITER,B_TYPE,B_TITLE,B_CONTENT,B_IMG_UPLOAD,B_STATE,B_DATETIME) 
 			 VALUES (#{b_id},#{b_writer},#{b_type},#{b_title},#{b_content},#{b_img_upload},#{b_state},#{b_datetime})
 	</insert>
 	<!-- 댓글_테이블_입력 -->
 	<insert id="tbCommentInsert" parameterType="acommentDTO">
-		INSERT INTO tb_comment (`BC_ID`,`BC_WRITER`,`B_ID`,`BC_CONTENT`,`BC_DATETIME`,`BC_USE`) 
+		INSERT INTO tb_comment (BC_ID,BC_WRITER,B_ID,BC_CONTENT,BC_DATETIME,BC_USE) 
 			 VALUES (#{bc_id},#{bc_writer},#{b_id},#{bc_content},#{bc_datetime},#{bc_use})	
 	</insert>
 	<!-- 콤보리스트 테이블_입력 -->
 	<insert id="tbComboInsert" parameterType="acomboDTO">
-		INSERT INTO tb_combo (`cb_id`,`cb_num`,`cb_name`,`cb_use_yn`) 
+		INSERT INTO tb_combo (cb_id,cb_num,cb_name,cb_use_yn) 
 			 VALUES (#{cb_id},#{cb_num},#{cb_name},#{cb_use_yn})
 	</insert>
 

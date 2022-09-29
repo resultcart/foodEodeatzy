@@ -50,7 +50,8 @@ private static final Logger logger = LoggerFactory.getLogger(manageController.cl
 		System.out.println("manageList!!!!!!!!!!!!1");
 		ModelAndView mav = new ModelAndView();
 	
-		List<comboDTO> comboList  = service.comboList();
+		String cb_id = "tableList";
+		List<comboDTO> comboList  = service.comboTbList(cb_id);
 		mav.addObject("comboList", comboList);
 		
 		mav.setViewName("manageList");
@@ -60,6 +61,7 @@ private static final Logger logger = LoggerFactory.getLogger(manageController.cl
 	@RequestMapping(value = "manage/manageListAll", method = RequestMethod.GET)
 	public ModelAndView manageListAll(inputDTO inputDTO) throws Exception {
 		System.out.println("manageListAll@@@@@@@@@@@@22"+inputDTO.getHidden_upId());
+		
 		ModelAndView mav = new ModelAndView();
 		
 		if(inputDTO.getHidden_upId() == 1) {				//게시판_테이블
@@ -108,18 +110,23 @@ private static final Logger logger = LoggerFactory.getLogger(manageController.cl
 		
 		mav.addObject("setUpId", inputDTO.getHidden_upId());
 		
-		List<comboDTO> comboList  = service.comboList();
+		String cb_id = "tableList";
+		List<comboDTO> comboList  = service.comboTbList(cb_id);
 		mav.addObject("comboList", comboList);
 		
 		mav.setViewName("manageList");
 		return mav;
 	}
-	//관리자_insert_화면_조회
+	//관리자_insert_화면
 	@RequestMapping(value = "manage/manageEditInsert", method = RequestMethod.GET)
-	public ModelAndView manageEditInsert(Model model, inputDTO inputDTO) {
+	public ModelAndView manageEditInsert(Model model, inputDTO inputDTO) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		model.addAttribute("msg","manageEditInsert 페이지 *****************");
+
+		String cb_id = "use_yn";
+		List<comboDTO> useYnList  = service.comboTbList(cb_id);
+		mav.addObject("useYnList", useYnList);
+		
 		mav.addObject("upId", inputDTO.getHidden_upId());
 		mav.setViewName("manageEditInsert");
 		return mav;
@@ -127,13 +134,28 @@ private static final Logger logger = LoggerFactory.getLogger(manageController.cl
 	
 	//관리자_insert_게시판테이블
 	@RequestMapping(value = "manage/manageInsertTbBoard", method = RequestMethod.POST)
-	public ModelAndView manageInsert(Model model, boardDTO boardDTO) {
+	public String manageInsert(Model model, boardDTO boardDTO) throws Exception {
 
-		ModelAndView mav = new ModelAndView();
-		model.addAttribute("msg","manageEditInsert 페이지 *****************");
-		//mav.addObject("upId", inputDTO.getHidden_upId());
-		mav.setViewName("manageEditInsert");
-		return mav;
+		System.out.println("!!!!게시판 테이블!!!!!!!!");
+
+		int r = service.tbBoardInsert(boardDTO);
+		if (r > 0) {
+			return "redirect:manageList";
+		}
+		return "redirect:manageEditInsert";
+	}	
+	
+	//관리자_insert_콤보테이블
+	@RequestMapping(value = "manage/manageInsertTbCombo", method = RequestMethod.POST)
+	public String manageInsertTbCombo(Model model, comboDTO comboDTO) throws Exception {
+
+		System.out.println("!!!!콤보 테이블!!!!!!!!");
+
+		int r = service.tbComboInsert(comboDTO);
+		if (r > 0) {
+			return "redirect:manageList";
+		}
+		return "redirect:manageEditInsert";
 	}	
 	
 	//관리자_Update&Delete_화면_조회

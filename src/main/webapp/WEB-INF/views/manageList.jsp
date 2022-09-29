@@ -10,99 +10,54 @@
 <%@ include file="include/head.jsp" %>
 <script>
 $(document).ready(function(){
+	//테이블별 [tb_combo]테이블의 [cb_num]값 Setting
+	document.getElementById("hidden_upId").value = "${setUpId}";
+	
+	fn_gbControl(document.getElementById("hidden_upId").value);
 
 	//테이블 조회
     $("#btnSelect").click(function(){
-		var upId = document.getElementById("hidden_upId").value;
-		location.href="${contextPath}/manage/manageListAll?hidden_upId="+upId;
+    	if(document.getElementById("hidden_upId").value==""){
+    		alert("조회하려는 테이블을 선택하세요");
+    	} else {
+    		var upId = document.getElementById("hidden_upId").value;
+    		location.href="${contextPath}/manage/manageListAll?hidden_upId="+upId;	
+    	}
 	});
 	//테이블 insert 페이지
 	$("#btnInsert").click(function(){
-		var upId = document.getElementById("hidden_upId").value;
-		location.href="${contextPath}/manage/manageEditInsert?hidden_upId="+upId;
+		if(document.getElementById("hidden_upId").value==""){
+    		alert("입력하려는 테이블을 선택하세요");
+    	} else {
+			var upId = document.getElementById("hidden_upId").value;
+			location.href="${contextPath}/manage/manageEditInsert?hidden_upId="+upId;
+    	}
 	});
 	//테이블 update 페이지
 	$("#btnUpdate").click(function(){
-		var upId = document.getElementById("hidden_upId").value;
-		location.href="${contextPath}/manage/manageListEdit?hidden_upId="+upId+"&btnGb="+2;
+		if(document.getElementById("hidden_upId").value==""){
+    		alert("수정하려는 테이블을 선택하세요");
+    	} else {
+			var upId = document.getElementById("hidden_upId").value;
+			location.href="${contextPath}/manage/manageListEdit?hidden_upId="+upId+"&btnGb="+2;
+    	}
 	});
 	//테이블 delete 페이지
 	$("#btnDelete").click(function(){
-		var upId = document.getElementById("hidden_upId").value;
-		location.href="${contextPath}/manage/manageListEdit?hidden_upId="+upId+"&btnGb="+3;
+		if(document.getElementById("hidden_upId").value==""){
+    		alert("삭제하려는 테이블을 선택하세요");
+    	} else {
+			var upId = document.getElementById("hidden_upId").value;
+			location.href="${contextPath}/manage/manageListEdit?hidden_upId="+upId+"&btnGb="+3;
+    	}
 	});
 
-	document.getElementById("hidden_upId").value = "${setUpId}";
-	
-	function fn_hidden(){
-		$("#sht_user_p").hide();
-		$("#sht_user_p_address").hide();
-		$("#sht_user_b").hide();
-		$("#sht_store").hide();
-		$("#sht_store_address").hide();	
-		$("#sht_zzim").hide();	
-		$("#sht_store").hide();
-		$("#sht_order").hide();	
-		$("#sht_order_detail").hide();	
-		$("#sht_menu").hide();
-		$("#sht_category").hide();
-		$("#sht_cart").hide();
-		$("#sht_board").hide();
-		$("#sht_comment").hide();
-		$("#sht_combo").hide();	
-	}
+	$('#comboList').change(function() {
+	   var result = $('#comboList option:selected').val();
 
-	 $('#comboList').change(function() {
-	    var result = $('#comboList option:selected').val();
-	    
-	    document.getElementById("hidden_upId").value = result;
-	    
-	    if (result == 1) {						//게시판_테이블
-	    	fn_hidden();
-	    	$("#sht_board").show();
-	    } else if (result == 2) {				//장바구니_테이블
-	    	fn_hidden();
-	    	$("#sht_cart").show();
-	    } else if (result == 3) {				//카테고리분류_테이블
-	    	fn_hidden();
-	    	$("#sht_category").show();			
-	    } else if (result == 4) {				//콤보리스트_테이블
-	    	fn_hidden();
-	    	$("#sht_combo").show();				
-	    } else if (result == 5) {				//댓글_테이블
-	    	fn_hidden();
-	    	$("#sht_comment").show();		
-	    } else if (result == 6) {				//메뉴_테이블
-	    	fn_hidden();
-	    	$("#sht_menu").show();				
-	    } else if (result == 7) {				//주문내역_테이블
-	    	fn_hidden();
-	    	$("#sht_order").show();				
-	    } else if (result == 8) {				//주문내역_상세_테이블
-	    	fn_hidden();
-	    	$("#sht_order_detail").show();		
-	    } else if (result == 9) {				//사업장정보_테이블
-	    	fn_hidden();
-	    	$("#sht_store").show();
-	    } else if (result == 10) {				//사업장_주소_테이블
-	    	fn_hidden();
-	    	$("#sht_store_address").show();
-	    } else if (result == 11) {				//사업자정보_테이블
-	    	fn_hidden();
-	    	$("#sht_user_b").show();
-	    } else if (result == 12) {				//개인사용자정보_테이블
-	    	fn_hidden();
-	    	$("#sht_user_p").show();
-	    } else if (result == 13) {				//개인사용자_주소_테이블
-	    	fn_hidden();
-	    	$("#sht_user_p_address").show();
-	    } else if (result == 14) {				//찜목록_테이블
-	    	fn_hidden();
-	    	$("#sht_zzim").show();
-	    } else {
-	      //$("#sht_user_p").hide();
-	    }
-	  }); 
+	   document.getElementById("hidden_upId").value = result;
+	   fn_gbControl(result);   
+	}); 
 	 
 	//게시판_테이블_상세조회	 
 	$('#tableBoard tr').on('click', function() {
@@ -275,6 +230,76 @@ $(document).ready(function(){
 		document.getElementById("ip_tbZzim_z_desc").value = row.eq(2).text();
 	});
 });
+
+//sheet hidden
+function fn_hidden(){
+	$("#sht_user_p").hide();
+	$("#sht_user_p_address").hide();
+	$("#sht_user_b").hide();
+	$("#sht_store").hide();
+	$("#sht_store_address").hide();	
+	$("#sht_zzim").hide();	
+	$("#sht_store").hide();
+	$("#sht_order").hide();	
+	$("#sht_order_detail").hide();	
+	$("#sht_menu").hide();
+	$("#sht_category").hide();
+	$("#sht_cart").hide();
+	$("#sht_board").hide();
+	$("#sht_comment").hide();
+	$("#sht_combo").hide();	
+}
+
+//화면visible or hidden 여부 컨트롤
+function fn_gbControl(gb){
+	
+	if (gb == 1) {							//게시판_테이블
+	   	fn_hidden();
+	   	$("#sht_board").show();
+	   } else if (gb == 2) {				//장바구니_테이블
+	   	fn_hidden();
+	   	$("#sht_cart").show();
+	   } else if (gb == 3) {				//카테고리분류_테이블
+	   	fn_hidden();
+	   	$("#sht_category").show();			
+	   } else if (gb == 4) {				//콤보리스트_테이블
+	   	fn_hidden();
+	   	$("#sht_combo").show();				
+	   } else if (gb == 5) {				//댓글_테이블
+	   	fn_hidden();
+	   	$("#sht_comment").show();		
+	   } else if (gb == 6) {				//메뉴_테이블
+	   	fn_hidden();
+	   	$("#sht_menu").show();				
+	   } else if (gb == 7) {				//주문내역_테이블
+	   	fn_hidden();
+	   	$("#sht_order").show();				
+	   } else if (gb == 8) {				//주문내역_상세_테이블
+	   	fn_hidden();
+	   	$("#sht_order_detail").show();		
+	   } else if (gb == 9) {				//사업장정보_테이블
+	   	fn_hidden();
+	   	$("#sht_store").show();
+	   } else if (gb == 10) {				//사업장_주소_테이블
+	   	fn_hidden();
+	   	$("#sht_store_address").show();
+	   } else if (gb == 11) {				//사업자정보_테이블
+	   	fn_hidden();
+	   	$("#sht_user_b").show();
+	   } else if (gb == 12) {				//개인사용자정보_테이블
+	   	fn_hidden();
+	   	$("#sht_user_p").show();
+	   } else if (gb == 13) {				//개인사용자_주소_테이블
+	   	fn_hidden();
+	   	$("#sht_user_p_address").show();
+	   } else if (gb == 14) {				//찜목록_테이블
+	   	fn_hidden();
+	   	$("#sht_zzim").show();
+	   } else {								//첫화면일 경우, 전체 hidden
+		  fn_hidden();
+	   }
+}
+
 </script>
 
 <body>
@@ -327,21 +352,18 @@ $(document).ready(function(){
 		<div class="col-lg-16">
 			<div class="blog-details mt-30 mr-20">
 				<!-- 내용쓰기 -->
-			<!-- With avatar -->
+				<!-- With avatar -->
 			
-	            <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">테이블을 선택하세요.</h4>
-	            <select name="comboList" id="comboList" size="1">     
-	            	<option value="" selected>테이블을 선택하세요.</option>
-					<c:forEach var="item" items="${comboList}">
-					    <option value="${item.cb_num}">${item.cb_name}</option>
-					</c:forEach>
-	            </select>
-	        <!--form name="fm" method="GET" action="${contextPath}/manage/manageListAll">
-	            
-	            <button class="main-btn" id="btnSelect" name="btnSelect" type="submit">조회</button>
-            </form -->
-            <input type="text" name="hidden_upId" id="hidden_upId" class="form-control" readonly="readonly" />
-            <button class="main-btn" id="btnSelect" name="btnSelect">조회</button>
+	           <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">관리자 페이지</h4>
+	           <select name="comboList" id="comboList" size="1">     
+	           	<option value="" selected>테이블을 선택하세요.</option>
+				<c:forEach var="item" items="${comboList}">
+				    <option value="${item.cb_num}">${item.cb_name}</option>
+				</c:forEach>
+	           </select>
+	
+	           <input type="hidden" name="hidden_upId" id="hidden_upId" class="form-control" readonly="readonly" />
+	           <button class="main-btn" id="btnSelect" name="btnSelect">조회</button>
             
             <!-- ----------------------콤보박스에서 테이블 선택별로 div show or hide 처리 Start------------------------------------ -->
             <!-- 게시판_테이블 -->

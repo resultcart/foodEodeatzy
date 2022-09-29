@@ -15,6 +15,12 @@ public class manageDAOImpl implements manageDAO {
 	private static final String namespace = "kr.co.eodeatzy.manageMapper";
 	
 	@Override
+	public List<comboDTO> comboTbList(String cb_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace + ".comboTbList",cb_id);
+	}
+	
+	@Override
 	public List<userPDTO> userPList() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace + ".tbUserPSelect");
@@ -121,6 +127,8 @@ public class manageDAOImpl implements manageDAO {
 		// TODO Auto-generated method stub
 		return sqlsession.insert(namespace+".tbComboInsert", comboDTO);
 	}
+
+
 
 
 
