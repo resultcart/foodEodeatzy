@@ -12,6 +12,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="navigation">
+				
 					<nav class="navbar navbar-expand-lg navbar-light "><a class="navbar-brand" href="${contextPath}/">
 					 <img src="${assetsPath}/images/logo-e.png" alt="얻잇지"> <!-- logo  -->
 				
@@ -22,7 +23,10 @@
 					<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
 						<ul class="navbar-nav m-auto">
 							<li class="nav-item active"><a class="nav-link" href="${contextPath}/store/store_info">Search</a></li>
+							
+						    <c:if test="${sessionScope.loginType =='user'&& sessionScope.user_id != null }">
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/ListAll">ZZIM</a></li>
+							</c:if>
 							<li class="nav-item"><a class="nav-link" href="#">Order</a></li>
 					  </ul>
 							<li class="nav-item"><a class="nav-link" href="#">게시판</a>
