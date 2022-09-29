@@ -29,6 +29,7 @@ public class businessController {
 	// 마이페이지 연결
 	@RequestMapping(value = "businessMY", method = RequestMethod.GET)
 	public String businessMY(Model model) {
+		// 나 김현정 나는 깃에 소스를 올린다 하하 
 		model.addAttribute("msg","연결");
 		
 		return "businessMY";
