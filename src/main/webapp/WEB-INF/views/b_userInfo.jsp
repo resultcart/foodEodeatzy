@@ -69,23 +69,23 @@
 									<div class="input-box mt-30">
 										<label>계정 아이디</label>
 										<br> 변경 불가능
-										<input type="text" id="id" name="u_b_id" value="${business.u_b_id}" readonly="true">
+										<input type="text" id="id" name="u_b_id" value="${b_userInfo.u_b_id}" readonly="true">
 									 </div>
 									<div class="input-box mt-30">
-										<label>비밀번호</label><input type="password" id="password" name="u_b_pw" value="${business.u_b_pw}" maxlength='15' required>
+										<label>비밀번호</label><input type="password" id="password" name="u_b_pw" value="${b_userInfo.u_b_pw}" maxlength='15' required>
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 이름</label>
 										<br> 변경 불가능
-										<input type="text" id="name" name="u_b_name" value="${business.u_b_name}" readonly="true">
+										<input type="text" id="name" name="u_b_name" value="${b_userInfo.u_b_name}" readonly="true">
 									</div>
 									<div class="input-box mt-30">
 										<label>전화번호</label>
 										<br> 000-0000-0000 형식으로 입력해 주세요.
-										<input type="text" id="number" name="u_b_number" value="${business.u_b_number}" maxlength='16'>
+										<input type="text" id="number" name="u_b_number" value="${b_userInfo.u_b_number}" maxlength='16'>
 									</div>
 									<div class="input-box mt-30">
-										<label>이메일</label><input type="email" id="email" name="u_b_email" value="${business.u_b_email}" aria-invalid="false">
+										<label>이메일</label><input type="email" id="email" name="u_b_email" value="${b_userInfo.u_b_email}" aria-invalid="false">
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 등록증</label>
@@ -104,7 +104,7 @@
 									<div class="input-box mt-30">
 										<label>가입 일자</label>
 										<br> 변경 불가능
-										<input type="text" id="join" name="u_b_join_dttm" value="${business.u_b_join_dttm}" readonly="true">
+										<input type="text" id="join" name="u_b_join_dttm" value="${b_userInfo.u_b_join_dttm}" readonly="true">
 									</div>
 								</div>
 								<div class="col-lg-12">

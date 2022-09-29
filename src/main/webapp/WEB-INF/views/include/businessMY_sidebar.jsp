@@ -17,7 +17,7 @@
 						<li><a href="selectMenu">메뉴 관리</a></li>
 						<li><a href="b_Order">주문 확인</a></li>
 						<li><a href="#">공지사항</a></li>
-						<li><a href="#">회원탈퇴</a></li>
+						<li><a href="b_unregister">회원탈퇴</a></li>
 					</ul>
 				</div>
 			</div>

@@ -69,44 +69,44 @@
 									<div class="input-box mt-30">
 										<label>가게 ID</label>
 										<br> 변경 불가능
-										<input type="text" id="u_s_id" name="u_s_id" value="${store.u_s_id}" readonly="true">
+										<input type="text" id="u_s_id" name="u_s_id" value="${storeList.u_s_id}" readonly="true">
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 ID</label>
 										<br> 변경 불가능
-										<input type="text" id="u_b_id" name="u_b_id" value="${store.u_b_id}" readonly="true">
+										<input type="text" id="u_b_id" name="u_b_id" value="${storeList.u_b_id}" readonly="true">
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 번호</label>
-										<input type="text" id="s_regi_num" name="s_regi_num" value="${store.s_regi_num}" maxlength='20'>
+										<input type="text" id="s_regi_num" name="s_regi_num" value="${storeList.s_regi_num}" maxlength='20'>
 									</div>
 									<div class="input-box mt-30">
-										<label>가게명</label><input type="text" id="s_name" name="s_name" value="${store.s_name}">
+										<label>가게명</label><input type="text" id="s_name" name="s_name" value="${storeList.s_name}">
 									</div>
 									<div class="input-box mt-30">
 										<label>가게 전화번호</label>
 										<br> 000-0000-0000 형식으로 입력해 주세요.
-										<input type="text" id="s_number" name="s_number" value="${store.s_number}" maxlength='16'>
+										<input type="text" id="s_number" name="s_number" value="${storeList.s_number}" maxlength='16'>
 									</div>
 									<div class="input-box mt-30">
 										<label>카테고리 ID</label>
 										<br> 변경 불가능
-										<input type="text" id="c_id" name="c_id" value="${store.c_id}" readonly="true">
+										<input type="text" id="c_id" name="c_id" value="${storeList.c_id}" readonly="true">
 									</div>
 									<div class="input-box mt-30">
 									<label>가게 오픈 여부</label>
 									<br> 1: 오픈  2: 준비중
-									<input type="text" id="s_state" name="s_state" value="${store.s_state}" maxlength='2'>
+									<input type="text" id="s_state" name="s_state" value="${storeList.s_state}" maxlength='2'>
 
 									</div>
 									<div class="input-box mt-30">
 										<label>대기 시간(단위: 분)</label>
 										<br> 숫자로만 입력해 주세요. (1시간 10분일 경우 70으로 표기) 
-										<input type="number" id="s_time" name="s_time" value="${store.s_time}" maxlength='10'>
+										<input type="number" id="s_time" name="s_time" value="${storeList.s_time}" maxlength='10'>
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 등록증</label>
-										<input type="text" id="u_b_img_upload" name="u_b_img_upload" value="${store.u_b_img_upload}" readonly="true">
+										<input type="text" id="u_b_img_upload" name="u_b_img_upload" value="${storeList.u_b_img_upload}" readonly="true">
 										<td><img src="resources/img/1.jpg" alt="1이미지" width="140px" height="100px"></td>
 						                </label>
 									</div>									

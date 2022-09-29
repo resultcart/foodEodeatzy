@@ -28,8 +28,11 @@
      <typeAlias alias="zzimDTO" type="kr.co.eodeatzy.Zzim.zzimDTO"/>
      <typeAlias alias="zzimStoreDTO" type="kr.co.eodeatzy.Zzim.zzimStoreDTO"/>     
      
-	   <typeAlias alias="businessDTO" type="kr.co.eodeatzy.business.businessDTO"/>
-	     
+	 <typeAlias alias="businessUserDTO" type="kr.co.eodeatzy.business.businessUserDTO"/>
+	 <typeAlias alias="businessMenuDTO" type="kr.co.eodeatzy.business.businessMenuDTO"/>
+	 <typeAlias alias="businessStoreDTO" type="kr.co.eodeatzy.business.businessStoreDTO"/>
+	 <typeAlias alias="businessOrderDTO" type="kr.co.eodeatzy.business.businessOrderDTO"/>
+	 	     
      <typeAlias alias="auserInfoDTO" type="kr.co.eodeatzy.mypageU.userInfoDTO"/>
      <typeAlias alias="aboardDTO" type="kr.co.eodeatzy.manage.boardDTO"/>
      <typeAlias alias="auserPDTO" type="kr.co.eodeatzy.manage.userPDTO"/>

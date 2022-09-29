@@ -17,8 +17,9 @@ public class businessDAOImpl implements businessDAO {
 
 		// 1-1) 사업자 정보 조회
 		@Override
-		public List<businessDTO> businessList() throws Exception {
-			return sqlSession.selectList(namespace + ".businessList");
+		public businessUserDTO b_userInfo(String u_b_id) throws Exception {
+			return sqlSession.selectOne(namespace + ".b_userInfo", u_b_id);
+					
 		}
 		
 		// 1-2) 사업자 정보 수정
@@ -27,9 +28,16 @@ public class businessDAOImpl implements businessDAO {
 			return sqlSession.update(namespace + ".businessUpdate", buupmap);
 		}
 		
+		// 1-3) 사업자 탈퇴
+		@Override
+		public int b_unregister(String u_b_id) throws Exception {
+			return sqlSession.update(namespace + ".b_unregister", u_b_id);
+		}
+		
+		
 		// 2-1) 메뉴 관리 
 		@Override
-		public List<businessDTO> selectmenu() throws Exception {
+		public List<businessMenuDTO> selectmenu() throws Exception {
 			return sqlSession.selectList(namespace + ".selectMenu");
 		}
 		
@@ -59,10 +67,10 @@ public class businessDAOImpl implements businessDAO {
 		
 		// 3-1) 가게 정보 조회
 		@Override
-		public List<businessDTO> storeList() throws Exception {
-			return sqlSession.selectList(namespace + ".storeList");
+		public businessStoreDTO storeList(String u_b_id) throws Exception {
+			return sqlSession.selectOne(namespace + ".storeList", u_b_id);
 		}
-		
+				
 		// 3-2) 가게 정보 수정
 		@Override
 		public int storeNameUpdate(Map<String, Object> stupmap) throws Exception {
@@ -71,13 +79,13 @@ public class businessDAOImpl implements businessDAO {
 
 		// 4-1) 주문 확인
 		@Override
-		public List<businessDTO> orderCheck() throws Exception {
+		public List<businessOrderDTO> orderCheck() throws Exception {
 			return sqlSession.selectList(namespace + ".orderCheck");
 		}
 		
 		// 4-2) 주문 상세
 		@Override
-		public  List<businessDTO> orderdetail(String o_number) throws Exception {
+		public  List<businessOrderDTO> orderdetail(String o_number) throws Exception {
 			return sqlSession.selectList(namespace + ".orderdetail", o_number);
 		}
 
@@ -92,7 +100,11 @@ public class businessDAOImpl implements businessDAO {
 		public int updateMemo(Map<String, Object> upmemap) throws Exception {
 			return sqlSession.update(namespace + ".updateMemo", upmemap);
 		}
+
 		
+
+		
+
 
 
 }

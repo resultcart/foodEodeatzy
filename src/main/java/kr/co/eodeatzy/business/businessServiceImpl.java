@@ -14,19 +14,28 @@ public class businessServiceImpl implements businessService {
 
 	// 1-1) 사업자 정보 조회
 	@Override
-	public List<businessDTO> businessList() throws Exception {
-		return dao.businessList();
+	public businessUserDTO b_userInfo(String u_b_id) throws Exception {
+		return dao.b_userInfo(u_b_id);
 	}
+
 	
 	// 1-2) 사업자 정보 수정
 	@Override
 	public int businessUpdate(Map<String, Object> buupmap) throws Exception {
 		return dao.businessUpdate(buupmap);
 	}
+	
+	// 1-3) 사업자 탈퇴
+	@Override
+	public int b_unregister(String u_b_id) throws Exception {
+		return dao.b_unregister(u_b_id);
+	}
+
+	
 
 	// 2-1) 메뉴 관리 
 	@Override
-	public List<businessDTO> selectmenu() throws Exception {
+	public List<businessMenuDTO> selectmenu() throws Exception {
 		return dao.selectmenu();
 	}
 
@@ -57,8 +66,8 @@ public class businessServiceImpl implements businessService {
 
 	// 3-1) 가게 정보 조회
 	@Override
-	public List<businessDTO> storeList() throws Exception {
-		return dao.storeList();
+	public businessStoreDTO storeList(String u_b_id) throws Exception {
+		return dao.storeList(u_b_id);
 	}
 
 	// 3-2) 가게 정보 수정
@@ -69,13 +78,13 @@ public class businessServiceImpl implements businessService {
 	
 	// 4-1) 주문 확인
 	@Override
-	public List<businessDTO> orderCheck() throws Exception {
+	public List<businessOrderDTO> orderCheck() throws Exception {
 		return dao.orderCheck();
 	}
 	
 	// 4-2) 주문 상세 내역
 	@Override
-	public List<businessDTO> orderdetail(String o_number) throws Exception {
+	public List<businessOrderDTO> orderdetail(String o_number) throws Exception {
 		return dao.orderdetail(o_number);
 	}
 
@@ -90,6 +99,11 @@ public class businessServiceImpl implements businessService {
 	public int updateMemo(Map<String, Object> upmemap) throws Exception {
 		return dao.updateMemo(upmemap);
 	}
+
+
+	
+
+	
 
 	
 	

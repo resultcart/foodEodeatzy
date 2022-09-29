@@ -3,6 +3,9 @@ package kr.co.eodeatzy.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import java.lang.System.Logger;
 import java.security.Provider.Service;
 
@@ -17,8 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.eodeatzy.business.businessDTO;
+import kr.co.eodeatzy.business.businessMenuDTO;
+import kr.co.eodeatzy.business.businessOrderDTO;
 import kr.co.eodeatzy.business.businessService;
+import kr.co.eodeatzy.business.businessStoreDTO;
+import kr.co.eodeatzy.business.businessUserDTO;
 
 @Controller
 public class businessController {
@@ -29,7 +35,6 @@ public class businessController {
 	// 마이페이지 연결
 	@RequestMapping(value = "businessMY", method = RequestMethod.GET)
 	public String businessMY(Model model) {
-		// 나 김현정 나는 깃에 소스를 올린다 하하 
 		model.addAttribute("msg","연결");
 		
 		return "businessMY";
@@ -37,11 +42,15 @@ public class businessController {
 
 	// 1-1) 사업자 정보 조회
 	@RequestMapping(value = "b_userInfo", method = RequestMethod.GET)
-	   public ModelAndView b_userInfo() throws Exception {
+	   public ModelAndView b_userInfo(HttpSession session) throws Exception {
 	      ModelAndView mav = new ModelAndView();
-	      businessDTO business = service.businessList().get(0);
-	      mav.addObject("business", business);
-	      mav.setViewName("b_userInfo");
+	      
+	      String u_b_id = (String)session.getAttribute("user_id");
+	      businessUserDTO b_userInfo = service.b_userInfo(u_b_id);
+	      
+	      mav.addObject("b_userInfo" , b_userInfo);
+	      mav.setViewName("b_userInfo");  
+	      
 	      return mav;            
 	   }
 	
@@ -57,11 +66,37 @@ public class businessController {
 		return "redirect:b_userInfo";
 	}
 	
+	// 1-3) 사업자 탈퇴
+	@RequestMapping(value = "b_unregister", method = RequestMethod.GET)
+	public String b_unregister(Model model) {
+		return "b_unregister";
+	}	
+	
+	@RequestMapping(value = "b_unregister", method = RequestMethod.POST)
+	public String b_unregister(HttpSession session, Model model) throws Exception {
+		String u_b_id = (String)session.getAttribute("user_id");
+		
+		int r = service.b_unregister(u_b_id);
+		//로그아웃처리
+		session.invalidate();
+		
+		if (r>0) {
+			model.addAttribute("msg","회원탈퇴 완료");
+			model.addAttribute("url","/");
+			return "alert";
+		} else {
+			model.addAttribute("msg","회원탈퇴 실패");
+			model.addAttribute("url","/b_unregister");
+			return "alert";
+		}
+	}
+	
+	
 	// 2-1) 메뉴 조회
 	@RequestMapping(value = "selectMenu", method = RequestMethod.GET)
 	public ModelAndView selectmenu() throws Exception {
 	   ModelAndView mav = new ModelAndView();
-	   List<businessDTO> selectmenu = service.selectmenu();
+	   List<businessMenuDTO> selectmenu = service.selectmenu();
 	   mav.addObject("selectmenu", selectmenu);
 	   mav.setViewName("selectMenu");	   
        return mav;
@@ -129,14 +164,15 @@ public class businessController {
 	
 	// 3-1) 가게 정보 조회
 	@RequestMapping(value = "storeList", method = RequestMethod.GET)
-	public ModelAndView storeList() throws Exception {
+	public ModelAndView storeList(HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		businessDTO store = service.storeList().get(0);
-		mav.addObject("store", store);
-		mav.setViewName("storeList");
-		
+		String u_b_id = (String)session.getAttribute("user_id");
+		businessStoreDTO storeList = service.storeList(u_b_id);
+		mav.addObject("storeList", storeList);
+		mav.setViewName("storeList");	
 		return mav;
 	}
+	
 	
 	// 3-2) 가게 정보 수정
 	@RequestMapping(value="storeList", method=RequestMethod.POST)
@@ -156,7 +192,7 @@ public class businessController {
 	@RequestMapping(value = "b_Order", method = RequestMethod.GET)
 	public ModelAndView b_Order() throws Exception {
 	    ModelAndView mav = new ModelAndView();
-	    List<businessDTO> orderCheck = service.orderCheck();
+	    List<businessOrderDTO> orderCheck = service.orderCheck();
 	    mav.addObject("orderCheck", orderCheck);
 	    mav.setViewName("b_Order");  
 		return mav;
@@ -165,9 +201,9 @@ public class businessController {
 	// 4-2) 주문 상세 페이지
 	@ResponseBody
 	@RequestMapping(value="b_Order2", method = RequestMethod.POST)
-	public List<businessDTO> orderdetail (@RequestParam("o_number") String o_number) throws Exception {
+	public List<businessOrderDTO> orderdetail (@RequestParam("o_number") String o_number) throws Exception {
 		System.out.println(o_number);
-		List<businessDTO> result = service.orderdetail(o_number);
+		List<businessOrderDTO> result = service.orderdetail(o_number);
 		return result;
 	}
 	

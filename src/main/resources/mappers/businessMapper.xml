@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.eodeatzy.businessMapper">
         
         <!-- 사업자 정보 조회 -->
-        <select id="businessList" resultType="businessDTO">
+        <select id="b_userInfo" parameterType="String" resultType="businessUserDTO">
                 select u_b_id, 
                 		u_b_name, 
                 		u_b_pw, 
@@ -14,24 +14,30 @@
                 		u_b_access,
                 		u_b_join_dttm                		
                 from tb_user_b
-              where u_b_id = "busijin"           
+              where u_b_id = #{u_b_id}           
         </select>
         
         <!-- 사업자 정보 수정 -->
-        <update id="businessUpdate" parameterType="businessDTO">
+        <update id="businessUpdate" parameterType="businessUserDTO">
                 update tb_user_b
                 set 	u_b_pw = #{u_b_pw},
                         u_b_number = #{u_b_number},
                         u_b_email = #{u_b_email}
-                where u_b_id = "busijin"
+                where u_b_id = #{u_b_id} 
         </update>
         
+         <!-- 회원탈퇴 처리 -->
+		<update id="b_unregister" parameterType="String">
+			update tb_user_b 
+			set u_b_access = '9999'
+			where u_b_id = #{u_b_id}
+		</update>
+        
       <!-- 메뉴 정보 조회 -->
-      <select id="selectMenu" parameterType="businessDTO" resultType="businessDTO">
+      <select id="selectMenu" parameterType="businessMenuDTO" resultType="businessMenuDTO">
             select *
             from tb_menu
             where m_state = 1
-            order by u_s_id
       </select>
       
       <!-- 메뉴 상세 조회 -->
@@ -81,7 +87,7 @@
         </insert>
         
         <!-- 가게 정보 조회 -->
-        <select id="storeList" resultType="businessDTO">
+        <select id="storeList" parameterType="String" resultType="businessStoreDTO">
                 select u_s_id,
                 		u_b_id,
                 		s_regi_num,
@@ -92,6 +98,7 @@
                 		s_time,
                 		u_b_img_upload
                 from tb_store
+                where u_b_id = #{u_b_id} 
         </select>
         
         <!-- 가게 정보 수정 -->
@@ -103,12 +110,12 @@
                         s_state = #{s_state},
                         s_time = #{s_time},
                         u_b_img_upload = #{u_b_img_upload}
-               where u_b_id = "busijin"
+               where u_b_id = #{u_b_id} 
         </update>
         
         
         <!-- 주문 확인 -->
-        <select id="orderCheck" parameterType="businessDTO" resultType="businessDTO">
+        <select id="orderCheck" parameterType="businessOrderDTO" resultType="businessOrderDTO">
         	select tb_order.o_number,
         			tb_order.u_s_id,
         			tb_order.u_p_id,
@@ -129,7 +136,7 @@
       		
       
       <!-- 주문 확인 상세 내역 -->
-      <select id="orderdetail" parameterType="businessDTO" resultType="businessDTO">
+      <select id="orderdetail" parameterType="businessOrderDTO" resultType="businessOrderDTO">
       	select *
       	from tb_order_detail      	
 	    where o_number = #{o_number}
@@ -151,6 +158,9 @@
       	where u_s_id = #{u_s_id}
       	and u_p_id = #{u_p_id}
       </update>
+      
+     
+      
       
 
 </mapper>
