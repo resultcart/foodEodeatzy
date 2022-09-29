@@ -12,7 +12,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="navigation">
-				이거까지수정되나 하율
 					<nav class="navbar navbar-expand-lg navbar-light "><a class="navbar-brand" href="${contextPath}/">
 					 <img src="${assetsPath}/images/logo-e.png" alt="얻잇지"> <!-- logo  -->
 				
