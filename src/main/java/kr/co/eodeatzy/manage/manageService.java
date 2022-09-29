@@ -3,6 +3,10 @@ package kr.co.eodeatzy.manage;
 import java.util.List;
 
 public interface manageService {
+	
+	//콤보박스 리스트
+	public List<comboDTO> comboTbList(String cb_id) throws Exception;
+		
 	//개인사용자정보 테이블_전체조회
 	public List<userPDTO> userPList() throws Exception;
 	//개인사용자 주소 테이블_전체조회

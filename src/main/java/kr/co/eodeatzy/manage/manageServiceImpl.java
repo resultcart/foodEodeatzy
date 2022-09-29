@@ -10,6 +10,12 @@ public class manageServiceImpl implements manageService{
 
 	@Autowired
 	manageDAO dao;
+	
+	@Override
+	public List<comboDTO> comboTbList(String cb_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.comboTbList(cb_id);
+	}
 
 	@Override
 	public List<userPDTO> userPList() throws Exception {
@@ -111,14 +117,16 @@ public class manageServiceImpl implements manageService{
 	@Override
 	public int tbBoardInsert(boardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.tbBoardInsert(boardDTO);
 	}
 
 	@Override
 	public int tbComboInsert(comboDTO comboDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.tbComboInsert(comboDTO);
 	}
+
+
 	
 
 }
