@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +33,8 @@ import kr.co.eodeatzy.Zzim.zzimService;
 public class ZzimController {
 	@Inject
 	zzimService service;
-	
+	private static final Logger logger = LoggerFactory.getLogger(ZzimController.class);	
+
 
 	//찜목록 조회
 			@RequestMapping(value = "ListAll", method = RequestMethod.GET)
@@ -39,11 +42,13 @@ public class ZzimController {
 				
 				
 				ModelAndView mav = new ModelAndView();
+				String u_p_id = (String)session.getAttribute("user_id");
+				logger.info("u_p_id"+ u_p_id);
 				
-				String u_p_id = (String)session.getAttribute("id");
+				//String u_p_id = (String)session.getAttribute("id");
 				
 				//debug 로그인 했다고 치고 u_p_id
-				u_p_id = "p_sera";
+				//u_p_id = "p_sera";
 				
 				List<zzimDTO> listall = service.ListAll(u_p_id);
 			
@@ -57,9 +62,9 @@ public class ZzimController {
 		@RequestMapping(value = "detailzzim", method = RequestMethod.GET)
 		public ModelAndView detailzzim(@RequestParam("u_s_id")String u_s_id,zzimDTO zzimdto, Model model,HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "p_sera";
+		//u_p_id = "p_sera";
 		
 	   ModelAndView mav = new ModelAndView();
 	   zzimDTO r = service.detailzzim(zzimdto);
@@ -74,8 +79,11 @@ public class ZzimController {
 	@RequestMapping(value = "addZzim", method =RequestMethod.POST)
 	public ModelAndView addZzim(zzimDTO zzimdto,HttpServletRequest request,HttpSession session) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String u_p_id = (String)session.getAttribute("id");
-		u_p_id = "p_sera";
+		String u_p_id = (String)session.getAttribute("user_id");
+		
+		logger.info("u_p_id"+ u_p_id);
+		logger.info("addZzim");
+		//u_p_id = "p_sera";
 		//여기까지 로그인이 된 상태라고 보고 진행
 		
 		ModelAndView mav = new ModelAndView();
@@ -95,8 +103,8 @@ public class ZzimController {
 		@RequestMapping(value = "updatezdesc", method = RequestMethod.GET)
 		public ModelAndView updatezdesc(@RequestParam("u_s_id")String u_s_id,zzimDTO zzimdto, Model model, HttpServletRequest request, HttpSession session) throws Exception {
 			request.setCharacterEncoding("utf-8");
-			String u_p_id = (String)session.getAttribute("id");
-			u_p_id = "p_sera";
+			String u_p_id = (String)session.getAttribute("user_id");
+			//u_p_id = "p_sera";
 			//여기까지 로그인이 된 상태라고 보고 진행
 			ModelAndView mav = new ModelAndView();
 			
@@ -113,8 +121,8 @@ public class ZzimController {
 	@RequestMapping(value = "updatezdesc", method = RequestMethod.POST)
 	public ModelAndView updatezdesc(@RequestParam("u_s_id") String u_s_id, Model model, zzimDTO zzimdto,HttpServletRequest request, HttpSession session) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String u_p_id = (String)session.getAttribute("id");
-		u_p_id = "p_sera";
+		String u_p_id = (String)session.getAttribute("user_id");
+		//u_p_id = "p_sera";
 		//여기까지 로그인이 된 상태라고 보고 진행
 		
 		ModelAndView mav = new ModelAndView();
@@ -142,9 +150,9 @@ public class ZzimController {
 	
 		ModelAndView mav = new ModelAndView();
 		
-		String u_p_id = (String)session.getAttribute("id");
+		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
-		u_p_id = "p_sera";
+		//u_p_id = "p_sera";
 
 		int r = service.deleteZzim(zzimdto);
 		
