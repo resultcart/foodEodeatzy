@@ -15,7 +15,7 @@ function validate() { 
 	
 	var idcheck = /^[a-zA-z0-9]{4,12}$/;   
 	
-	var numchk = /(02|0[3-9]{1}[0-9]{1})-[1-9]{1}[0-9]{2,3}-[0-9]{4}$/;
+	var numchk = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	
 	var pattern= /^\d{3,3}-\d{2,2}-\d{5,5}$/;
 
@@ -273,7 +273,7 @@ $(document).ready(function(){
                사업장 등록
               </h1>
               <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">가게Id<br>※4~12자의 영문 대소문자와 숫자로만 입력</span>
+                <span class="text-gray-700 dark:text-gray-400">가게Id<br>※4~12자의 영문 대소문자와 숫자로만 입력<br>※가게 추가 등록시 가게 아이디는 새롭게 등록해주세요.</span>
                 <input class="block w-full mt-2 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                   placeholder="Id를 입력해주세요" id="u_s_id" name="u_s_id"/>
                   <input type="hidden" name="check" id = "check" check_result="fail">
