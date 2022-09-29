@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -345,5 +346,18 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
+	//아이디 중복확인 
+	@ResponseBody
+	@RequestMapping(value = "upidCheck", method = RequestMethod.POST)
+	public String upidCheck(@RequestParam("u_p_id")String u_p_id) throws Exception {
+		
+		int result = service.upidCheck(u_p_id);
+		
+		if(result != 0) {
+			return "fail"; //중복 아이디가 존재
+		}else {
+			return "success"; //중복 아이디가 존재하지 않음
+		}
+	}
 	
 }

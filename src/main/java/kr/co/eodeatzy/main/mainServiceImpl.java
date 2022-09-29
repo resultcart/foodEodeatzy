@@ -19,9 +19,9 @@ public class mainServiceImpl implements mainService{
 	}
 	// 공지사항 최근하나 조회
 	@Override
-	public notice_OneDTO notice_One(String b_writer) throws Exception {
+	public notice_OneDTO notice_One() throws Exception {
 		// TODO Auto-generated method stub
-		return dao.notice_One(b_writer);
+		return dao.notice_One();
 	}
 	
 	// 카테고리 조회

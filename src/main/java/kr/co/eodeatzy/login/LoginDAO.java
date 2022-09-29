@@ -30,5 +30,8 @@ public interface LoginDAO {
 	
 	// 회원가입
 	public void ins_mem_u(ins_mem_uDTO insmemuDTO) throws Exception;
+	
+	//개인 id중복 확인
+	public int upidCheck(String u_p_id)throws Exception;
 
 }

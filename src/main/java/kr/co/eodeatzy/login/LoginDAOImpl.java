@@ -63,5 +63,11 @@ public class LoginDAOImpl implements LoginDAO{
 		sqlSession.insert(namespace + ".ins_mem_u", insemeuDTO);
 	}
 	
+	//개인 id중복 확인
+	@Override
+	public int upidCheck(String u_p_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".upidCheck", u_p_id);
+	}
 	
 }

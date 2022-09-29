@@ -67,7 +67,7 @@
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
 					<a class="mt-4" href="${contextPath }/mypageU/u_Addr_List">내주소 보러가기</a><br>
 					<form action="u_Addr_One" method="get">
- 							<h6 class="footer-heading mb-4">${tb_user_p.u_p_id} | ${tb_user_p_address.u_p_add_id} | ${tb_user_p_address.u_p_address}</h6>
+ 							<h6 class="footer-heading mb-4">${u_addr_one.u_p_id} | ${u_addr_one.u_p_add_id} | ${u_addr_one.u_p_address}</h6>
 					</form>
 				</c:if>
 

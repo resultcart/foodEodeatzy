@@ -8,7 +8,7 @@ public interface mainDAO {
 	public u_Addr_OneDTO u_Addr_One(String u_p_id) throws Exception;
 	
 	// 공지사항 최근하나 조회
-	public notice_OneDTO notice_One(String b_writer) throws Exception; 
+	public notice_OneDTO notice_One() throws Exception; 
 	
 	// 카테고리 조회
 	public List <categoryDTO> category() throws Exception; 
