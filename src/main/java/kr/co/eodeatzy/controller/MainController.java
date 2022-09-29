@@ -26,6 +26,7 @@ import kr.co.eodeatzy.main.category_OneDTO;
 import kr.co.eodeatzy.main.mainService;
 import kr.co.eodeatzy.main.notice_OneDTO;
 import kr.co.eodeatzy.main.store_typeDTO;
+import kr.co.eodeatzy.main.u_Addr_OneDTO;
 import kr.co.eodeatzy.mypageU.userAddrDTO;
 import kr.co.eodeatzy.mypageU.userInfoDTO;
 
@@ -44,18 +45,16 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 //		// 내주소보기
-//		session.getAttribute("user_id");
-//		session.getAttribute("user_name");
-//		session.getAttribute("loginDTO_p");
-//		
-//		u_Addr_OneDTO u_addr_one = service.u_Addr_One("LoginDTO_p");
-//		logger.info("u_addr_one : " + u_addr_one);  
-//		mav.addObject("u_addr_one", u_addr_one);
-
+		String u_p_id = (String)session.getAttribute("user_id");
+		logger.info("로그인 시 받은 u_p_id : " + u_p_id);
+		
+		u_Addr_OneDTO u_addr_one = service.u_Addr_One(u_p_id);
+		logger.info("u_addr_one : " + u_addr_one); 
+		
+		mav.addObject("u_addr_one", u_addr_one);
+		
 		// 공지사항
-		String b_id = (String) session.getAttribute("id"); 
-		b_id = "5";
-		notice_OneDTO noticeone = service.notice_One(b_id);
+		notice_OneDTO noticeone = service.notice_One();
 		logger.info("notice_One : " + noticeone);
 		mav.addObject("notice_one", noticeone);
 		

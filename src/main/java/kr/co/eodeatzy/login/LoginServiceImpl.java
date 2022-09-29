@@ -58,7 +58,10 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 	
-
-	
-
+	//개인 id중복 확인
+	@Override
+	public int upidCheck(String u_p_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.upidCheck(u_p_id);
+	}
 }

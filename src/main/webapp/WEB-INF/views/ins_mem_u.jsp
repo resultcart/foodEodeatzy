@@ -5,6 +5,210 @@
 <c:set var="assets_wPath" value="${pageContext.request.contextPath }/resources/assets_w" />
 
  <!DOCTYPE html>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
+ <!-- 유효성 검사 -->
+ <script>
+ function validate() { 
+		
+		var idcheck = /^[a-zA-z0-9]{4,12}$/;   
+		
+		var emailch = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+		
+		var numchk = /^\d{2,3}-\d{3,4}-\d{4}$/;
+		
+		var juminchk = /^\d{6}-\d{7}$/;
+		
+		var cnt1=0;
+		var u_p_ad_yn = document.getElementsByName("u_p_ad_yn");
+		
+		var cnt2=0;
+		var u_p_ad_media = document.getElementsByName("u_p_ad_media");
+		
+		
+		if($("#u_p_id").val() == ""){
+			event.preventDefault();
+	        alert("아이디 입력해주세요.");
+	        $("#u_p_id").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_pw").val() == ""){
+			event.preventDefault();
+	        alert("비밀번호 입력해주세요.");
+	        $("#u_p_pw").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_pwChk").val() == ""){
+			event.preventDefault();
+	        alert("비밀번호 확인란 입력해주세요.");
+	        $("#u_p_pwChk").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_name").val() == ""){
+			event.preventDefault();
+	        alert("이름을 입력해주세요.");
+	        $("#u_b_name").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_regi_num").val() == ""){
+			event.preventDefault();
+	        alert("주민번호를 입력해주세요.");
+	        $("#u_p_regi_num").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_number").val() == ""){
+			event.preventDefault();
+	        alert("연락처를 입력해주세요.");
+	        $("#u_p_number").focus();
+	        return false;
+	      }
+
+		for(var i =0; i< u_p_ad_yn.length; i++){
+			if(u_p_ad_yn[i].checked == true){
+				cnt1++;
+				break;
+			}
+		} if(cnt1 == 0){
+			event.preventDefault();
+			alert('광고약관여부를 선택해주세요.');
+			return false;
+		}
+		
+		for(var i =0; i< u_p_ad_media.length; i++){
+			if(u_p_ad_media[i].checked == true)	{
+				cnt2++;
+				break;
+			}
+		} if(cnt2 == 0){
+			event.preventDefault();
+			alert('광고수신전송매체를 선택해주세요.');
+			return false;
+		}
+		
+		
+		if($("#u_p_email").val() == ""){
+			event.preventDefault();
+	        alert("이메일을 입력해주세요.");
+	        $("#u_p_email").focus();
+	        return false;
+	      }
+		
+		if($("#u_p_email").val() == ""){
+			event.preventDefault();
+	        alert("이메일을 입력해주세요.");
+	        $("#u_p_email").focus();
+	        return false;
+	      }
+		
+		if(!idcheck.test($('#u_p_id').val())) {  
+			event.preventDefault();          
+			alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다.");            
+			$('#u_p_id').val();            
+			$('#u_p_id').focus();            
+			return false;    
+			    
+		}else if (!idcheck.test($('#u_p_pw').val())) {   
+			event.preventDefault();          
+			alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다.");  
+			$('#u_p_pw').val();                      
+			$('#u_p_pw').focus();            
+			return false;        
+		
+		}else if($('#u_p_pw').val() != $('#u_p_pwChk').val()){
+			event.preventDefault(); 
+			alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			$('#u_p_pw').val();
+			$('#u_p_pwChk').val();
+			$('#u_p_pwChk').focus();
+			return false;
+			
+		}else if (!juminchk.test($('#u_p_regi_num').val())) {       
+			event.preventDefault();      
+			alert("주민번호를 990101-1234567 다음과 같은 형식으로 입력해주세요.");            
+			$('#u_p_regi_num').val();            
+			$('#u_p_regi_num').focus();            
+			return false;        
+			
+		}else if (!numchk.test($('#u_p_number').val())) {       
+			event.preventDefault();      
+			alert("연락처를 000-0000-0000 다음과 같은 형식으로 입력해주세요.");            
+			$('#u_p_number').val();            
+			$('#u_p_number').focus();            
+			return false;        
+			
+		}else if (!emailch.test($('#u_p_email').val())) {       
+			event.preventDefault();      
+			alert("이메일을 abc@abc.com 다음과 같은 형식으로 입력해주세요.");            
+			$('#u_p_email').val();            
+			$('#u_p_email').focus();            
+			return false;  
+			      
+		}
+		
+		if ($('#check').attr("check_result") == "fail"){
+			event.preventDefault();  
+		    alert("아이디 중복체크를 해주시기 바랍니다.");
+		    $('#check').focus();
+		    return false;
+		  }
+		
+		alter("회원가입이 완료되었습니다.")
+		return true;
+	}
+ 
+</script>
+ 
+<script type="text/javascript">
+ //아이디 중복확인 ajax
+	$(document).ready(function(){
+		
+	        $('#upidCheck').on('click', function(){
+	        	
+	        	$('#check').attr("check_result", "Ok");
+	        	
+	        	var url = "${pageContext.request.contextPath}/upidCheck";
+	        	var u_p_id = $('#u_p_id').val();
+	        	var paramData = {
+	        			"u_p_id" : u_p_id
+	        	};
+	        	
+	            $.ajax({
+	                url : url,
+	                data : paramData,
+	                dataType : 'text',
+	                type : 'POST',
+	                
+	                success : function(result){
+	                	
+	                	console.log("성공여부" + result);
+	                	
+	                    if(result != 'fail'){
+	                        $('#checkMsg').html('<p style="color:blue">사용가능합니다.</p>');
+	                    }
+	                    else{
+	                        $('#checkMsg').html('<p style="color:red">사용불가능합니다. 다른 아이디를 입력해주세요.</p>');
+	                    }
+	                },
+	                
+	                error : function(result){
+	                	
+	                	console.log("error" + result);
+	                	
+	                } //end error
+	           
+	            });    //end ajax    
+	        });    //end on    
+	    });
+
+ </script>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 <!-- head-->
 <%@ include file="include/head.jsp" %>
@@ -100,50 +304,63 @@
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
+		     <form method="post" onsubmit="validate();">              
               <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                회원가입
+                개인사용자 회원가입
               </h1>
-				<form action="ins_mem_u" method="post" name="register" onsubmit="return checkAll()">              
 	              <label class="block text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">Id</span>
+	                <span class="text-gray-700 dark:text-gray-400">Id<br>※4~12자의 영문 대소문자와 숫자로만 입력</span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text" name="u_p_id" id="u_p_id" placeholder="Id를 입력해주세요"/>
-	              </label>
+	                  placeholder="Id를 입력해주세요" name="u_p_id" id="u_p_id"/>
+	                  <input type="hidden" name="check" id = "check" check_result="fail">
+					 <div id="checkMsg"></div>
+	                 <button id="upidCheck" type="button" class ="btn btn-outline-warning btn-fw">중복확인</button><br>
+            	  </label>
+	              
+	                
+					<label class="block mt-4 text-sm">
+		              <span class="text-gray-700 dark:text-gray-400">비밀번호<br>※4~12자의 영문 대소문자와 숫자로만 입력</span>
+		              <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+		                placeholder="비밀번호를 입력해주세요"
+		                type="password" name="u_p_pw" id="u_p_pw"/>
+		            </label>
+	                  
 	              
 	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">비밀번호</span>
+	                <span class="text-gray-700 dark:text-gray-400">
+	                  비밀번호 재확인
+	                </span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="password" name="u_p_pw" id="u_p_pw" placeholder="비밀번호를 입력해주세요"/>
-	              </label>
-	              
-	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">비밀번호 재확인</span>
-	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="password" name="u_p_pw2" id="u_p_pw2" placeholder="비밀번호를 한 번 더 입력해주세요"/>
+	                  placeholder="비밀번호를 한 번 더 입력해주세요"
+	                  type="password" name="u_p_pwChk" id="u_p_pwChk"/>
 	              </label>
 	              
 	              <label class="block mt-4 text-sm">
 	                <span class="text-gray-700 dark:text-gray-400">이름</span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text" name="u_p_name" id="u_p_name" placeholder="이름을 입력해주세요"/>
+	                  placeholder="이름을 입력해주세요"
+	                  name="u_p_name" id="u_p_name"/>
 	              </label>
 	              
 	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">주민번호</span>
+	                <span class="text-gray-700 dark:text-gray-400">주민번호<br>(ex.990101-1234567 형식에 맞추어 기입하세요.)</span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text" name="u_p_regi_num" id="u_p_regi_num" placeholder="주민번호 앞자리 6자리를 입력해주세요" /> 
+	                  placeholder="주민번호 13자리를 입력해주세요"
+	                  name="u_p_regi_num" id="u_p_regi_num" />
 	              </label>
 	              
 	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">연락처</span>
+	                <span class="text-gray-700 dark:text-gray-400">연락처<br>(000-0000-0000 형식에 맞추어 기입하세요.)</span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="tel" name="u_p_number" id="u_p_number" placeholder="연락처를 입력해주세요"/>
+	                  placeholder="연락처를 입력해주세요"
+	                  name="u_p_number" id="u_p_number" />
 	              </label>
 	              
 	        	  <label class="block mt-4 text-sm">
 	                <span class="text-gray-700 dark:text-gray-400">이메일</span>
 	                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="email" name="u_p_email" id="u_p_email" placeholder="이메일를 입력해주세요"/>
+	                  placeholder="이메일를 입력해주세요"
+	                  name="u_p_email" id="u_p_email"/>
 	              </label>
 	         
 	              <label class="block mt-4 text-sm">
@@ -177,173 +394,10 @@
 	              <hr class="my-8" />
 	              
 	              <p class="mt-4">
-	                <input type="submit" value="회원가입" class="btn btn-outline-warning btn-fw" >
-	                </a>
+	                <button type="submit" class="btn btn-outline-warning btn-fw" id="signup"> 회원가입 </button>
 	              </p>
               </form>
-              
-       
-					<script>
-					function checkAll() {
-						var form = document.register;        
-
-						if (!checkU_p_id(form.u_p_id.value)) {            
-							return false;        
-						} else if (!checkU_p_pw(form.u_p_id.value, form.u_p_pw.value, form.u_p_pw2.value)) {            
-							return false;       
-						} else if (!checkU_p_name(form.u_p_name.value)) {            
-							return false;        
-						} else if (!checkU_p_regi_num(form.u_p_regi_num.value)) {            
-							return false;        
-						} else if (!checkU_p_number(form.u_p_number.value)) {            
-							return false;        
-						} else if (!checkU_p_email(form.u_p_email.value)) {            
-							return false;        
-						}         
-						alert("회원가입 성공");	
-						form.submit();
-						return true;   
-					}
-					
-					
-					// 공백확인 함수    
-					function checkExistData(value, dataName) {        
-						if (value == "") {            
-							alert(dataName + " 입력해주세요.");            
-							return false;        
-						}       
-						return true;    
-					}
-					
-					
-					// 아이디 검사
-					function checkU_p_id(u_p_id) {        
-						//Id가 입력되었는지 확인하기        
-						if (!checkExistData(u_p_id, "아이디를"))            
-						return false;        
-						
-						var u_p_idRegExp = /^[a-zA-z0-9]{1,15}$/; //아이디 유효성 검사        
-						if (!u_p_idRegExp.test(u_p_id)) {            
-							alert("아이디는 영문 대소문자와 숫자 1~15자리로 입력해야합니다.");            
-							form.u_p_id.value = "";            
-							form.u_p_id.focus();            
-							return false;        
-						}        
-						return true; //확인이 완료되었을 때    
-					}
-					
-					// 비밀번호 검사
-					function checkU_p_pw(u_p_id, u_p_pw, u_p_pw2) {        
-						//비밀번호가 입력되었는지 확인하기        
-						if (!checkExistData(u_p_pw, "비밀번호를"))            
-							return false;        
-						//비밀번호 확인이 입력되었는지 확인하기        
-						if (!checkExistData(u_p_pw2, "비밀번호 재확인을"))            
-							return false;         
-							
-						var u_p_pwRegExp = /^[a-zA-z0-9]{1,15}$/; //비밀번호 유효성 검사        
-						if (!u_p_pwRegExp.test(u_p_pw)) {            
-							alert("비밀번호는 영문 대소문자와 숫자 1~15자리로 입력해야합니다.");            
-							form.u_p_pw.value = "";            
-							form.u_p_pw.focus();            
-							return false;        
-						}        
-						//비밀번호와 비밀번호 확인이 맞지 않다면..        
-						if (u_p_pw != u_p_pw2) {            
-							alert("두 비밀번호가 맞지 않습니다. 다시 입력해주세요.");            
-							form.u_p_pw.value = "";            
-							form.u_p_pw2.value = "";            
-							form.u_p_pw2.focus();            
-							return false;        
-						}         
-						//아이디와 비밀번호가 같을 때..        
-						if (u_p_id == u_p_pw) {            
-							alert("아이디와 비밀번호는 같을 수 없습니다.");            
-							form.u_p_pw.value = "";            
-							form.u_p_pw2.value = "";            
-							form.u_p_pw2.focus();            
-							return false;        
-						}        
-						return true; 
-						//확인이 완료되었을 때    
-					} 
-					
-					// 이름 검사
-					function checkU_p_name(u_p_name) {       
-						if (!checkExistData(u_p_name, "이름을"))            
-						return false;         
-						
-						var u_p_nameRegExp = /^[가-힣]{1,6}$/;        
-						if (!u_p_nameRegExp.test(u_p_name)) {            
-							alert("이름이 올바르지 않습니다. 이름은 한글만 사용가능합니다.");            
-							return false;        
-						}        
-						return true; //확인이 완료되었을 때    
-					}
-					
-					// 주민번호 검사
-					function checkU_p_regi_num(u_p_regi_num) {        
-						//주민번호 입력되었는지 확인하기        
-						if (!checkExistData(u_p_regi_num, "주민번호를 "))          
-							return false;         
-							
-						//주민등록번호 길이 확인하기        
-						if (u_p_regi_num < 13) {            
-							alert("주민등록번호는 13자리입니다.");           
-							form.u_p_regi_num.value = "";            
-							form.u_p_regi_num.focus();            
-							return false;        
-						} 						
-						return true; 
-						//확인이 완료되었을 때    
-					}
-					
-					// 연락처 검사합수
-					function checkU_p_number(u_p_number) {        
-						//Id가 입력되었는지 확인하기        
-						if (!checkExistData(u_p_number, "연락처를"))            
-							return false;        
-						
-						var u_p_numberRegExp = /^[0-9]*$/;      
-						if (!u_p_numberRegExp.test(u_p_number)) {            
-							alert("연락처는 숫자로만 입력이 가능합니다.");            
-							form.u_p_number.value = "";            
-							form.u_p_number.focus();            
-							return false;        
-						}
-						
-						//연락처 길이 확인하기        
-						if (u_p_number.length < 10) {            
-							alert("연락처는 10자리 자리입니다.");           
-							form.u_p_number.value = "";            
-							form.u_p_number.focus();            
-							return false;        
-						}                
-						return true; //확인이 완료되었을 때    
-					}
-					
-					// 이메일 검사함수
-					function checkU_p_email(u_p_email) {        
-						//mail이 입력되었는지 확인하기        
-						if (!checkExistData(u_p_email, "이메일을"))            
-						return false;         
-						
-						var u_p_emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;      
-						if (!u_p_emailRegExp.test(u_p_email)) {            
-							alert("이메일 형식이 올바르지 않습니다!");            
-							form.u_p_email.value = "";           
-							form.u_p_email.focus();            
-							return false;        
-						}       
-						return true; //확인이 완료되었을 때  
-					}
-			
-					
-		</script>
-              
-
-
-            </div>
+             </div>
           </div>
         </div>
       </div>

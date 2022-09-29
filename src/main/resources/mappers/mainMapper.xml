@@ -6,20 +6,20 @@
 
 	<!-- 개인이용자 주소보기 -->
 	<select id="u_Addr_One" parameterType="String" resultType="u_Addr_OneDTO">
-		select tb_user_p.u_p_id, tb_user_p_address.u_p_address, tb_user_p_address.u_p_flag from tb_user_p
-		inner join tb_user_p_address
-		on tb_user_p.u_p_id = tb_user_p_address.u_p_id
-		where tb_user_p.u_p_id=#{u_p_id} and u_p_flag=2
+		select *
+		from tb_user_p_address
+		where (u_p_id=#{u_p_id}) and (u_p_flag=2)
 	</select>
 
 	<!-- 사업자 주소보기 -->
 
 	<!-- 공지사항 하나 보기 -->
 	<select id="notice_One" parameterType="String" resultType="notice_OneDTO">
-		select b_writer, b_title, b_content
+		select *
 		from tb_board
-		where b_id = (select max(#{b_id}) 
-					  from tb_board) and (b_type=1) and (b_state=10)
+		where B_TYPE=1 and B_STATE=10
+		order by b_id desc
+		limit 1
 	</select>
 
 	<!-- 카테고리 조회 -->
