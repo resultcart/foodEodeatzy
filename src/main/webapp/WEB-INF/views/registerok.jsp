@@ -96,21 +96,29 @@
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
            <div class="w-full">
-           <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+           <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-black-200">
                 사업장 등록이 완료되었습니다.
               </h1>
            
               <!-- You should use a button here, as the anchor is only used for the example  -->
                  <hr>
+                 <br><br>
+                 <h5 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                ※사업장 추가 등록 했을시
+                </h5>
+                
                <a class="btn btn-outline-warning btn-fw" href=returnhome>
                 Home
               </a>
 
-             <br>
-             <hr class="my-8" />
-
+             <br><br><br>
+             
+				<h5 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                ※로그인하러가기
+                </h5>
+                
 				<a class="btn btn-outline-warning btn-fw" href=login>
-                Login하러가기
+                Login
               </a>
 
              
