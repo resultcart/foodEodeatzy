@@ -1,12 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/eclipse
-# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse
-
-
 # 사람마다 접속 이달라서 바꿔놔요
 # 기본 ip jdbc:mysql://192.168.0.162:3306/foodb?
 # 모바일핫스팟 ip jdbc:mysql://192.168.137.1:3306/foodb?
-root-context.xml
-MANIFEST.MF
+# Created by https://www.toptal.com/developers/gitignore/api/java-web,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=java-web,eclipse
 
 ### Eclipse ###
 .metadata
@@ -76,16 +72,6 @@ local.properties
 #.project
 
 ### Eclipse Patch ###
-# Spring Boot Tooling
-.sts4-cache/
-
-### Java-Web ###
-## ignoring target file
-target/
-
-
-# End of https://www.toptal.com/developers/gitignore/api/java-web,eclipse
-
 # Spring Boot Tooling
 .sts4-cache/
 
