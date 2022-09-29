@@ -12,10 +12,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="navigation">
-					1깃허브  테스트 깃깃 허브허브<br>
-					2깃허브  테스트 깃깃 허브허브<br>
-					3깃허브  테스트 깃깃 허브허브<br>
-					4깃허브  테스트 깃깃 허브허브<br>
+					힛
 					<nav class="navbar navbar-expand-lg navbar-light "><a class="navbar-brand" href="${contextPath}/">
 					 <img src="${assetsPath}/images/logo-e.png" alt="얻잇지"> <!-- logo  -->
 				
