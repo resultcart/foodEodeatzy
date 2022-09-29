@@ -96,7 +96,8 @@
                 		c_id,
                 		s_state,
                 		s_time,
-                		u_b_img_upload
+                		u_b_img_upload,
+                		s_desc
                 from tb_store
                 where u_b_id = #{u_b_id} 
         </select>
@@ -109,7 +110,8 @@
                         s_number = #{s_number},
                         s_state = #{s_state},
                         s_time = #{s_time},
-                        u_b_img_upload = #{u_b_img_upload}
+                        u_b_img_upload = #{u_b_img_upload},
+                        s_desc = #{s_desc}
                where u_b_id = #{u_b_id} 
         </update>
         

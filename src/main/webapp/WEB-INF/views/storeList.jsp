@@ -108,9 +108,14 @@
 										<label>사업자 등록증</label>
 										<input type="text" id="u_b_img_upload" name="u_b_img_upload" value="${storeList.u_b_img_upload}" readonly="true">
 										<td><img src="resources/img/1.jpg" alt="1이미지" width="140px" height="100px"></td>
-						                </label>
-									</div>									
-								<div class="col-lg-12">
+									</div>
+									
+									<div class="input-box mt-30">
+									<label>가게 정보</label>
+									<input type="text" id="s_desc" name="s_desc" value="${storeList.s_desc}">									
+									</div>
+																		
+									<div class="col-lg-12">
 									<div class="input-box mt-30">
 										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30">수정</button>
 									</div>
