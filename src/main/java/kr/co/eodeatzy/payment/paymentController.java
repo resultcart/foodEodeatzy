@@ -37,29 +37,23 @@ public class paymentController {
 		return mav;
 	}
 	
-	//결재-가게정보
+	//결제-가게정보/상세내역
 	@RequestMapping(value = "payment/store_info", method=RequestMethod.GET )
 	public String store_info(@RequestParam("u_s_id")String u_s_id, Model model) throws Exception {
-		logger.info("결재~~가게정보~~~~~~");
-		logger.info("usid=>>>>>" + u_s_id);
-		orderDTO orderdto = service.store_info(u_s_id);
-		//?맞냐
-		model.addAttribute("payList", orderdto);
+		logger.info("결제~~가게정보~~~~~~");
+		logger.info("usid>>!!!!!!!!!"+u_s_id);
+		
+		orderDTO order = service.store_info(u_s_id);
+		List<cartDTO> orderOne=service.orderOne(u_s_id);
+		model.addAttribute("payList", order);
+		model.addAttribute("orderOne", orderOne);
 		return "pendingorder";
 	}
 	
-//	//결재-가게정보
-//	@RequestMapping(value = "payment/store_info", method=RequestMethod.GET )
-//	public String store_info() {
-//		logger.info("결재~~가게정보~~~~~~");
-//		return "pendingorder";
-//	}
-	
-	
-	//결재-주문내역목록
+	//결제-주문내역목록
 	@RequestMapping(value = "payment/orderlist", method=RequestMethod.GET )
 	public String orderlist() {
-		logger.info("결재~~주문내역목록~~~~~~");
+		logger.info("결제~~주문내역목록~~~~~~");
 		return "orderlist";
 	}
 	

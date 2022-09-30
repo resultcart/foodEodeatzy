@@ -1,5 +1,6 @@
 package kr.co.eodeatzy.payment;
 
+import kr.co.eodeatzy.cart.menuDTO;
 import lombok.Data;
 
 @Data
@@ -12,4 +13,6 @@ public class orderDTO {
 	private int o_ltime_total;
 	private int o_state;
 	private String o_desc;
+	
+//	private menuDTO menuDTO; //쿼리로 조인할 dto
 }

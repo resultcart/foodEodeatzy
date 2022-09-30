@@ -60,8 +60,8 @@
               <div class="card mb-3">
                 <h3 class="card-header" style="text-align:center;">결제 완료</h3>
                 <div class="card-body">
-                <b>가게 ID :</b> <input type="text" name="u_s_id" value="${payList.u_s_id }" style="border: none; background: transparent; font-weight : bold ;"><br>
-                주문번호 : <input type="text" name="o_number" value="${payList.o_number }" style="border: none; background: transparent;">
+                <b>가게 ID :</b> <input type="text" name="u_s_id" value="${payList.u_s_id }" style="border: none; background: transparent; font-weight : bold;" readonly="readonly"><br>
+                주문번호 : <input type="text" name="o_number" value="${payList.o_number }" style="border: none; background: transparent;" readonly="readonly">
                 </div>
                 
                 <!-- map ifram start-->
@@ -93,11 +93,11 @@
                   	</tr>
                   	
                   	<!-- 시작 -->
-                  	<c:forEach var="cart_list" items="${sel_cartList }">
+                  	<c:forEach var="cart_list" items="${orderOne }">
                 	<tr align="center">
-                		<td><input type="text" name="m_name" value="${cart_list.menuDTO.m_name }" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="o_cnt" value="1" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="m_price" value="18000" style="border: none; background: transparent; text-align:center;"></td>                   		
+                		<td><input type="text" name="m_name" value="${cart_list.menuDTO.m_name }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></td>
+                		<td><input type="text" name="ct_count" value="${cart_list.ct_count }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></td>
+                		<td><input type="text" name="m_price" value="${cart_list.menuDTO.m_price }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></td>                   		
                   	</tr>
                   	</c:forEach>              	
                   	<!-- 끝 -->          
@@ -107,7 +107,7 @@
                 	<tfoot>
                 		<td></td>
                 		<td align="center"><text>총가격</text></td>
-                		<td><input type="text" name="o_amt_total" value="54000" style="border: none; background: transparent; text-align:center;"></td>                  	
+                		<td><input type="text" name="o_amt_total" value="${payList.o_amt_total}" style="border: none; background: transparent; text-align:center;"></td>                  	
                 	</tfoot>
                 </table>
                 </div>
