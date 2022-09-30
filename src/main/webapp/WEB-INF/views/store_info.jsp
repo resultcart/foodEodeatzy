@@ -109,10 +109,13 @@
 				</c:choose>
 				</div>
 				
+				<form method = "POST">
 				<div class="restaurant-content">
 					<div class="item d-flex justify-content-between align-items-center">
-						<a href="menu_list?u_s_id=${search.u_s_id}"><input type="text" name="s_name" value="${search.s_name }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></a>
-						<span>찜<button class="fas fa-star" style="border: none; background: transparent;"></button></span>
+						<a href="menu_list?u_s_id=${search.u_s_id}">
+						<input type="text" name="s_name" value="${search.s_name }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></a>
+						</form>
+						<span>찜<button class="fas fa-star" style="border: none; background: transparent" onclick="javascript: form.action='${pageContext.request.contextPath }/addZzim?u_s_id=${search.u_s_id }';"></button></span>
 					</div>
 				</div>
 			</div>
