@@ -20,5 +20,5 @@ public class categoryDTO {
 	private String c_name;
 	private int c_use;
 
-	
+//	private category_OneDTO category_OneDTO;
 }

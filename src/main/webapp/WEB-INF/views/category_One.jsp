@@ -54,7 +54,7 @@ function count(type) {
 	<div class="row justify-content-center">
 		<div class="col-lg-12">
 			<div class="section-title text-center">
-				<h4 class="title">	<input type="text"  name="c_name" value="${caca.c_name} }" style="border: none; background: transparent; text-align: center;" readonly="readonly"></input></h4>
+				<h4 class="title">	<input type="text"  name="c_name" value="${category_name }" style="border: none; background: transparent; text-align: center;" readonly="readonly"></input></h4>
 				<!-- Open at - <input type="text" name="opentime" value="10:00" size="3" readonly="readonly"  style="border: none; background: transparent;"> -->			
 			</div>
 		</div>

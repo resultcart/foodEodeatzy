@@ -19,4 +19,7 @@ public interface mainService {
 	// 카테고리 누르면 해당하는 c_id의 가게정보 보여주기
 	public List <category_OneDTO> category_One(int c_id) throws Exception;
 	
+	// 카테고리 조회시 해당하는 c_name가져오기 join
+	public String  category_Name(int c_id) throws Exception;
+	
 }
