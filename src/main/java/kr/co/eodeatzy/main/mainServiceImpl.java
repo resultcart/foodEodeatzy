@@ -44,5 +44,13 @@ public class mainServiceImpl implements mainService{
 		// TODO Auto-generated method stub
 		return dao.category_One(c_id);
 	}
+
+	// 카테고리 조회시 해당하는 c_name가져오기 join
+	@Override
+	public String category_Name(int c_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.category_Name(c_id);
+	}
+	
 	
 }

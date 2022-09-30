@@ -156,6 +156,11 @@ public class MainController {
 		
 		ModelAndView mav = new ModelAndView();	
 		
+		String category_Name = service.category_Name(c_id);
+		mav.addObject("category_name", category_Name);
+		logger.info("***********//////////////category_Name : " + category_Name);
+		
+		
 		List<category_OneDTO> category_one = service.category_One(c_id);
 		mav.addObject("catego_one", category_one);
 		logger.info("category_one : " + category_one);

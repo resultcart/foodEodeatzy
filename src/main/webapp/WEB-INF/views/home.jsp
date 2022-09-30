@@ -72,7 +72,7 @@
 				</c:if>
 
 				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-				<a class="mt-4" href="${contextPath }/main/notice_One">공지사항 보러가기</a> <br>
+				<a class="mt-4" href="${contextPath }/board/noticeList">공지사항 보러가기</a> <br>
 				<form action="notice_One" method="get">
 	  				<h6 class="footer-heading mb-4">${notice_one.b_writer} | ${notice_one.b_title} | ${notice_one.b_content}</h6>
 				</form>

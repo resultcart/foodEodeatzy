@@ -42,5 +42,34 @@
 		where c_id=#{c_id}
 	</select>
 
+	<!-- 카테고리 조회시 해당하는 c_name가져오기 join -->
+	<resultMap type="category_OneDTO" id="category_OneDTO"> <!-- tb_store -->
+		<result column="u_s_id" property="u_s_id"/> 
+		<result column="u_b_id" property="u_b_id"/>
+		<result column="s_regi_num" property="s_regi_num"/>
+		<result column="s_name" property="s_name"/>
+		<result column="s_number" property="s_number"/>
+		<result column="c_id" property="c_id"/>
+		<result column="s_state" property="s_state"/>
+		<result column="s_time" property="s_time"/>
+		<result column="u_b_img_upload" property="u_b_img_upload"/> 
+		<result column="s_desc" property="s_desc"/>
+	</resultMap>
+	 
+		
+	<resultMap type="categoryDTO" id="categoryDTO">  <!-- tb_category -->
+		<result column="c_id" property="c_id"/>
+		<result column="c_name" property="c_name"/>
+		<result column="c_use" property="c_use"/>
+		<result column="categoryDTO" property="categoryDTO"/>
+	</resultMap>
+	
+	<select id="category_Name" parameterType="java.lang.Integer" resultType="String">
+		select distinct tb_category.c_name
+		from tb_category
+		inner join tb_store
+		on tb_category.c_id = tb_store.c_id
+		where tb_store.c_id=#{c_id}
+	</select>
 	
 </mapper>

@@ -16,4 +16,6 @@ public class category_OneDTO {
 	private int s_time;
 	private String u_b_img_upload;
 	private String s_desc;
-}
+
+	private categoryDTO categoryDTO;
+} 
