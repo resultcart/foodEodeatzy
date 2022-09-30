@@ -1,4 +1,4 @@
-package kr.co.eodeatzy.payment;
+package kr.co.eodeatzy.controller;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.eodeatzy.cart.cartDTO;
-import kr.co.eodeatzy.controller.HomeController;
+import kr.co.eodeatzy.payment.orderDTO;
+import kr.co.eodeatzy.payment.paymentService;
 
 @Controller
 public class paymentController {
