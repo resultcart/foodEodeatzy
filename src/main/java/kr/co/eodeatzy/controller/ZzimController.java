@@ -87,7 +87,7 @@ public class ZzimController {
 		//여기까지 로그인이 된 상태라고 보고 진행
 		
 		ModelAndView mav = new ModelAndView();
-		
+		zzimdto.setU_p_id(u_p_id);
 		int r=service.addZzim(zzimdto);
 		
 		if(r>0) {
