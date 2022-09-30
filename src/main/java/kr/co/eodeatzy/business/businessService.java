@@ -32,8 +32,11 @@ public interface businessService {
 	// 2-5) 메뉴 추가
 	public int insertmenu(Map<String, Object> inmap) throws Exception; 
 	
+	// 3-0) 가게 선택
+	public List<businessStoreDTO> selectStore(String u_b_id) throws Exception;
+	
 	// 3-1) 가게 정보 조회
-	public businessStoreDTO storeList(String u_b_id) throws Exception;
+	public Map storeList(Map<String, Object> storemap) throws Exception;
 	
 	// 3-2) 가게 정보 수정
 	public int storeNameUpdate(Map<String, Object> stupmap) throws Exception;

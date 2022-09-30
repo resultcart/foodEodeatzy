@@ -4,29 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.eodeatzy.businessMapper">
         
-        <!-- 사업자 정보 조회 -->
-        <select id="b_userInfo" parameterType="String" resultType="businessUserDTO">
-                select u_b_id, 
-                		u_b_name, 
-                		u_b_pw, 
-                		u_b_number,
-                		u_b_email,
-                		u_b_access,
-                		u_b_join_dttm                		
-                from tb_user_b
-              where u_b_id = #{u_b_id}           
-        </select>
-        
-        <!-- 사업자 정보 수정 -->
-        <update id="businessUpdate" parameterType="businessUserDTO">
-                update tb_user_b
-                set 	u_b_pw = #{u_b_pw},
-                        u_b_number = #{u_b_number},
-                        u_b_email = #{u_b_email}
-                where u_b_id = #{u_b_id} 
-        </update>
-        
-         <!-- 회원탈퇴 처리 -->
+		<!-- 사업자 정보 조회 -->
+		<select id="b_userInfo" parameterType="String" resultType="businessUserDTO">
+               select u_b_id, 
+               		u_b_name, 
+               		u_b_pw, 
+               		u_b_number,
+               		u_b_email,
+               		u_b_access,
+               		u_b_join_dttm                		
+               from tb_user_b
+             where u_b_id = #{u_b_id}           
+		</select>
+       
+		<!-- 사업자 정보 수정 -->
+		<update id="businessUpdate" parameterType="businessUserDTO">
+               update tb_user_b
+               set 	u_b_pw = #{u_b_pw},
+                       u_b_number = #{u_b_number},
+                       u_b_email = #{u_b_email}
+               where u_b_id = #{u_b_id} 
+		</update>
+       
+        <!-- 회원탈퇴 처리 -->
 		<update id="b_unregister" parameterType="String">
 			update tb_user_b 
 			set u_b_access = '9999'
@@ -86,8 +86,15 @@
         						1)
         </insert>
         
+        <!-- 가게 선택 -->
+        <select id="selectStore" parameterType="java.lang.String" resultType="businessStoreDTO">
+        select * 
+        from tb_store
+        where u_b_id = #{u_b_id}  
+        </select>
+        
         <!-- 가게 정보 조회 -->
-        <select id="storeList" parameterType="String" resultType="businessStoreDTO">
+        <select id="storeList" parameterType="java.util.Map" resultType="java.util.Map">
                 select u_s_id,
                 		u_b_id,
                 		s_regi_num,
@@ -100,8 +107,9 @@
                 		s_desc
                 from tb_store
                 where u_b_id = #{u_b_id} 
+                and u_s_id = #{u_s_id} 
         </select>
-        
+
         <!-- 가게 정보 수정 -->
         <update id="storeNameUpdate" parameterType="java.util.Map">
                 update tb_store
@@ -113,6 +121,7 @@
                         u_b_img_upload = #{u_b_img_upload},
                         s_desc = #{s_desc}
                where u_b_id = #{u_b_id} 
+               and u_s_id = #{u_s_id}
         </update>
         
         

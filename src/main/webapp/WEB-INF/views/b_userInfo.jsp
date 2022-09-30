@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 
+<!-- 브랜치 확인하기 -->
+
+
 <!doctype html><html lang="en">
 <!-- head-->
 <%@ include file="include/head.jsp" %>

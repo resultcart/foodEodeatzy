@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.eodeatzy.Zzim.zzimDTO;
+
 @Repository
 public class businessDAOImpl implements businessDAO {
 	
@@ -65,10 +67,16 @@ public class businessDAOImpl implements businessDAO {
 			return sqlSession.insert(namespace + ".insertmenu", inmap);
 		}
 		
+		// 3-0) 가게 선택
+		@Override
+		public List<businessStoreDTO> selectStore(String u_b_id) throws Exception {
+			return sqlSession.selectList(namespace + ".selectStore", u_b_id);
+		}
+		
 		// 3-1) 가게 정보 조회
 		@Override
-		public businessStoreDTO storeList(String u_b_id) throws Exception {
-			return sqlSession.selectOne(namespace + ".storeList", u_b_id);
+		public Map storeList(Map<String, Object> storemap) throws Exception {
+			return sqlSession.selectOne(namespace + ".storeList", storemap);
 		}
 				
 		// 3-2) 가게 정보 수정
@@ -100,10 +108,6 @@ public class businessDAOImpl implements businessDAO {
 		public int updateMemo(Map<String, Object> upmemap) throws Exception {
 			return sqlSession.update(namespace + ".updateMemo", upmemap);
 		}
-
-		
-
-		
 
 
 
