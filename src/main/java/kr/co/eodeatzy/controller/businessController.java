@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.eodeatzy.Zzim.zzimDTO;
 import kr.co.eodeatzy.business.businessMenuDTO;
 import kr.co.eodeatzy.business.businessOrderDTO;
 import kr.co.eodeatzy.business.businessService;
@@ -93,6 +94,7 @@ public class businessController {
 	}
 	
 	
+	
 	// 2-1) 메뉴 조회
 	@RequestMapping(value = "selectMenu", method = RequestMethod.GET)
 	public ModelAndView selectmenu() throws Exception {
@@ -161,19 +163,34 @@ public class businessController {
 		rttr.addFlashAttribute("msg", "추가 실패");
 		return "redirect:selectMenu";
 		
-	}	 
+	}
+
 	
-	// 3-1) 가게 정보 조회
-	@RequestMapping(value = "storeList", method = RequestMethod.GET)
-	public ModelAndView storeList(HttpSession session) throws Exception {
+	// 3-0) 가게 선택
+	@RequestMapping(value = "selectStore", method=RequestMethod.GET)
+	public ModelAndView selectStore(HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String u_b_id = (String)session.getAttribute("user_id");
-		businessStoreDTO storeList = service.storeList(u_b_id);
-		mav.addObject("storeList", storeList);
-		mav.setViewName("storeList");	
+		
+		List<businessStoreDTO> selectStore = service.selectStore(u_b_id);
+		mav.addObject("selectStore", selectStore);
+		mav.setViewName("selectStore");
+		
 		return mav;
 	}
 	
+	
+	// 3-1) 가게 상세 정보 조회
+	@RequestMapping(value = "storeList", method = RequestMethod.GET)
+	public ModelAndView storeList(@RequestParam Map<String, Object> storemap) throws Exception {
+		ModelAndView storemav = new ModelAndView();
+		
+		Map storeMap = service.storeList(storemap);
+		storemav.addObject("storeMap", storeMap);
+		storemav.setViewName("storeList");
+		return storemav;
+
+	}
 	
 	// 3-2) 가게 정보 수정
 	@RequestMapping(value="storeList", method=RequestMethod.POST)
@@ -181,13 +198,11 @@ public class businessController {
 		int r = service.storeNameUpdate(stupmap);
 		if (r>0) {
 			rttr.addFlashAttribute("msg", "수정 완료");
-			return "redirect:storeList";
+			return "redirect:selectStore";
 		}
 		rttr.addFlashAttribute("msg", "수정 실패");
-		return "redirect:storeList";
+		return "redirect:selectStore";
 	}	
-
-     
 	
 	// 4-1) 주문 확인 페이지
 	@RequestMapping(value = "b_Order", method = RequestMethod.GET)

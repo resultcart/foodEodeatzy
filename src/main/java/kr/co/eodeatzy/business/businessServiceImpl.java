@@ -62,12 +62,19 @@ public class businessServiceImpl implements businessService {
 	public int insertmenu(Map<String, Object> inmap) throws Exception {
 		return dao.insertmenu(inmap);
 	}
+	
 
+	// 3-0) 가게 선택
+	@Override
+	public List<businessStoreDTO> selectStore(String u_b_id) throws Exception {
+		return dao.selectStore(u_b_id);
+	}
+	
 
 	// 3-1) 가게 정보 조회
 	@Override
-	public businessStoreDTO storeList(String u_b_id) throws Exception {
-		return dao.storeList(u_b_id);
+	public Map storeList(Map<String, Object> storemap) throws Exception {
+		return dao.storeList(storemap);
 	}
 
 	// 3-2) 가게 정보 수정
@@ -101,16 +108,6 @@ public class businessServiceImpl implements businessService {
 	}
 
 
-	
-
-	
-
-	
-	
-
-	
-
-	
 	
 	
 }
