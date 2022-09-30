@@ -1,4 +1,4 @@
-package kr.co.eodeatzy.store;
+package kr.co.eodeatzy.controller;
 
 
 
@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.eodeatzy.controller.HomeController;
+import kr.co.eodeatzy.store.StoreDTO;
+import kr.co.eodeatzy.store.StoreService;
+import kr.co.eodeatzy.store.storeMenuDTO;
 
 @Controller
 public class StoreController {

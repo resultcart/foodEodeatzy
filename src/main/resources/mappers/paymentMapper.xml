@@ -23,20 +23,29 @@
 		<collection property="menuDTO" resultMap="menuDTO"/>
 	</resultMap>
 	
-	<select id="payList" parameterType="String" resultMap="cartDTO">
+	<sql id="cartList">
 	select *
 	from tb_cart as c 
 	inner join tb_menu as m
 	on c.u_s_id=m.u_s_id and c.m_id=m.m_id
+	</sql>
+	
+	<select id="payList" parameterType="String" resultMap="cartDTO">
+	<include refid="cartList"/>
 	where c.u_s_id=#{u_s_id}
 	</select>
 	
 	<!-- 결제-가게정보 -->
 	<select id="store_info" parameterType="String" resultType="orderDTO">
-		select *
-		from tb_order
-		where u_s_id=#{u_s_id}
-		and u_p_id='p_sera'
+	select u_s_id, o_number, o_ltime_total, o_amt_total, o_desc
+	from tb_order
+	where u_p_id='king' and u_s_id=#{u_s_id}
 	</select>
-
+	
+	<!-- 결제-상세내역 -->
+	<select id="orderOne" parameterType="String" resultMap="cartDTO">
+	<include refid="cartList"/>
+	where c.u_p_id='king' and c.u_s_id=#{u_s_id}
+	</select>
+	
 </mapper>

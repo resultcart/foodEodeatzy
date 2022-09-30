@@ -11,5 +11,8 @@ public interface paymentService {
 	
 	//결제-가게정보
 	public orderDTO store_info(String u_s_id) throws Exception;
+	
+	//결제-상세내역
+	public List<cartDTO> orderOne(String u_s_id) throws Exception;
 
 }

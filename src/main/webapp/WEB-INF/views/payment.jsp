@@ -252,16 +252,12 @@
                         <td>
                         <input type="text" name="m_name" value="${pm_list.menuDTO.m_name }" size="5" style="border: none; background: transparent;" readonly="readonly"/>
                         <a>X</a>
-                        <input type="text" name="${pm_list.ct_count }" value="2" size="2" style="border: none; background: transparent;" readonly="readonly"/>
+                        <input type="text" name="ct_count" value="${pm_list.ct_count }" size="2" style="border: none; background: transparent;" readonly="readonly"/>
                         </td>
                         <td><input type="text" name="m_price" value="${pm_list.menuDTO.m_price }" style="border: none; background: transparent;" readonly="readonly"/>원</td>
                       </tr>
                       </c:forEach>
                     <!-- foreach 끝 -->
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                      </tr>
                     </tbody>
                   </table>
 

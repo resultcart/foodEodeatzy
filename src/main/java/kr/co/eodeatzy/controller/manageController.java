@@ -1,4 +1,4 @@
-package kr.co.eodeatzy.manage;
+package kr.co.eodeatzy.controller;
 
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +22,23 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.tools.sjavac.Log;
+
+import kr.co.eodeatzy.manage.boardDTO;
+import kr.co.eodeatzy.manage.cartDTO;
+import kr.co.eodeatzy.manage.categoryDTO;
+import kr.co.eodeatzy.manage.comboDTO;
+import kr.co.eodeatzy.manage.commentDTO;
+import kr.co.eodeatzy.manage.inputDTO;
+import kr.co.eodeatzy.manage.manageService;
+import kr.co.eodeatzy.manage.menuDTO;
+import kr.co.eodeatzy.manage.orderDTO;
+import kr.co.eodeatzy.manage.orderDetailDTO;
+import kr.co.eodeatzy.manage.storeAdresDTO;
+import kr.co.eodeatzy.manage.storeDTO;
+import kr.co.eodeatzy.manage.userBDTO;
+import kr.co.eodeatzy.manage.userPAdresDTO;
+import kr.co.eodeatzy.manage.userPDTO;
+import kr.co.eodeatzy.manage.zzimDTO;
 
 @Controller
 public class manageController {

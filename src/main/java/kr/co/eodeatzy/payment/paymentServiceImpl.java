@@ -27,6 +27,13 @@ public class paymentServiceImpl implements paymentService {
 		// TODO Auto-generated method stub
 		return dao.store_info(u_s_id);
 	}
+
+	//결제-상세내역
+	@Override
+	public List<cartDTO> orderOne(String u_s_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderOne(u_s_id);
+	}
 	
 	
 
