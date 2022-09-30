@@ -92,6 +92,8 @@ public class ZzimController {
 		
 		if(r>0) {
 			mav.setViewName("redirect:ListAll?u_p_id=" + zzimdto.getU_p_id());
+		}else {
+			mav.setViewName("ListAll?u_p_id=" + zzimdto.getU_p_id());
 		}
 		
 		return mav;
@@ -164,5 +166,25 @@ public class ZzimController {
 		
 		return mav;
 	}	
+	//아이디 중복확인 
+		@ResponseBody
+		@RequestMapping(value = "zzimCheck", method = RequestMethod.POST)
+		public String zzimCheck(@RequestParam("u_s_id")String u_s_id , HttpSession session,zzimDTO zzimdto) throws Exception {
+			
+			String u_p_id = (String)session.getAttribute("user_id");
+			zzimdto.setU_p_id(u_p_id);
+			
+			int result = service.zzimCheck(zzimdto);
+			
+			if(result != 0) {
+				
+				return "fail"; //중복 아이디가 존재
+				
+			}else {
+				
+				return "success"; //중복 아이디가 존재하지 않음
+				
+			}
+		}
 
 }
