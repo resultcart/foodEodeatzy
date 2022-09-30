@@ -43,7 +43,7 @@
 	</select>
 
 	<!-- 찜 목록 추가 -->
-	<insert id="addZzim" parameterType="zzimDTO" >
+	<insert id="addZzim" parameterType="zzimDTO">
 		insert into tb_zzim(u_p_id, u_s_id, z_desc)
 		values(#{u_p_id}, #{u_s_id}, #{z_desc})
 	</insert>
@@ -66,7 +66,14 @@
 	and u_s_id = #{u_s_id}
 	</delete>
 	
-	
+	 <!-- 찜목록 중복체크  -->
+   <select id="zzimCheck"  resultType="java.lang.Integer">
+   select count(*)
+   from tb_zzim
+   where u_p_id = #{u_p_id}
+   and u_s_id = #{u_s_id}
+   
+   </select>
 
 
 </mapper>
