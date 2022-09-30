@@ -1,4 +1,4 @@
-package kr.co.eodeatzy.mypageU;
+package kr.co.eodeatzy.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.tools.sjavac.Log;
 
-import kr.co.eodeatzy.controller.HomeController;
+import kr.co.eodeatzy.mypageU.mypageUService;
+import kr.co.eodeatzy.mypageU.userAddrDTO;
+import kr.co.eodeatzy.mypageU.userInfoDTO;
 
 @Controller
 public class mypageUController {
