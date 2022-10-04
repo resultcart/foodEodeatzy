@@ -60,16 +60,13 @@
               <div class="card mb-3">
                 <h3 class="card-header" style="text-align:center;">영수증</h3>
                 <div class="card-body">
-                <b>가게명 :</b> <input type="text" name="s_name" value="Dallas Pizza- USA" style="border: none; background: transparent; font-weight : bold ;"><br>
-                가게주소 : <input type="text" name="s_address" value="nado molla" style="border: none; background: transparent;">
-                </div>
-				
+                <b>가게 ID :</b> <input type="text" name="u_s_id" value="${sadto.u_s_id}" style="border: none; background: transparent; font-weight : bold ;"><br>
+                가게주소 : <input type="text" name="u_s_address" value="${sadto.u_s_address}" size="50" style="border: none; background: transparent;" readonly="readonly">
+                </div>		
                 
                 <ul class="list-group list-group-flush"><br>
                 <!-- 주문내역 Start -->
                 <div align="center">
-                <p>주문번호 : <input type="text" name="o_number" value="${o_number }" style="border: none; background: transparent;"></p>
-                
                 <table>
                 	<thead>
                 		<tr class="table-active" align="center">
@@ -82,36 +79,23 @@
                     	<td>수량</td>
                    	 	<td>가격</td>               	                  		
                   	</tr>
-                  	<c:forEach var="order_detail" items="">
+                  	<c:forEach var="order_detail" items="${orderdetail}">
                 	<tr align="center">
-                		<td>${order_detail.m_id}</td>
-                		<td>${order_detail.o_cnt }</td>
-                		<td><input type="text" name="m_price" value="18000" style="border: none; background: transparent; text-align:center;"></td>                   		
+                		<td>${order_detail.menuDTO.m_name}</td>
+                		<td>${order_detail.ct_count}</td>
+                		<td>${order_detail.menuDTO.m_price}</td>   
                   	</tr>
-                  	</c:forEach>
-                	<tr>
-                		<td><input type="text" name="m_name" value="불고기 피자" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="o_cnt" value="1" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="m_price" value="18000" style="border: none; background: transparent; text-align:center;"></td>                   		
-                  	</tr>
-                	<tr>
-                		<td><input type="text" name="m_name" value="포테이토 피자" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="o_cnt" value="1" style="border: none; background: transparent; text-align:center;"></td>
-                		<td><input type="text" name="m_price" value="18000" style="border: none; background: transparent; text-align:center;"></td>                   		
-                  	</tr>               	                  	                  	
+                  	</c:forEach>             	                  	                  	
                 	</tbody>
-                	<tfoot>
-                		<td></td>
-                		<td align="center"><text>총가격</text></td>
-                		<td><input type="text" name="o_amt_total" value="54000" style="border: none; background: transparent; text-align:center;"></td>                  	
-                	</tfoot>
                 </table>
                 </div>
                 <!-- 주문내역 End -->
                 </ul>
                 
+                <!-- 사용자 메모(블랙컨슈머) -->
                 <div class="card-body">
-                  <!-- <a href="orderlist">결제정보/주문내역</a> -->
+                <b>사용자 메모</b><br>
+                <input type="text" name="p_memo" value="${memo}" size="100"; style="border: none; background: transparent;" readonly="readonly"/>
                 </div>
               </div>
 </div>

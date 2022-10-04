@@ -35,6 +35,22 @@ public class paymentDAOImpl implements paymentDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".orderOne", u_s_id);
 	}
+
+	//주문내역목록(개인/사업자(블랙컨슈머 메모))
+	@Override
+	public storeAddressDTO orderlist(String u_s_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".orderlist", u_s_id);
+	}
+
+	//주문상세내역
+	@Override
+	public List<cartDTO> orderdetail(String u_s_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".orderdetail", u_s_id);
+	}
+	
+	
 	
 	
 }

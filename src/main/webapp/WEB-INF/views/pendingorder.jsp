@@ -107,7 +107,7 @@
                 	<tfoot>
                 		<td></td>
                 		<td align="center"><text>총가격</text></td>
-                		<td><input type="text" name="o_amt_total" value="${payList.o_amt_total}" style="border: none; background: transparent; text-align:center;"></td>                  	
+                		<td><input type="text" name="o_amt_total" value="${payList.o_amt_total}" style="border: none; background: transparent; text-align:center;" readonly="readonly"></td>                  	
                 	</tfoot>
                 </table>
                 </div>
@@ -115,7 +115,7 @@
                 </ul>
                 
                 <div class="card-body">
-                  <a href="orderlist">결제정보/주문내역</a>
+                  <a href="orderlist?u_s_id=${u_s_id }">결제정보/주문내역</a>
                 </div>
               </div>
 </div>
