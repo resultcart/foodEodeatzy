@@ -13,6 +13,11 @@
 	String u_p_address = request.getParameter("u_p_address");
 	String u_p_flag = request.getParameter("u_p_flag");
 
+	String u_b_id = request.getParameter("u_b_id");
+	String u_b_add_id = request.getParameter("u_b_add_id");
+	String u_b_address = request.getParameter("u_b_address");
+	String u_b_flag = request.getParameter("u_b_flag");
+
 
 %>
 
@@ -55,28 +60,61 @@
 	   <img src="${assetsPath}/images/푸드트럭.jpg" alt="푸드트럭">
 		<div class="col-lg-8">
 			<div class="section-title text-center">
-				
 				<br><br><br><br>
-				<c:if test="${sessionScope.user_id == null}">
-				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-					<a class="mt-4" href="${contextPath }/login">로그인 후 내주소 보러가기</a><br>
-				</c:if>
-				
-				
-				<c:if test="${sessionScope.user_id != null}">
-				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-					<a class="mt-4" href="${contextPath }/mypageU/u_Addr_List">내주소 보러가기</a><br>
-					<form action="u_Addr_One" method="get">
- 							<h6 class="footer-heading mb-4">${u_addr_one.u_p_id} | ${u_addr_one.u_p_add_id} | ${u_addr_one.u_p_address}</h6>
-					</form>
-				</c:if>
 
-				<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
-				<a class="mt-4" href="${contextPath }/board/noticeList">공지사항 보러가기</a> <br>
-				<form action="notice_One" method="get">
-	  				<h6 class="footer-heading mb-4">${notice_one.b_writer} | ${notice_one.b_title} | ${notice_one.b_content}</h6>
-				</form>
+					<c:if test="${sessionScope.user_id != null}"> 
+						<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
+						<a class="mt-4" href="${contextPath }/mypageU/u_Addr_List">내주소 보러가기</a><br>
+							<table class="table">
+								<tr>
+									<th>ID</th>
+									<th>별칭</th>
+									<th>주소</th>
+								</tr> 
+								                      
+								<tr>
+									<td>${u_addr_one.u_p_id }       ${baddrone.u_b_id }</td>
+									<td>${u_addr_one.u_p_add_id }   ${baddrone.u_s_add_id }</td>
+									<td>${u_addr_one.u_p_address }  ${baddrone.u_s_address }</td>
+								</tr>
+							</table>
+					</c:if>
+					
+					<c:if test="${sessionScope.user_id == null}">
+						<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
+						<a class="mt-4" href="${contextPath }/login">로그인 후 내주소 확인</a><br>
+						
+							<table class="table">
+								<tr>
+									<th>ID</th>
+									<th>별칭</th>
+									<th>주소</th>
+								</tr> 
+								
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+						
+					</c:if>
 
+					<img src="${assetsPath}/images/shape/title-shape-2.png" alt="title">
+					<a class="mt-4" href="${contextPath }/board/noticeList">공지사항 보러가기</a> <br>
+						<table class="table">
+							<tr>
+								<th>작성자</th>
+								<th>재목</th>
+								<th>내용</th>
+							</tr> 
+							                      
+							<tr>
+								<td>${notice_one.b_writer}</td>
+								<td>${notice_one.b_title}</td>
+								<td>${notice_one.b_content}</td>
+							</tr>
+						</table>
 				
 				
 			</div>
@@ -88,7 +126,7 @@
 	<section class="site-footer border-top"> <br>
 	   <div class="container">
 	      <div class="page-title-box text-center">
-	      	 <h4 class="title">MENU CATEGOTY</h4> <br>
+	      	 <h4 class="title">MENU CATEGORzzY</h4> <br>
 			     <c:forEach var="ca" items="${catego}"> 
 		            <tr>
 		              <th><a href="${contextPath }/main/category_One?c_id=${ca.c_id}" class="btn btn-outline-warning btn-fw"> ${ca.c_name }</a></th>
