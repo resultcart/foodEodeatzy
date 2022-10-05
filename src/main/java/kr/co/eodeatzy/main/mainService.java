@@ -1,11 +1,15 @@
 package kr.co.eodeatzy.main;
 
 import java.util.List;
+import java.util.Map;
 
 public interface mainService {
 
 	// 개인이용자 주소보기
 	public u_Addr_OneDTO u_Addr_One(String u_p_id) throws Exception;
+	
+	// 사업자 주소보기
+	public b_Addr_OneDTO b_Addr_One(String u_b_id)  throws Exception; 
 	
 	// 공지사항 최근하나 조회
 	public notice_OneDTO notice_One() throws Exception;

@@ -312,14 +312,6 @@ public class LoginController {
 	// 회원가입 =============================================
 	
 	// 회원가입 폼
-	@RequestMapping(value="login/register_u")
-	public String register_u(Model model) {
-		logger.info("register_u ");
-		model.addAttribute("msg", model);
-		return "register_u";
-	}
-	
-	// 회원가입 폼
 	@RequestMapping(value="login/ins_mem_u", method = RequestMethod.GET)
 	public String ins_mem_u(Model model) {
 		logger.info("여긴 회원가입");
