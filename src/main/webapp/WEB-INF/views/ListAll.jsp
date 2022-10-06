@@ -39,10 +39,10 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="page-title-item text-center">
-				<h3 class="title">ZZimList</h3>
+				<h3 class="title">ZzimList</h3>
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index-2.html">ZZim</a></li>
+					<li class="breadcrumb-item"><a href="index-2.html">Zzim</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Update And Delete</li>
 				</ol>
 				</nav>
@@ -63,8 +63,9 @@
 		<div class="table-responsive">
 		  <table class="table">
 					<div class="food-menu-area restaurant-details-area">
-						<h1 class="title">Mypage ZzimList</h1>
-	
+					<div class="blog-details-title">
+						<h2 class="title">Mypage ZzimList</h2>
+						</div>
 					<hr>	
 						<div class="col-lg-12">
 								<div class="food-menu-box">
