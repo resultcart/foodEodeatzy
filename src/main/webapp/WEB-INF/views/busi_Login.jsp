@@ -142,7 +142,7 @@
                                         </p>
                                         <p class="mt-1">
                                             <br> <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                                             href="${contextPath}/login/register_u">
+                                             href="${contextPath}/insertBussijoin">
                                                 사업자회원가입
                                             </a>
                                         </p>
