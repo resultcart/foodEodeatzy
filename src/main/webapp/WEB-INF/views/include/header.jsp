@@ -25,7 +25,7 @@
 							<li class="nav-item active"><a class="nav-link" href="${contextPath}/store/store_info">Search</a></li>
 							
 						    <c:if test="${sessionScope.loginType =='user'&& sessionScope.user_id != null }">
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/ListAll">ZZIM</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/ListAll">Zzim</a></li>
 							</c:if>
 							<li class="nav-item"><a class="nav-link" href="#">Order</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">board</a>
