@@ -51,14 +51,13 @@ function count(type) {
 <!--====== DISCOVER PART START ======-->
 <section class="discover-area bg_cover" style="background-image: url(${assetsPath}/images/discover-bg.jpg);">
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-lg-12">
-			<div class="section-title text-center">
-				<h4 class="title">	<input type="text"  name="c_name" value="${category_name }" style="border: none; background: transparent; text-align: center;" readonly="readonly"></input></h4>
-				<!-- Open at - <input type="text" name="opentime" value="10:00" size="3" readonly="readonly"  style="border: none; background: transparent;"> -->			
-			</div>
-		</div>
-	</div>
+   <div class="container">
+      <div class="page-title-box text-center">  <br> <br>
+      	 <h2 class="title">${category_name }</h2> <br>
+	   </div>
+    </div>
+  <br>
+	
 	<div class="tab-content">
 		<div class="tab-pane fade show active">
 			<div class="row">

@@ -1,6 +1,7 @@
 package kr.co.eodeatzy.main;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,15 @@ public class mainServiceImpl implements mainService{
 		// TODO Auto-generated method stub
 		return dao.u_Addr_One(u_p_id);
 	}
+	
+	// 사업자 주소보기
+	@Override
+	public b_Addr_OneDTO b_Addr_One(String u_b_id)  throws Exception {
+		// TODO Auto-generated method stub
+		return dao.b_Addr_One(u_b_id);
+	}
+
+	
 	// 공지사항 최근하나 조회
 	@Override
 	public notice_OneDTO notice_One() throws Exception {
@@ -51,6 +61,5 @@ public class mainServiceImpl implements mainService{
 		// TODO Auto-generated method stub
 		return dao.category_Name(c_id);
 	}
-	
 	
 }

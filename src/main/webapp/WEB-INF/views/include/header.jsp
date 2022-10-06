@@ -28,13 +28,15 @@
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/ListAll">ZZIM</a></li>
 							</c:if>
 							<li class="nav-item"><a class="nav-link" href="#">Order</a></li>
-					  </ul>
-							<li class="nav-item"><a class="nav-link" href="#">게시판</a>
-							<ul class="sub-menu">
-								<li><a href="${contextPath}/manage/manageList">관리자페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">board</a>
+								<ul class="sub-menu">
+								<c:if test="${sessionScope.user_id =='KING'&& sessionScope.user_id != null }">
+									<li><a href="${contextPath}/manage/manageList">관리자페이지</a></li>
+								</c:if>
 								<li><a href="${contextPath}/board/noticeList">공지게시판</a></li>
 								<li><a href="${contextPath}/board/boardList">제보게시판</a></li>
 							</ul>
+							</li>	
 					</div>
 					<!-- navbar collapse -->
 					<div class="navbar-btn d-none d-md-flex">

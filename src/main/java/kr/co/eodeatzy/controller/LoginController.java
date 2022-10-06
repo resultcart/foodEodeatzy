@@ -28,7 +28,9 @@ import kr.co.eodeatzy.login.LoginDAOImpl;
 import kr.co.eodeatzy.login.LoginDTO_b;
 import kr.co.eodeatzy.login.LoginDTO_p;
 import kr.co.eodeatzy.login.LoginService;
+import kr.co.eodeatzy.login.NaverLoginBO;
 import kr.co.eodeatzy.login.ins_mem_uDTO;
+import lombok.Setter;
 
 @Controller
 public class LoginController {
@@ -41,6 +43,58 @@ public class LoginController {
 	@Inject
 	LoginDAOImpl dao;
 
+//	
+//	/* NaverLoginBO */
+//	@Setter(onMethod_ = @Autowired )
+//	private NaverLoginBO naverLoginBO;
+//	private String apiResult = null;
+//	//kr.co.eodeatzy.login.NaverLoginBO
+//	@Autowired
+//	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+//		this.naverLoginBO = naverLoginBO;
+//	}
+//
+//	//  ===네이버 아이디로그인 ========================================================
+//	@RequestMapping(value = "login/naverlogin", method = { RequestMethod.GET, RequestMethod.POST } )
+//	public String naverlogin(Model model, HttpSession session) {
+//		logger.info("login/naverlogin");
+//		
+//		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		
+//		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+//		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+//		System.out.println("네이버:" + naverAuthUrl);
+//		
+//		//네이버 
+//		model.addAttribute("url", naverAuthUrl);
+//		
+//		/* 생성한 인증 URL을 View로 전달 */
+////		return "login";
+//		
+////		model.addAttribute("msg","테스트페이지로슝");
+//		return "findID";
+//	}	
+	
+	
+	
+
+
+
+//	//네이버 로그인 성공시 callback호출 메소드
+//	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+//			throws IOException {
+//		System.out.println("여기는 callback");
+//		OAuth2AccessToken oauthToken;
+//        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+//        //로그인 사용자 정보를 읽어온다.
+//	    apiResult = naverLoginBO.getUserProfile(oauthToken);
+//		model.addAttribute("result", apiResult);
+//
+//        /* 네이버 로그인 성공 페이지 View 호출 */
+//		return "naverSuccess";
+//	}
 	
 //  ===아이디찾기========================================================
 	@RequestMapping(value = "login/findID", method = RequestMethod.GET)
@@ -311,14 +365,7 @@ public class LoginController {
 	
 	// 회원가입 =============================================
 	
-	// 회원가입 폼
-	@RequestMapping(value="login/register_u")
-	public String register_u(Model model) {
-		logger.info("register_u ");
-		model.addAttribute("msg", model);
-		return "register_u";
-	}
-	
+
 	// 회원가입 폼
 	@RequestMapping(value="login/ins_mem_u", method = RequestMethod.GET)
 	public String ins_mem_u(Model model) {

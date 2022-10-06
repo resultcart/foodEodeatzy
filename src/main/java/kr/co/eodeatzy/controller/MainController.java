@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.eodeatzy.main.b_Addr_OneDTO;
 import kr.co.eodeatzy.main.categoryDTO;
 import kr.co.eodeatzy.main.category_OneDTO;
 import kr.co.eodeatzy.main.mainService;
@@ -39,19 +41,30 @@ public class MainController {
 	mainService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, HttpSession session) throws Exception {
+	public ModelAndView home(Locale locale, HttpSession session,
+							 @RequestParam Map<String,Object> map) throws Exception {
 		logger.info("여긴 홈");
 		
 		ModelAndView mav = new ModelAndView();
 		
-//		// 내주소보기
+//		// 개인로그인시 내주소보기
 		String u_p_id = (String)session.getAttribute("user_id");
-		logger.info("로그인 시 받은 u_p_id : " + u_p_id);
+		logger.info("개인 로그인 시 받은 u_p_id : " + u_p_id);
 		
 		u_Addr_OneDTO u_addr_one = service.u_Addr_One(u_p_id);
 		logger.info("u_addr_one : " + u_addr_one); 
 		
 		mav.addObject("u_addr_one", u_addr_one);
+		
+		// 사업자로그인시  사업장주소보기
+		String u_b_id = (String) session.getAttribute("user_id");
+		logger.info("사업자로그인 시 받은 u_b_id : " + u_b_id);
+
+		b_Addr_OneDTO b_addr_One = service.b_Addr_One(u_b_id);
+		logger.info("//////b_Addr_One : " + b_addr_One);
+		logger.info("/////u_b_id : " + u_b_id);
+		
+		mav.addObject("baddrone", b_addr_One);
 		
 		// 공지사항
 		notice_OneDTO noticeone = service.notice_One();
@@ -72,80 +85,6 @@ public class MainController {
 		return mav;
 	}
 	
-
-	// 내주소보기 =============================================	
-	
-//	@RequestMapping(value = "main/u_Addr_One", method = RequestMethod.GET)
-//	public ModelAndView u_Addr_One(HttpSession session) throws Exception {
-//		logger.info("여긴 내주소보기");
-//		
-//		ModelAndView mav = new ModelAndView();
-//		
-//		String u_p_id = (String)session.getAttribute("id");
-//		
-//		//debug 로그인 했다고 치고 u_p_id
-//		u_p_id = "KING";
-//		
-//		u_Addr_OneDTO uaddrone = service.u_Addr_One(u_p_id);
-//		
-//		logger.info("return addrOne : " + uaddrone);
-//		
-//		mav.addObject("u_addr_one", uaddrone);
-//		mav.setViewName("u_Addr_One");
-//		
-//		return mav;
-//	}	
-
-	
-	// 공지사항 하나보기 =============================================
-	
-//	@RequestMapping(value="main/notice_One", method = RequestMethod.GET)
-//	public ModelAndView notice_One(HttpSession session) throws Exception  {
-//		logger.info("여긴 공지하나보기");
-//		
-//		ModelAndView mav = new ModelAndView();
-//		String b_id = (String) session.getAttribute("id"); 
-//		
-//		b_id = "5";
-//		notice_OneDTO noticeone = service.notice_One(b_id);
-//		
-//		logger.info("notice_One : " + noticeone);
-//		
-//		mav.addObject("notice_one", noticeone);
-//		mav.setViewName("notice_One");
-//		
-//		return mav;
-//	}
-	
-	// 카테고리 보기 =============================================
-	
-//	@RequestMapping(value="main/category", method = RequestMethod.GET)
-//	public ModelAndView category(HttpServletRequest request) throws Exception {
-//		request.setCharacterEncoding("utf-8");
-//		logger.info("category");
-//		ModelAndView mav = new ModelAndView();
-//
-//		List <categoryDTO> category_ = service.category();
-//		mav.addObject("catego", category_);
-//		mav.setViewName("category");
-//			
-//		return mav;
-//	}
-	
-	
-	// 홈에서 가게조회 =============================================
-	// 가게명 클릭시 가게메뉴 보러가기
-//	@RequestMapping(value="main/store_type", method = RequestMethod.GET)
-//	public ModelAndView store_type() throws Exception {
-//		logger.info("홈에서 가게조회");
-//		ModelAndView mav = new ModelAndView();
-//
-//		List<store_typeDTO> storetype = service.store_type();
-//		mav.addObject("storetype", storetype);
-//		mav.setViewName("store_type");
-//			
-//		return mav;
-//	}
 	
 	// 홈에서 카테고리 조회 =============================================
 	// 카테고리 누르면 해당하는 c_id의 가게정보 보여주기
@@ -156,11 +95,12 @@ public class MainController {
 		
 		ModelAndView mav = new ModelAndView();	
 		
+		// c_id 받아와서  카테고리 조회시 c_name 주기
 		String category_Name = service.category_Name(c_id);
 		mav.addObject("category_name", category_Name);
 		logger.info("***********//////////////category_Name : " + category_Name);
 		
-		
+		// 가게리스트 보여주기
 		List<category_OneDTO> category_one = service.category_One(c_id);
 		mav.addObject("catego_one", category_one);
 		logger.info("category_one : " + category_one);

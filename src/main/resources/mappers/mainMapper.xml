@@ -12,6 +12,15 @@
 	</select>
 
 	<!-- 사업자 주소보기 -->
+	<select id="b_Addr_One" parameterType="String" resultType="b_Addr_OneDTO">
+		select tb_store.u_s_id, tb_user_b.u_b_id, tb_store_address.u_s_add_id, tb_store_address.u_s_address
+		from tb_store_address
+			inner join tb_store
+			on tb_store_address.u_s_id = tb_store.u_s_id
+			    inner join tb_user_b
+			    on tb_user_b.u_b_id = tb_store.u_b_id    
+		where tb_user_b.u_b_id=#{u_b_id} and tb_store_address.u_s_flag=2;
+	</select>
 
 	<!-- 공지사항 하나 보기 -->
 	<select id="notice_One" parameterType="String" resultType="notice_OneDTO">
@@ -56,12 +65,10 @@
 		<result column="s_desc" property="s_desc"/>
 	</resultMap>
 	 
-		
 	<resultMap type="categoryDTO" id="categoryDTO">  <!-- tb_category -->
 		<result column="c_id" property="c_id"/>
 		<result column="c_name" property="c_name"/>
 		<result column="c_use" property="c_use"/>
-		<result column="categoryDTO" property="categoryDTO"/>
 	</resultMap>
 	
 	<select id="category_Name" parameterType="java.lang.Integer" resultType="String">

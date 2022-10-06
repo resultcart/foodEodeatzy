@@ -97,12 +97,15 @@
 										<br> <br> <br>
 																					
 											
-										 <label class="block mt-4 text-sm">
-										 <span class="text-gray-700 dark:text-gray-400">사업자 등록증 파일 변경</span>
-										 <input type="file" name="u_b_img_upload"  id="u_b_img_upload" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"value="사업자 등록증 파일 업로드">
-										 </label>
-										</div>																		
-									</div>
+								 	<div class="form_section">
+		                    			<div class="form_section_title">
+		                    				<label>사업자 등록증 이미지</label>
+		                    			</div>
+		                    			<div class="form_section_content">
+		                    			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
+		                    			</div>
+		                    		</div>																		
+								</div>
 									
 									<div class="input-box mt-30">
 										<label>가입 일자</label>
@@ -193,6 +196,58 @@
 		document.getElementById("b_userform").submit();
 		alert('수정이 완료되었습니다.');
 	}
+	
+		// 이미지 업로드
+			// 1-1) 업로드 파일 접근
+			$("input[type='file']").on("change", function(e){
+				
+				let formData = new FormData();
+				let fileInput = $('input[name="uploadFile"]');
+				let fileList = fileInput[0].files;
+				let fileObj = fileList[0];
+				
+				// 조건 만족시 alert				
+				if(!fileCheck(fileObj.name, fileObj.size)){
+					return false;
+				}
+				
+				// 선택 파일 uploadFile 이름으로 추가
+				formData.append("uploadFile", fileObj);
+				
+				// 첨부파일 서버로 전송
+				$.ajax({
+					url: '/admin/uploadAjaxAction',
+			    	processData : false,
+			    	contentType : false,
+			    	data : formData,
+			    	type : 'POST',
+			    	dataType : 'json'
+				});
+				
+				
+			});
+			
+			// 1-2) 업로드 파일 형식 및 용량 제한
+			let regex = new RegExp("(.*?)\.(jpg|png)$");
+			let maxSize = 1048576; //1MB	
+			
+			function fileCheck(fileName, fileSize){
+		
+				if(fileSize >= maxSize){
+					alert("파일 사이즈 초과");
+					return false;
+				}
+					  
+				if(!regex.test(fileName)){
+					alert("해당 종류의 파일은 업로드할 수 없습니다.");
+					return false;
+				}
+				
+				return true;		
+				
+			}
+		
+	
 	</script>
 	
 
