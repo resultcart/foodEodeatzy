@@ -80,7 +80,7 @@
 																	<input type="text" name="u_s_id" value="${zzim.u_s_id}" hidden>
 																	
 																	
-																 	<h4 name="s_name" value="${zzim.zzimstoredto.s_name}">※가게명 : ${zzim.zzimstoredto.s_name}</h4>
+																 	<h4 name="s_name" value="${zzim.zzimstoredto.s_name}" style="color : blue;" onclick = "location.href='${pageContext.request.contextPath}/store/menu_list?u_s_id=${zzim.u_s_id }';">※가게명 : ${zzim.zzimstoredto.s_name}</h4>
 																 	<h6>*가게아이디 : ${zzim.u_s_id } -> 수정시 필수 확인*</h6>
 																</a>
 																<br>
