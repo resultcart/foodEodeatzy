@@ -1,10 +1,8 @@
+<%@page import="org.springframework.web.multipart.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
-
-<!-- 브랜치 확인하기 -->
-
+<c:set var="assetsPath" value="${pageContext.request.contextPath}/resources/assets" />
 
 <!doctype html><html lang="en">
 <!-- head-->
@@ -118,8 +116,8 @@
 										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30" value="수정">수정</button>
 									</div>
 								</div>						
-								</form>
-							</div>
+							</form>
+						</div>
 	                 </div>
                 </div>
 			</div>
@@ -214,9 +212,8 @@
 				// 선택 파일 uploadFile 이름으로 추가
 				formData.append("uploadFile", fileObj);
 				
-				// 첨부파일 서버로 전송
 				$.ajax({
-					url: '/admin/uploadAjaxAction',
+					url: 'businessController/uploadAjaxAction',
 			    	processData : false,
 			    	contentType : false,
 			    	data : formData,
@@ -224,6 +221,7 @@
 			    	dataType : 'json'
 				});
 				
+				console.log('2');
 				
 			});
 			
@@ -234,7 +232,7 @@
 			function fileCheck(fileName, fileSize){
 		
 				if(fileSize >= maxSize){
-					alert("파일 사이즈 초과");
+					alert("1MB 이하의 파일만 업로드할 수 있습니다.");
 					return false;
 				}
 					  
