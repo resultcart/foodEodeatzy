@@ -42,6 +42,12 @@ public class zzimServiceImpl implements zzimService{
 		return dao.deleteZzim(zzimdto);
 	}
 
+	@Override
+	public int zzimCheck(zzimDTO zzimdto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.zzimCheck(zzimdto);
+	}
+
 
 	
 }

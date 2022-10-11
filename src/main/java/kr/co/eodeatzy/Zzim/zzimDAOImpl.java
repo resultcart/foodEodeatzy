@@ -47,4 +47,11 @@ public class zzimDAOImpl implements zzimDAO {
 		return sqlsession.delete(nameSpace+".deleteZzim", zzimdto);
 	}
 
+
+	@Override
+	public int zzimCheck(zzimDTO zzimdto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(nameSpace +".zzimCheck", zzimdto);
+	}
+
 }

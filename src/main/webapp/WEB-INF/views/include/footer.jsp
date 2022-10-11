@@ -3,23 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
 
-<footer class="footer-area footer-2-area bg_cover" style="background-image: url(${assetsPath}/images/footer-bg.jpg);">
+<footer class="footer-area" style="background-image: url(${assetsPath}/images/footer-bg.jpg);">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-4 col-md-6">
 			<div class="footer-widget mt-30">
 				<div class="footer-title">
 					<img src="${assetsPath}/images/shape/title-shape-3.png" alt="">
-					<h4 class="title">About Rondhon</h4>
+					<h4 class="title">eodeatzy</h4>
 				</div>
 				<div class="footer-about-info mt-30">
 					<p>
-						There are many variations of passages of Lorem Ipsum.
+						얻eat지는 푸드트럭 소비 문화의 편의성을 제공, 체계화하여 활성화하고자 합니다.
 					</p>
 					<ul>
-						<li><i class="fal fa-map-marker-alt"></i>21/3 Soi Saladaeng 1,Silom road,New York,USA</li>
-						<li><i class="fal fa-phone"></i>515-708-9386</li>
-						<li><i class="fal fa-envelope"></i>deliveyinfo@rondhon.com</li>
+						<li><i class="fal fa-map-marker-alt"></i>경기 수원시 팔달구 덕영대로 899 3F 304호</li>
+						<li><i class="fas fa-map-marker-alt"></i>사업자등록번호 999-00-01234 </li>
+						<li><i class="fal fa-phone"></i>031-111-2345</li>
+						<li><i class="fal fa-envelope"></i>eodeatzy@naver.com</li>
 					</ul>
 				</div>
 			</div>
@@ -28,44 +29,56 @@
 			<div class="footer-widget mt-30">
 				<div class="footer-title">
 					<img src="${assetsPath}/images/shape/title-shape-3.png" alt="">
-					<h4 class="title">Opening Hours</h4>
+					<h4 class="title">고객센터 운영시간</h4>
 				</div>
 				<div class="footer-list mt-20">
 					<ul>
 						<li><span>Monday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 18:00
+							</p>
 						</li>
+						
 						<li><span>Tuesday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 18:00
+							</p>
 						</li>
+						
 						<li><span>Wednesday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 18:00
+							</p>
 						</li>
+						
 						<li><span>Thursday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 18:00
+							</p>
 						</li>
+						
 						<li><span>Friday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 18:00
+							</p>
 						</li>
+						
 						<li><span>Saturday</span>
-						<p>
-							8.00 - 20.00
-						</p>
+							<p>
+								10:00 - 13:00
+							</p>
 						</li>
+						
 						<li><span>Sunday</span>
-						<p>
-							closed
-						</p>
+							<p>
+								10:00 - 13:00
+							</p>
+						</li>
+						
+						<li><span>점심시간</span>
+							<p>
+								13:00 - 14:00
+							</p>
 						</li>
 					</ul>
 				</div>

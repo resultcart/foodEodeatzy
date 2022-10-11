@@ -2,7 +2,72 @@
     pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!DOCTYPE html>
+<script type="text/javascript">
+
+//찜 중복체크
+$(document).ready(function(){
+	   $('#zzimCheck').on('click', function(){
+		  
+        	var url = "${pageContext.request.contextPath}/zzimCheck";
+        	var u_s_id = $('#u_s_id').val();
+
+        	var paramData = {
+        			"u_s_id" : u_s_id		
+        	};
+        	
+            $.ajax({
+                url : url,
+                
+                data : paramData,
+                
+                dataType : 'text',
+                
+                type : 'POST',
+                
+                success : function(result){
+                	
+                console.log("성공여부" + result);
+	 
+                	   if(result != 'fail'){ 
+                		   
+                		   var url1="${pageContext.request.contextPath}/ListAll";
+
+                		   var url2="${pageContext.request.contextPath}/store/store_info";
+                		   const resp = confirm('찜목록에 추가하였습니다.\n찜목록 페이지로 넘어가시겠습니까?');
+
+                		   if(resp){
+                		   location.replace(url1);
+                		   
+                		   }else{
+                		   location.replace(url2);
+                		   }
+                		   
+                      }
+        	 
+                     else{  
+                    	 
+                     	alert("찜목록에 가게가 이미 존재합니다.\n찜 수정＊삭제는 찜목록 페이지에서 진행하세요.");
+                     	var url = "${pageContext.request.contextPath}/ListAll";
+                     	location.replace(url);    
+                     }
+      
+                },
+                
+                error : function(result){
+                	
+                	console.log("error" + result);
+                	
+                	
+                } 
+	       
+            });       
+        });       
+    });
+</script>
+
+
 <html>
 <head>
 <!-- head-->
@@ -109,10 +174,19 @@
 				</c:choose>
 				</div>
 				
+				<form method = "POST">
 				<div class="restaurant-content">
 					<div class="item d-flex justify-content-between align-items-center">
-						<a href="menu_list?u_s_id=${search.u_s_id}"><input type="text" name="s_name" value="${search.s_name }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></a>
-						<span>찜<button class="fas fa-star" style="border: none; background: transparent;"></button></span>
+						<a href="menu_list?u_s_id=${search.u_s_id}">
+						<input type="text" id = "u_s_id" name = "u_s_id" value = "${search.u_s_id }" hidden>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="text" name="s_name" value="${search.s_name }" style="border: none; background: transparent; text-align:center;" readonly="readonly"></a>
+						</form>
+						<div id = "star">
+						<c:if test="${sessionScope.user_id != null}">						
+						<span>찜<button class="fas fa-star" id = "zzimCheck" style="border: none; background: transparent; color : black ;" onclick="javascript: form.action='${pageContext.request.contextPath }/addZzim';"></button></span>						
+						</c:if>
+						</div>		
 					</div>
 				</div>
 			</div>
