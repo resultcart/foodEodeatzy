@@ -90,17 +90,21 @@
 									</div>
 									<div class="input-box mt-30">
 										<label>사업자 등록증</label>
+											<div id="uploadResult">
+												
+												<!-- ★★★★★★★ -->
+												
+											</div>
+
 										<br> <br> <br>
-											<img src="resources/img/1.jpg" id="regi" alt="1이미지" width="140px" height="100px">
-										<br> <br> <br>
-																					
 											
 								 	<div class="form_section">
 		                    			<div class="form_section_title">
-		                    				<label>사업자 등록증 이미지</label>
+		                    				<label>사업자 등록증 바꾸기</label>
 		                    			</div>
 		                    			<div class="form_section_content">
 		                    			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
+			                    			
 		                    			</div>
 		                    		</div>																		
 								</div>
@@ -205,9 +209,9 @@
 				let fileObj = fileList[0];
 				
 				// 조건 만족시 alert				
-				if(!fileCheck(fileObj.name, fileObj.size)){
-					return false;
-				}
+			//	if(!fileCheck(fileObj.name, fileObj.size)){
+			//		return false;
+			//	}
 				
 				// 선택 파일 uploadFile 이름으로 추가
 				formData.append("uploadFile", fileObj);
@@ -218,10 +222,18 @@
 			    	contentType : false,
 			    	data : formData,
 			    	type : 'POST',
-			    	dataType : 'json'
+			    	dataType : 'json',
+			    	success : function(result){
+			    		console.log(result[0].uploadPath + '확인: 전달받은 객체 데이터');
+			    		showUploadImage(result);
+			    	},
+			    	error : function(result){
+			    		alert("이미지 파일이 아닙니다.");
+			    	}			    	
+			    	
 				});
 				
-				console.log('2');
+				console.log('55554223');
 				
 			});
 			
@@ -245,6 +257,10 @@
 				
 			}
 		
+		// 이미지 출력 
+		function showUploadImage(uploadResultArr){
+			
+		}
 	
 	</script>
 	
