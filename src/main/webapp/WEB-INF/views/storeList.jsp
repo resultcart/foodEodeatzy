@@ -104,10 +104,26 @@
 										<br> 숫자로만 입력해 주세요. (1시간 10분일 경우 70으로 표기) 
 										<input type="number" id="s_time" name="s_time" value="${storeMap.s_time}" maxlength='10'>
 									</div>
+
 									<div class="input-box mt-30">
 										<label>사업자 등록증</label>
-										<input type="text" id="u_b_img_upload" name="u_b_img_upload" value="${storeMap.u_b_img_upload}" readonly="true">
-										<td><img src="resources/img/1.jpg" alt="1이미지" width="140px" height="100px"></td>
+											<div id="uploadResult">
+												<div id="result_card">
+													<img src="display?fileName=${storeMap.u_b_img_upload}">
+												</div>
+											</div>
+										<br> <br> <br>
+										
+											
+								 	<div class="form_section">
+		                    			<div class="form_section_title">
+		                    				<label>사업자 등록증 바꾸기1333</label>
+		                    			</div>
+		                    			<div class="form_section_content">
+		                    			<input type="file" id ="u_b_img_upload" name='u_b_img_upload' style="height: 30px;">
+			                  
+		                    				</div>
+		                    			</div>																		
 									</div>
 									
 									<div class="input-box mt-30">
@@ -117,7 +133,7 @@
 																		
 									<div class="col-lg-12">
 									<div class="input-box mt-30">
-										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30">수정</button>
+										<button type="button" onclick="updateBusiness();" id="btn_submit" class="main-btn mt-30">수정</button>
 									</div>
 								</div>						
 							</div>
@@ -140,10 +156,15 @@
 <!--====== FOOTER PART ENDS ======-->
 <!--====== GO TO TOP PART ENDS ======-->
 
-
-	
-	
 	<script>
+	function updateBusiness() {
+		chkFunction();
+		if (!(chkFunction()==false)){
+		imageUpdate();	
+		}
+
+	}
+	
 	function chkFunction(){
 		
 		// 0) 공백 확인용
@@ -191,13 +212,70 @@
 	         alert("가게 오픈 여부는 1혹은 2로 입력해 주세요.");            
 	         return false; 
 		}
+		
 			
 		
-		// ★★★★★★★★★★★★★★★아래 지우지 말기★★★★★★★★★★★★★★★
-	
-		document.getElementById("storeList_form").submit();
-		alert('수정이 완료되었습니다.');
 	}
+	
+	
+	// 이미지 업로드
+	// 1-1) 업로드 파일 접근
+	 function imageUpdate(){
+		let formData = new FormData();
+		let fileInput = $('input[name="u_b_img_upload"]');
+		let fileList = fileInput[0].files;
+		let fileObj = fileList[0];
+		
+		// 조건 만족시 alert				
+	//	if(!fileCheck(fileObj.name, fileObj.size)){
+	//		return false;
+	//	}
+		
+		// 선택 파일 uploadFile 이름으로 추가
+		formData.append("uploadFile", fileObj);
+		
+		$.ajax({
+			url: 'businessController/uploadAjaxAction',
+	    	processData : false,
+	    	contentType : false,
+	    	async : false,
+	    	data : formData,
+	    	type : 'POST',
+	    	dataType : 'json',
+	    	success : function(result){
+	    		document.getElementById("storeList_form").submit();
+	    		alert('수정이 완료되었습니다.');
+	    	},
+	    	error : function(result){
+	    		alert("이미지 파일이 아니라 업로드할 수 없습니다.");
+	    		return false;
+	    	}			    	
+	    	
+		});
+		
+						
+	}
+	
+	// 1-2) 업로드 파일 형식 및 용량 제한
+	let regex = new RegExp("(.*?)\.(jpg|png)$");
+	let maxSize = 1048576; //1MB	
+	
+	function fileCheck(fileName, fileSize){
+
+		if(fileSize >= maxSize){
+			alert("1MB 이하의 파일만 업로드할 수 있습니다.");
+			return false;
+		}
+			  
+		if(!regex.test(fileName)){
+			alert("해당 종류의 파일은 업로드할 수 없습니다.");
+			return false;
+		}
+		
+		return true;		
+		
+	}
+	
 	</script>
 	
 

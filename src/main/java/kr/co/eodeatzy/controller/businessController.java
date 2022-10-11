@@ -296,14 +296,8 @@ public class businessController {
 		
 		String uploadFolder = "D:\\upload";
 		
-		// 날짜 폴더 경로
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();		
-		String str = sdf.format(date);
-		String datePath = str.replace("-", File.separator);
-		
 		// 업로드 폴더 생성		
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File(uploadFolder);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -318,39 +312,16 @@ public class businessController {
 			AttachImageVO vo = new AttachImageVO();
 			
 			// 파일 이름 지정
-			String uploadFileName = multipartFile.getOriginalFilename();	
+			String uploadFileName = multipartFile.getOriginalFilename();
 			vo.setFileName(uploadFileName);
-			vo.setUploadPath(datePath);
-			
-			// 이름 중복을 없애기 위한 UUID 지정
-			String uuid = UUID.randomUUID().toString();
-			vo.setUuid(uuid);
-			
-			uploadFileName = uuid + "_" + uploadFileName;
-			
+
 			// 파일 위치, 파일 이름을 합친 File 객체 생성
 			File saveFile = new File(uploadPath, uploadFileName);
 			
 			// 파일 저장
 			try {
 				multipartFile.transferTo(saveFile);
-				
-				// 썸네일 저장
-				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);	
-				
-				BufferedImage bo_image = ImageIO.read(saveFile);
 
-					//비율 
-					double ratio = 3;
-					//넓이 높이
-					int width = (int) (bo_image.getWidth() / ratio);
-					int height = (int) (bo_image.getHeight() / ratio);					
-				
-				
-				Thumbnails.of(saveFile)
-		        .size(width, height)
-		        .toFile(thumbnailFile);
-				
 				
 				} catch (Exception e) {
 					e.printStackTrace();

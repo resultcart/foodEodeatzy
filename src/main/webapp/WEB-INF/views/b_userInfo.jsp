@@ -88,26 +88,6 @@
 									<div class="input-box mt-30">
 										<label>이메일</label><input type="email" id="email" name="u_b_email" value="${b_userInfo.u_b_email}" aria-invalid="false">
 									</div>
-									<div class="input-box mt-30">
-										<label>사업자 등록증</label>
-											<div id="uploadResult">
-												
-												<!-- ★★★★★★★ -->
-												
-											</div>
-
-										<br> <br> <br>
-											
-								 	<div class="form_section">
-		                    			<div class="form_section_title">
-		                    				<label>사업자 등록증 바꾸기</label>
-		                    			</div>
-		                    			<div class="form_section_content">
-		                    			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
-			                    			
-		                    			</div>
-		                    		</div>																		
-								</div>
 									
 									<div class="input-box mt-30">
 										<label>가입 일자</label>
@@ -119,6 +99,7 @@
 									<div class="input-box mt-30">
 										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30" value="수정">수정</button>
 									</div>
+									
 								</div>						
 							</form>
 						</div>
@@ -140,6 +121,7 @@
 <!--====== GO TO TOP PART ENDS ======-->
 
 	<script>
+	
 	function chkFunction(){
 		
 		// 0) 공백 확인용
@@ -193,74 +175,15 @@
 		  alert('잘못된 이메일 형식입니다.');
 		  return false;    
 		 }
-	
-
+		 
 		document.getElementById("b_userform").submit();
 		alert('수정이 완료되었습니다.');
+		 
+
+	
 	}
 	
-		// 이미지 업로드
-			// 1-1) 업로드 파일 접근
-			$("input[type='file']").on("change", function(e){
-				
-				let formData = new FormData();
-				let fileInput = $('input[name="uploadFile"]');
-				let fileList = fileInput[0].files;
-				let fileObj = fileList[0];
-				
-				// 조건 만족시 alert				
-			//	if(!fileCheck(fileObj.name, fileObj.size)){
-			//		return false;
-			//	}
-				
-				// 선택 파일 uploadFile 이름으로 추가
-				formData.append("uploadFile", fileObj);
-				
-				$.ajax({
-					url: 'businessController/uploadAjaxAction',
-			    	processData : false,
-			    	contentType : false,
-			    	data : formData,
-			    	type : 'POST',
-			    	dataType : 'json',
-			    	success : function(result){
-			    		console.log(result[0].uploadPath + '확인: 전달받은 객체 데이터');
-			    		showUploadImage(result);
-			    	},
-			    	error : function(result){
-			    		alert("이미지 파일이 아닙니다.");
-			    	}			    	
-			    	
-				});
-				
-				console.log('55554223');
-				
-			});
-			
-			// 1-2) 업로드 파일 형식 및 용량 제한
-			let regex = new RegExp("(.*?)\.(jpg|png)$");
-			let maxSize = 1048576; //1MB	
-			
-			function fileCheck(fileName, fileSize){
-		
-				if(fileSize >= maxSize){
-					alert("1MB 이하의 파일만 업로드할 수 있습니다.");
-					return false;
-				}
-					  
-				if(!regex.test(fileName)){
-					alert("해당 종류의 파일은 업로드할 수 없습니다.");
-					return false;
-				}
-				
-				return true;		
-				
-			}
-		
-		// 이미지 출력 
-		function showUploadImage(uploadResultArr){
-			
-		}
+
 	
 	</script>
 	
