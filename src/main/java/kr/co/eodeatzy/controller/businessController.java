@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
@@ -30,6 +33,7 @@ import kr.co.eodeatzy.business.businessOrderDTO;
 import kr.co.eodeatzy.business.businessService;
 import kr.co.eodeatzy.business.businessStoreDTO;
 import kr.co.eodeatzy.business.businessUserDTO;
+import net.coobird.thumbnailator.Thumbnails;
 
 
 @Controller
@@ -289,6 +293,24 @@ public class businessController {
 			// 파일 저장
 			try {
 				multipartFile.transferTo(saveFile);
+				
+				// 썸네일 저장
+				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);	
+				
+				BufferedImage bo_image = ImageIO.read(saveFile);
+
+					//비율 
+					double ratio = 3;
+					//넓이 높이
+					int width = (int) (bo_image.getWidth() / ratio);
+					int height = (int) (bo_image.getHeight() / ratio);					
+				
+				
+				Thumbnails.of(saveFile)
+		        .size(width, height)
+		        .toFile(thumbnailFile);
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 	
