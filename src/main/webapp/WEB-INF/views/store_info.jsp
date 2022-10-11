@@ -32,12 +32,23 @@ $(document).ready(function(){
 	 
                 	   if(result != 'fail'){ 
                 		   
-						alert("새롭게 찜목록에 추가하고 찜목록 페이지로 넘어갑니다.");
+                		   var url1="${pageContext.request.contextPath}/ListAll";
+
+                		   var url2="${pageContext.request.contextPath}/store/store_info";
+                		   const resp = confirm('찜목록에 추가하였습니다.\n찜목록 페이지로 넘어가시겠습니까?');
+
+                		   if(resp){
+                		   location.replace(url1);
+                		   
+                		   }else{
+                		   location.replace(url2);
+                		   }
+                		   
                       }
         	 
                      else{  
                     	 
-                     	alert("찜목록에 가게가 이미 존재합니다. 찜삭제는 찜목록 페이지에서 진행하세요.");
+                     	alert("찜목록에 가게가 이미 존재합니다.\n찜 수정＊삭제는 찜목록 페이지에서 진행하세요.");
                      	var url = "${pageContext.request.contextPath}/ListAll";
                      	location.replace(url);    
                      }
