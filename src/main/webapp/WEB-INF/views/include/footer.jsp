@@ -109,7 +109,7 @@
 		<div class="col-lg-12">
 			<div class="footer-copyright d-block d-sm-flex justify-content-between align-items-center">
 				<p>
-					© 2020 Rondhon All Right <a href="http://www.bootstrapmb.com" title="">Reserved</a>
+					© 2022 EODEATZY All Right <a href="http://www.bootstrapmb.com" title="">Reserved</a>
 				</p>
 				<a href="#"><img src="${assetsPath}/images/payment.png" alt=""></a>
 			</div>
