@@ -47,8 +47,8 @@
 		   <version>1.9.9.1</version>
 		   <scope>runtime</scope>
 		</dependency>
- 
-		
+ 		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -184,8 +184,19 @@
           <artifactId>lombok</artifactId>
           <version>1.18.24</version>
           <scope>provided</scope>
-      </dependency>  	     
+      </dependency>  	
+           
       <!-- khj -->
+        <!-- ★이미지 업로드용 maven★ -->
+ 		<!-- thumbnail -->
+		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.13</version>
+		</dependency>
+		<!-- ★이미지 업로드용 maven★ -->
+		
 		 <!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 		 <dependency>
 		     <groupId>org.lazyluke</groupId>
@@ -196,14 +207,14 @@
 		 <dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <version>2.11.2</version>
+		    <version>2.12.1</version>
 		 </dependency>
 		
 		 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		 <dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-core</artifactId>
-		    <version>2.11.2</version>
+		    <version>2.12.1</version>
 		 </dependency>
         <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
 		<dependency>

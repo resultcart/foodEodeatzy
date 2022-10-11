@@ -1,5 +1,6 @@
 package kr.co.eodeatzy.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +13,21 @@ import javax.servlet.http.HttpSession;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.co.eodeatzy.business.AttachImageVO;
 import kr.co.eodeatzy.business.businessMenuDTO;
 import kr.co.eodeatzy.business.businessOrderDTO;
 import kr.co.eodeatzy.business.businessService;
@@ -259,10 +269,31 @@ public class businessController {
 	}
 	
 	// 이미지 업로드
-	@PostMapping("businessController/uploadAjaxAction")
-	public void uploadAjaxActionPOST(MultipartFile[] uploadFile) {
-		
+	@PostMapping(value="businessController/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
 
+		// 이미지 유효성 검사(2)
+		for(MultipartFile multipartFile: uploadFile) {
+			
+			File checkfile = new File(multipartFile.getOriginalFilename());
+			String type = null;
+			
+			try {
+				type = Files.probeContentType(checkfile.toPath());
+				logger.info("타입 확인 : " + type);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(!type.startsWith("image")) {
+				
+				List<AttachImageVO> list = null;
+				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+				
+			}
+			
+		}// for
+		
 		String uploadFolder = "D:\\upload";
 		
 		// 날짜 폴더 경로
@@ -277,13 +308,23 @@ public class businessController {
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
 		}
+		
+		// 이미지 정보 담기용 객체
+		List<AttachImageVO> list = new ArrayList();
 
 		for(MultipartFile multipartFile : uploadFile) {
+			
+			// 이미지 정보 객체
+			AttachImageVO vo = new AttachImageVO();
+			
 			// 파일 이름 지정
 			String uploadFileName = multipartFile.getOriginalFilename();	
+			vo.setFileName(uploadFileName);
+			vo.setUploadPath(datePath);
 			
 			// 이름 중복을 없애기 위한 UUID 지정
 			String uuid = UUID.randomUUID().toString();
+			vo.setUuid(uuid);
 			
 			uploadFileName = uuid + "_" + uploadFileName;
 			
@@ -311,11 +352,40 @@ public class businessController {
 		        .toFile(thumbnailFile);
 				
 				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 	
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			list.add(vo);
+		} // for 끝
+		
+		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+		logger.info(result + " ★저장이 되긴 함");
+		return result;
+		
+		
+	}
+	
+	// 업로드 이미지 출력
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName){
+		
+		File file = new File("D:\\upload\\" + fileName);
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		}catch (IOException e) {
+			e.printStackTrace();
 		}
 		
+		return result;
 		
 	}
 	
