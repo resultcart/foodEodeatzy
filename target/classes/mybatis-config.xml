@@ -11,6 +11,7 @@
      
      
    	 <typeAlias alias="u_Addr_OneDTO" type="kr.co.eodeatzy.main.u_Addr_OneDTO" />
+   	 <typeAlias alias="b_Addr_OneDTO" type="kr.co.eodeatzy.main.b_Addr_OneDTO" />
    	 <typeAlias alias="notice_OneDTO" type="kr.co.eodeatzy.main.notice_OneDTO"/>
    	 <typeAlias alias="store_typeDTO" type="kr.co.eodeatzy.main.store_typeDTO"/>
    	 <typeAlias alias="categoryDTO" type="kr.co.eodeatzy.main.categoryDTO"/>

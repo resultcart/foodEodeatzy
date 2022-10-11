@@ -148,23 +148,25 @@ public class ZzimController {
 	
 	//찜 목록 삭제
 	@RequestMapping(value = "deleteZzim", method = RequestMethod.POST)
-	public ModelAndView deleteZzim(@RequestParam("u_s_id") String u_s_id, HttpSession session, zzimDTO zzimdto) throws Exception {
+	public String deleteZzim(@RequestParam("u_s_id") String u_s_id, HttpSession session, zzimDTO zzimdto, Model model) throws Exception {
 	
-		ModelAndView mav = new ModelAndView();
-		
 		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
 		//u_p_id = "p_sera";
 
+		zzimdto.setU_p_id(u_p_id);
 		int r = service.deleteZzim(zzimdto);
 		
 		if (r>0) {
-			mav.setViewName("redirect:ListAll?u_p_id=" + zzimdto.getU_p_id());
+			model.addAttribute("msg","찜목록 삭제 완료");
+			model.addAttribute("url","/ListAll");
+			return "alert";
 		} else {
-			mav.setViewName("ListAll");
+			model.addAttribute("msg","찜목록 삭제 실패");
+			model.addAttribute("url","/ListAll");
+			return "alert";
 		}	
 		
-		return mav;
 	}	
 	//아이디 중복확인 
 		@ResponseBody
