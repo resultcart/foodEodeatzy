@@ -12,8 +12,8 @@
 				<div class="blog-sidebar-list-item">
 					<ul>
 						<li><a href="b_userInfo">사업자 정보 조회</a></li>
-						<li><a href="insertStore">가게 추가</a></li>
 						<li><a href="selectStore">가게 정보 조회</a></li>
+						<li><a href="insertStore">가게 추가</a></li>
 						<li><a href="selectMenu">메뉴 관리</a></li>
 						<li><a href="b_Order">주문 확인</a></li>
 						<li><a href="#">공지사항</a></li>
