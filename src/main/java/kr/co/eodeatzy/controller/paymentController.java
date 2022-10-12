@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.eodeatzy.cart.cartDTO;
 import kr.co.eodeatzy.payment.orderDTO;
 import kr.co.eodeatzy.payment.paymentService;
+import kr.co.eodeatzy.payment.storeAddressDTO;
 
 @Controller
 public class paymentController {
@@ -46,16 +47,29 @@ public class paymentController {
 		
 		orderDTO order = service.store_info(u_s_id);
 		List<cartDTO> orderOne=service.orderOne(u_s_id);
+		model.addAttribute("u_s_id", u_s_id);
 		model.addAttribute("payList", order);
 		model.addAttribute("orderOne", orderOne);
 		return "pendingorder";
 	}
 	
-	//결제-주문내역목록
+	//결제-주문내역목록, 주문 상세 내역 
 	@RequestMapping(value = "payment/orderlist", method=RequestMethod.GET )
-	public String orderlist() {
-		logger.info("결제~~주문내역목록~~~~~~");
+	public String orderlist(@RequestParam("u_s_id")String u_s_id, Model model) throws Exception {
+		logger.info("결제-주문 내역목록, 주문 상세 내역");
+		logger.info("usid>>>>>>>>>>>>>"+u_s_id);
+		
+		storeAddressDTO sadto = service.orderlist(u_s_id);
+		model.addAttribute("sadto", sadto);
+		String memo=sadto.getPMemoDTO().getP_memo();
+		model.addAttribute("memo", memo);
+		logger.info("sadto>>>>>>>>>"+sadto);
+		
+		List<cartDTO> orderdetail = service.orderdetail(u_s_id);
+		logger.info("orderdetail>>>>>>"+orderdetail);
+		
+		model.addAttribute("orderdetail", orderdetail);
+		
 		return "orderlist";
 	}
-	
 }

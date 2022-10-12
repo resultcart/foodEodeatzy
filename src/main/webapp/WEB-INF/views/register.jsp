@@ -110,7 +110,7 @@
              <br><br><br><br>
              <div class="my-8" />
 
-				<a class="btn btn-outline-warning btn-fw" href=insertBussijoin>
+				<a class="btn btn-outline-warning btn-fw" href="${contextPath }/insertBussijoin">
                 사업자 회원가입
               </a>
 

@@ -19,6 +19,12 @@ public interface zzimService {
 		//찜 목록 삭제
 		public int deleteZzim(zzimDTO zzimdto)throws Exception;
 
+		//찜 추가시 중복확인
+		public int zzimCheck(zzimDTO zzimdto)throws Exception;
+
+		
+
+		
 		
 		
 }

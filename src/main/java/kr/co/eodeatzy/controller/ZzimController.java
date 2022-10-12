@@ -87,11 +87,13 @@ public class ZzimController {
 		//여기까지 로그인이 된 상태라고 보고 진행
 		
 		ModelAndView mav = new ModelAndView();
-		
+		zzimdto.setU_p_id(u_p_id);
 		int r=service.addZzim(zzimdto);
 		
 		if(r>0) {
 			mav.setViewName("redirect:ListAll?u_p_id=" + zzimdto.getU_p_id());
+		}else {
+			mav.setViewName("ListAll?u_p_id=" + zzimdto.getU_p_id());
 		}
 		
 		return mav;
@@ -146,23 +148,45 @@ public class ZzimController {
 	
 	//찜 목록 삭제
 	@RequestMapping(value = "deleteZzim", method = RequestMethod.POST)
-	public ModelAndView deleteZzim(@RequestParam("u_s_id") String u_s_id, HttpSession session, zzimDTO zzimdto) throws Exception {
+	public String deleteZzim(@RequestParam("u_s_id") String u_s_id, HttpSession session, zzimDTO zzimdto, Model model) throws Exception {
 	
-		ModelAndView mav = new ModelAndView();
-		
 		String u_p_id = (String)session.getAttribute("user_id");
 		//debug 로그인 했다고 치고 u_p_id
 		//u_p_id = "p_sera";
 
+		zzimdto.setU_p_id(u_p_id);
 		int r = service.deleteZzim(zzimdto);
 		
 		if (r>0) {
-			mav.setViewName("redirect:ListAll?u_p_id=" + zzimdto.getU_p_id());
+			model.addAttribute("msg","찜목록 삭제 완료");
+			model.addAttribute("url","/ListAll");
+			return "alert";
 		} else {
-			mav.setViewName("ListAll");
+			model.addAttribute("msg","찜목록 삭제 실패");
+			model.addAttribute("url","/ListAll");
+			return "alert";
 		}	
 		
-		return mav;
 	}	
+	//아이디 중복확인 
+		@ResponseBody
+		@RequestMapping(value = "zzimCheck", method = RequestMethod.POST)
+		public String zzimCheck(@RequestParam("u_s_id")String u_s_id , HttpSession session,zzimDTO zzimdto) throws Exception {
+			
+			String u_p_id = (String)session.getAttribute("user_id");
+			zzimdto.setU_p_id(u_p_id);
+			
+			int result = service.zzimCheck(zzimdto);
+			
+			if(result != 0) {
+				
+				return "fail"; //중복 아이디가 존재
+				
+			}else {
+				
+				return "success"; //중복 아이디가 존재하지 않음
+				
+			}
+		}
 
 }

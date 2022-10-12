@@ -14,5 +14,5 @@ public class orderDTO {
 	private int o_state;
 	private String o_desc;
 	
-//	private menuDTO menuDTO; //쿼리로 조인할 dto
+	private menuDTO menuDTO;
 }

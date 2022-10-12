@@ -1,10 +1,8 @@
+<%@page import="org.springframework.web.multipart.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
-
-<!-- 브랜치 확인하기 -->
-
+<c:set var="assetsPath" value="${pageContext.request.contextPath}/resources/assets" />
 
 <!doctype html><html lang="en">
 <!-- head-->
@@ -90,19 +88,6 @@
 									<div class="input-box mt-30">
 										<label>이메일</label><input type="email" id="email" name="u_b_email" value="${b_userInfo.u_b_email}" aria-invalid="false">
 									</div>
-									<div class="input-box mt-30">
-										<label>사업자 등록증</label>
-										<br> <br> <br>
-											<img src="resources/img/1.jpg" id="regi" alt="1이미지" width="140px" height="100px">
-										<br> <br> <br>
-																					
-											
-										 <label class="block mt-4 text-sm">
-										 <span class="text-gray-700 dark:text-gray-400">사업자 등록증 파일 변경</span>
-										 <input type="file" name="u_b_img_upload"  id="u_b_img_upload" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"value="사업자 등록증 파일 업로드">
-										 </label>
-										</div>																		
-									</div>
 									
 									<div class="input-box mt-30">
 										<label>가입 일자</label>
@@ -114,9 +99,10 @@
 									<div class="input-box mt-30">
 										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30" value="수정">수정</button>
 									</div>
+									
 								</div>						
-								</form>
-							</div>
+							</form>
+						</div>
 	                 </div>
                 </div>
 			</div>
@@ -135,6 +121,7 @@
 <!--====== GO TO TOP PART ENDS ======-->
 
 	<script>
+	
 	function chkFunction(){
 		
 		// 0) 공백 확인용
@@ -188,11 +175,16 @@
 		  alert('잘못된 이메일 형식입니다.');
 		  return false;    
 		 }
-	
-
+		 
 		document.getElementById("b_userform").submit();
 		alert('수정이 완료되었습니다.');
+		 
+
+	
 	}
+	
+
+	
 	</script>
 	
 

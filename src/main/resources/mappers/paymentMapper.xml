@@ -48,4 +48,31 @@
 	where c.u_p_id='king' and c.u_s_id=#{u_s_id}
 	</select>
 	
+	<!-- 주문내역목록(개인/사업자(블랙컨슈머 메모)) -->
+	<resultMap type="pMemoDTO" id="pMemoDTO">
+		<result column="u_s_id" property="u_s_id"/>
+		<result column="u_p_id" property="u_p_id"/>
+		<result column="p_memo" property="p_memo"/>
+	</resultMap>
+	
+	<resultMap type="storeAddressDTO" id="storeAddressDTO">
+		<result column="u_s_id" property="u_s_id"/>
+		<result column="u_s_address" property="u_s_address"/>
+		<collection property="pMemoDTO" resultMap="pMemoDTO"/>
+	</resultMap>
+	
+	<select id="orderlist" parameterType="String" resultMap="storeAddressDTO">
+	select sa.u_s_id, sa.u_s_address, pm.p_memo
+	from tb_store_address as sa
+	inner join tb_p_memo as pm
+	on sa.u_s_id=pm.u_s_id
+	where pm.u_p_id='king' and sa.u_s_id=#{u_s_id}
+	</select>
+	
+	<!-- 주문상세내역 -->
+	<select id="orderdetail" parameterType="String" resultMap="cartDTO">
+	<include refid="cartList"/>
+	where c.u_p_id='king' and c.u_s_id=#{u_s_id}
+	</select>
+	
 </mapper>
