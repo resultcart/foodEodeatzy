@@ -53,5 +53,9 @@
      
      <typeAlias alias="aboardBDTO" type="kr.co.eodeatzy.board.boardBDTO"/>
      <typeAlias alias="acommentBDTO" type="kr.co.eodeatzy.board.commentBDTO"/>	     
+     
+     <typeAlias alias="storeAddressDTO" type="kr.co.eodeatzy.payment.storeAddressDTO"/> 
+     <typeAlias alias="pMemoDTO" type="kr.co.eodeatzy.payment.pMemoDTO"/>
+     <typeAlias alias="orderDetailDTO" type="kr.co.eodeatzy.payment.orderDetailDTO"/>     
    </typeAliases>
 </configuration>

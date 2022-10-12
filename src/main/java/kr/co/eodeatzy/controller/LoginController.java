@@ -31,6 +31,7 @@ import kr.co.eodeatzy.login.LoginService;
 import kr.co.eodeatzy.login.NaverLoginBO;
 import kr.co.eodeatzy.login.ins_mem_uDTO;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 public class LoginController {
@@ -43,16 +44,16 @@ public class LoginController {
 	@Inject
 	LoginDAOImpl dao;
 
-//	
+	
 //	/* NaverLoginBO */
-//	@Setter(onMethod_ = @Autowired )
+////	@Setter(onMethod_ = @Autowired )
+//	@Setter(onMethod_ = @Autowired)
 //	private NaverLoginBO naverLoginBO;
+//	
+//	
 //	private String apiResult = null;
-//	//kr.co.eodeatzy.login.NaverLoginBO
-//	@Autowired
-//	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-//		this.naverLoginBO = naverLoginBO;
-//	}
+//	
+//
 //
 //	//  ===네이버 아이디로그인 ========================================================
 //	@RequestMapping(value = "login/naverlogin", method = { RequestMethod.GET, RequestMethod.POST } )
@@ -60,23 +61,19 @@ public class LoginController {
 //		logger.info("login/naverlogin");
 //		
 //		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		String naverAuthUrl = naverLoginBO.getAuthorization(session);
 //		
-//		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-//		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
 //		System.out.println("네이버:" + naverAuthUrl);
 //		
 //		//네이버 
-//		model.addAttribute("url", naverAuthUrl);
+//		model.addAttribute("naverUrl", naverAuthUrl);
 //		
 //		/* 생성한 인증 URL을 View로 전달 */
 ////		return "login";
 //		
 ////		model.addAttribute("msg","테스트페이지로슝");
-//		return "findID";
+//		return "login";
 //	}	
-	
-	
 	
 
 
