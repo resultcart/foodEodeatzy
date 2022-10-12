@@ -1,10 +1,8 @@
+<%@page import="org.springframework.web.multipart.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="assetsPath" value="${pageContext.request.contextPath }/resources/assets" />
-
-<!-- 브랜치 확인하기 -->
-
+<c:set var="assetsPath" value="${pageContext.request.contextPath}/resources/assets" />
 
 <!doctype html><html lang="en">
 <!-- head-->
@@ -90,22 +88,6 @@
 									<div class="input-box mt-30">
 										<label>이메일</label><input type="email" id="email" name="u_b_email" value="${b_userInfo.u_b_email}" aria-invalid="false">
 									</div>
-									<div class="input-box mt-30">
-										<label>사업자 등록증</label>
-										<br> <br> <br>
-											<img src="resources/img/1.jpg" id="regi" alt="1이미지" width="140px" height="100px">
-										<br> <br> <br>
-																					
-											
-								 	<div class="form_section">
-		                    			<div class="form_section_title">
-		                    				<label>사업자 등록증 이미지</label>
-		                    			</div>
-		                    			<div class="form_section_content">
-		                    			<input type="file" id ="fileItem" name='uploadFile' style="height: 30px;">
-		                    			</div>
-		                    		</div>																		
-								</div>
 									
 									<div class="input-box mt-30">
 										<label>가입 일자</label>
@@ -117,9 +99,10 @@
 									<div class="input-box mt-30">
 										<button type="button" onclick="chkFunction();" id="btn_submit" class="main-btn mt-30" value="수정">수정</button>
 									</div>
+									
 								</div>						
-								</form>
-							</div>
+							</form>
+						</div>
 	                 </div>
                 </div>
 			</div>
@@ -138,6 +121,7 @@
 <!--====== GO TO TOP PART ENDS ======-->
 
 	<script>
+	
 	function chkFunction(){
 		
 		// 0) 공백 확인용
@@ -191,62 +175,15 @@
 		  alert('잘못된 이메일 형식입니다.');
 		  return false;    
 		 }
-	
-
+		 
 		document.getElementById("b_userform").submit();
 		alert('수정이 완료되었습니다.');
+		 
+
+	
 	}
 	
-		// 이미지 업로드
-			// 1-1) 업로드 파일 접근
-			$("input[type='file']").on("change", function(e){
-				
-				let formData = new FormData();
-				let fileInput = $('input[name="uploadFile"]');
-				let fileList = fileInput[0].files;
-				let fileObj = fileList[0];
-				
-				// 조건 만족시 alert				
-				if(!fileCheck(fileObj.name, fileObj.size)){
-					return false;
-				}
-				
-				// 선택 파일 uploadFile 이름으로 추가
-				formData.append("uploadFile", fileObj);
-				
-				// 첨부파일 서버로 전송
-				$.ajax({
-					url: '/admin/uploadAjaxAction',
-			    	processData : false,
-			    	contentType : false,
-			    	data : formData,
-			    	type : 'POST',
-			    	dataType : 'json'
-				});
-				
-				
-			});
-			
-			// 1-2) 업로드 파일 형식 및 용량 제한
-			let regex = new RegExp("(.*?)\.(jpg|png)$");
-			let maxSize = 1048576; //1MB	
-			
-			function fileCheck(fileName, fileSize){
-		
-				if(fileSize >= maxSize){
-					alert("파일 사이즈 초과");
-					return false;
-				}
-					  
-				if(!regex.test(fileName)){
-					alert("해당 종류의 파일은 업로드할 수 없습니다.");
-					return false;
-				}
-				
-				return true;		
-				
-			}
-		
+
 	
 	</script>
 	
