@@ -1,35 +1,55 @@
 package kr.co.eodeatzy.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
-import java.lang.System.Logger;
-import java.security.Provider.Service;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.eodeatzy.Zzim.zzimDTO;
+import kr.co.eodeatzy.business.AttachImageVO;
 import kr.co.eodeatzy.business.businessMenuDTO;
 import kr.co.eodeatzy.business.businessOrderDTO;
 import kr.co.eodeatzy.business.businessService;
 import kr.co.eodeatzy.business.businessStoreDTO;
 import kr.co.eodeatzy.business.businessUserDTO;
+import net.coobird.thumbnailator.Thumbnails;
 
 
 @Controller
 public class businessController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(businessController.class);
 	
 	@Autowired
 	businessService service;
@@ -245,6 +265,98 @@ public class businessController {
 				
 		rttr.addFlashAttribute("msg", "수정 실패");
 		return "redirect:b_Order";
+		
+	}
+	
+	// 이미지 업로드
+	@PostMapping(value="businessController/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+
+		// 이미지 유효성 검사(2)
+		for(MultipartFile multipartFile: uploadFile) {
+			
+			File checkfile = new File(multipartFile.getOriginalFilename());
+			String type = null;
+			
+			try {
+				type = Files.probeContentType(checkfile.toPath());
+				logger.info("타입 확인 : " + type);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(!type.startsWith("image")) {
+				
+				List<AttachImageVO> list = null;
+				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+				
+			}
+			
+		}// for
+		
+		String uploadFolder = "D:\\upload";
+		
+		// 업로드 폴더 생성		
+		File uploadPath = new File(uploadFolder);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		// 이미지 정보 담기용 객체
+		List<AttachImageVO> list = new ArrayList();
+
+		for(MultipartFile multipartFile : uploadFile) {
+			
+			// 이미지 정보 객체
+			AttachImageVO vo = new AttachImageVO();
+			
+			// 파일 이름 지정
+			String uploadFileName = multipartFile.getOriginalFilename();
+			vo.setFileName(uploadFileName);
+
+			// 파일 위치, 파일 이름을 합친 File 객체 생성
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			// 파일 저장
+			try {
+				multipartFile.transferTo(saveFile);
+
+				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+			list.add(vo);
+		} // for 끝
+		
+		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+		logger.info(result + " ★저장이 되긴 함");
+		return result;
+		
+		
+	}
+	
+	// 업로드 이미지 출력
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName){
+		
+		File file = new File("D:\\upload\\" + fileName);
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 		
 	}
 	
