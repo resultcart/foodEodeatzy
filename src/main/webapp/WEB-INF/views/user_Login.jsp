@@ -104,15 +104,10 @@
 	
 	                                        <!-- You should use a button here, as the anchor is only used for the example  -->
 	                                        <br> <button type="button" class="btn btn-outline-warning btn-fw" onclick="loginChk()">로그인</button>
-
 	                                        <br>
-	                                        <br>
-											<!-- google -->
-											    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-												<a href="#" onclick="signOut();">Sign out</a>
 											    <script>
 											    
-											  //처음 실행하는 함수
+										       //처음 실행하는 함수
 											    function init() {
 											    	gapi.load('auth2', function() {
 											    		gapi.auth2.init();
