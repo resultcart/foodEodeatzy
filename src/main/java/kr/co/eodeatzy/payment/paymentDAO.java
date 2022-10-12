@@ -14,4 +14,11 @@ public interface paymentDAO {
 	
 	//결제-상세내역
 	public List<cartDTO> orderOne(String u_s_id) throws Exception;
+	
+	//주문내역목록(개인/사업자(블랙컨슈머 메모))
+	public storeAddressDTO orderlist(String u_s_id) throws Exception;
+	
+	//주문상세내역
+	public List<cartDTO> orderdetail(String u_s_id) throws Exception;
+	
 }
