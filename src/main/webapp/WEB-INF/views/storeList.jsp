@@ -117,7 +117,7 @@
 											
 								 	<div class="form_section">
 		                    			<div class="form_section_title">
-		                    				<label>사업자 등록증 바꾸기1333</label>
+		                    				<label>사업자 등록증 바꾸기</label>
 		                    			</div>
 		                    			<div class="form_section_content">
 		                    			<input type="file" id ="u_b_img_upload" name='u_b_img_upload' style="height: 30px;">
@@ -158,7 +158,6 @@
 
 	<script>
 	function updateBusiness() {
-		chkFunction();
 		if (!(chkFunction()==false)){
 		imageUpdate();	
 		}

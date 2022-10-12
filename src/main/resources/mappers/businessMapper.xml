@@ -32,20 +32,33 @@
 			set u_b_access = '9999'
 			where u_b_id = #{u_b_id}
 		</update>
+		
+		
+		<!-- 메뉴 수정하기 위한 가게 선택 -->
+        <select id="selectStoreforMenu" parameterType="java.lang.String" resultType="businessStoreDTO">
+        select * 
+        from tb_store
+        where u_b_id = #{u_b_id}  
+        </select>
+		
         
       <!-- 메뉴 정보 조회 -->
-      <select id="selectMenu" parameterType="businessMenuDTO" resultType="businessMenuDTO">
+      <select id="selectMenu" parameterType="java.lang.String" resultType="businessMenuDTO">
             select *
             from tb_menu
             where m_state = 1
+            and u_s_id = #{u_s_id}
       </select>
+ 
       
       <!-- 메뉴 상세 조회 -->
       <select id="menudetail" parameterType="java.util.Map" resultType="java.util.Map">
       		select m_name, m_price, m_stock, m_ltime
       		from tb_menu
       		where u_s_id = #{u_s_id}
-      		and m_id = #{m_id}      		    
+      		and m_id = #{m_id}
+      		order by 
+        	m_id      		    
       </select>
       
       <!-- 메뉴 삭제 -->

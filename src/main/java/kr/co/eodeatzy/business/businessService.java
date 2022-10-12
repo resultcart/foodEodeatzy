@@ -17,8 +17,11 @@ public interface businessService {
 	// 1-3) 사업자 탈퇴
 	public int b_unregister(String u_b_id) throws Exception;
 	
+	// 2-0) 메뉴 조회 가게 선택
+	public List<businessStoreDTO> selectStoreforMenu(String u_b_id) throws Exception;
+	
 	// 2-1) 메뉴 정보 조회
-	public List<businessMenuDTO> selectmenu() throws Exception;
+	public List<businessMenuDTO> selectmenu(String u_s_id) throws Exception;
 	
 	// 2-2) 메뉴 정보 수정
 	public int updatemenu(Map<String, Object> upmap) throws Exception;

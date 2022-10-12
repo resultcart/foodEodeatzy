@@ -113,17 +113,30 @@ public class businessController {
 		}
 	}
 	
+	// 2-0) 메뉴 조회 가게 선택
+		@RequestMapping(value = "selectStoreforMenu", method=RequestMethod.GET)
+		public ModelAndView selectStoreforMenu(HttpSession session) throws Exception {
+			ModelAndView mav = new ModelAndView();
+			String u_b_id = (String)session.getAttribute("user_id");
+			
+			List<businessStoreDTO> selectStoreforMenu = service.selectStoreforMenu(u_b_id);
+			mav.addObject("selectStoreforMenu", selectStoreforMenu);
+			mav.setViewName("selectStoreforMenu");
+			
+			return mav;
+		}
 	
 	
-	// 2-1) 메뉴 조회
-	@RequestMapping(value = "selectMenu", method = RequestMethod.GET)
-	public ModelAndView selectmenu() throws Exception {
-	   ModelAndView mav = new ModelAndView();
-	   List<businessMenuDTO> selectmenu = service.selectmenu();
-	   mav.addObject("selectmenu", selectmenu);
-	   mav.setViewName("selectMenu");	   
-       return mav;
-      }
+		// 2-1) 메뉴 조회
+		@RequestMapping(value = "selectMenu", method = RequestMethod.GET)
+		public ModelAndView selectmenu(String u_s_id) throws Exception {
+		   ModelAndView mav = new ModelAndView();
+		   List<businessMenuDTO> selectmenu = service.selectmenu(u_s_id);
+		   mav.addObject("selectmenu", selectmenu);
+		   mav.setViewName("selectMenu");	   
+	       return mav;
+	      }
+
 	
 	// 2-2-1) 메뉴 수정 폼
 	@RequestMapping(value="menudetail", method=RequestMethod.GET)
@@ -141,11 +154,11 @@ public class businessController {
 		int r = service.updatemenu(upmap);
 		if (r>0) {
 			rttr.addFlashAttribute("msg", "수정 완료");
-			return "redirect:selectMenu";
+			return "redirect:selectMenu?u_s_id=" + upmap.get("u_s_id");
 		}
 				
 		rttr.addFlashAttribute("msg", "수정 실패");
-		return "redirect:selectMenu";
+		return "redirect:selectMenu?u_s_id=" + upmap.get("u_s_id");
 		
 	}
 		   
@@ -204,7 +217,7 @@ public class businessController {
 	@RequestMapping(value = "storeList", method = RequestMethod.GET)
 	public ModelAndView storeList(@RequestParam Map<String, Object> storemap) throws Exception {
 		ModelAndView storemav = new ModelAndView();
-		
+
 		Map storeMap = service.storeList(storemap);
 		storemav.addObject("storeMap", storeMap);
 		storemav.setViewName("storeList");

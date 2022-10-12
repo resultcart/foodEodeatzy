@@ -31,12 +31,17 @@ public class businessServiceImpl implements businessService {
 		return dao.b_unregister(u_b_id);
 	}
 
+	// 2-0) 메뉴 조회 가게 선택
+	@Override
+	public List<businessStoreDTO> selectStoreforMenu(String u_b_id) throws Exception {
+		return dao.selectStoreforMenu(u_b_id);
+	}
 	
 
 	// 2-1) 메뉴 관리 
 	@Override
-	public List<businessMenuDTO> selectmenu() throws Exception {
-		return dao.selectmenu();
+	public List<businessMenuDTO> selectmenu(String u_s_id) throws Exception {
+		return dao.selectmenu(u_s_id);
 	}
 
 	// 2-2) 메뉴 수정
@@ -106,6 +111,12 @@ public class businessServiceImpl implements businessService {
 	public int updateMemo(Map<String, Object> upmemap) throws Exception {
 		return dao.updateMemo(upmemap);
 	}
+
+
+
+
+
+
 
 
 	

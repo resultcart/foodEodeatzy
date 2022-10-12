@@ -74,14 +74,10 @@
 					type: 'POST',					
 					success: function(result){
 						console.log(result);
-						console.log("m_id 확인★★★★★★★★" + m_id);
-						console.log("u_s_id 확인★★★★★★★★" + u_s_id);
 						alert('메뉴 삭제 성공');
 					},					
 					error: function(result){
 						console.log(result);
-						console.log("m_id 확인★★★★★★★★" + m_id);
-						console.log("u_s_id 확인★★★★★★★★" + u_s_id);
 						alert('메뉴 삭제 실패');
 					}
 
@@ -133,7 +129,7 @@
 				                         </tr>
 				                </c:forEach>  
 							  </table>
-							  
+							  											</section>
 																	
 										
 										</div>

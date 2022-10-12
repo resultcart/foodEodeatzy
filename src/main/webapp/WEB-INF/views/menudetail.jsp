@@ -89,7 +89,8 @@
 										</div>
 										<div class="col-lg-12">
 										</div>
-										<div class="input-box mt-10">									
+										<div class="input-box mt-10">
+										<input type="hidden" id="u_s_id" name="u_s_id" value="${detailmap.u_s_id}">									
 										<button type="submit" class="main-btn mt-30">수정</button>
 										</div>
 									</div>
