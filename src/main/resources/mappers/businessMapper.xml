@@ -182,9 +182,6 @@
       	where u_s_id = #{u_s_id}
       	and u_p_id = #{u_p_id}
       </update>
-      
-     
-      
-      
+
 
 </mapper>

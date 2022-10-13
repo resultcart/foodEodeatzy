@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -216,8 +215,27 @@ public class businessController {
 	// 3-1) 가게 상세 정보 조회
 	@RequestMapping(value = "storeList", method = RequestMethod.GET)
 	public ModelAndView storeList(@RequestParam Map<String, Object> storemap) throws Exception {
+		
+		// 폴더 생성
+	      String uploadFolder = "";
+	      // 업로드 폴더 생성      
+	      File file1;
+	      uploadFolder = "d:\\upload";
+	      
+	      file1 = new File(uploadFolder);
+	      
+	      if(!file1.exists()) { //폴더가 존재하지 않는 경우
+	         System.out.println("업로드 폴더 : " + "not exists");
+	         file1.mkdirs(); //생성 수행
+	         System.out.println("업로드 폴더 : " + "create");
+	      }
+	      else { //폴더가 존재하는 경우
+	         System.out.println("업로드 폴더 : " + "exists");
+	      }
+	   
+		
+		// 조회
 		ModelAndView storemav = new ModelAndView();
-
 		Map storeMap = service.storeList(storemap);
 		storemav.addObject("storeMap", storeMap);
 		storemav.setViewName("storeList");
@@ -284,22 +302,23 @@ public class businessController {
 	// 이미지 업로드
 	@PostMapping(value="businessController/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
-
+		System.out.println("확인111111111111111");
 		// 이미지 유효성 검사(2)
 		for(MultipartFile multipartFile: uploadFile) {
-			
+			System.out.println("확인22222222222222");
 			File checkfile = new File(multipartFile.getOriginalFilename());
 			String type = null;
 			
 			try {
 				type = Files.probeContentType(checkfile.toPath());
 				logger.info("타입 확인 : " + type);
+				System.out.println("확인33333333333333");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
 			if(!type.startsWith("image")) {
-				
+				System.out.println("확인44444444444444444");
 				List<AttachImageVO> list = null;
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 				
@@ -308,14 +327,14 @@ public class businessController {
 		}// for
 		
 		String uploadFolder = "D:\\upload";
-		
-		// 업로드 폴더 생성		
-		File uploadPath = new File(uploadFolder);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		
+	      
+	      // 업로드 폴더 생성      
+	      File uploadPath = new File(uploadFolder);
+	      
+	      if(uploadPath.exists() == false) {
+	         uploadPath.mkdirs();
+	      }
+	    
 		// 이미지 정보 담기용 객체
 		List<AttachImageVO> list = new ArrayList();
 
@@ -335,7 +354,6 @@ public class businessController {
 			try {
 				multipartFile.transferTo(saveFile);
 
-				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -344,7 +362,6 @@ public class businessController {
 		} // for 끝
 		
 		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
-		logger.info(result + " ★저장이 되긴 함");
 		return result;
 		
 		
@@ -372,8 +389,6 @@ public class businessController {
 		return result;
 		
 	}
-	
-	
-	
+
 		
 }
