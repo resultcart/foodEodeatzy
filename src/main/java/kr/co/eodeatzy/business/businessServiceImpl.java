@@ -88,10 +88,17 @@ public class businessServiceImpl implements businessService {
 		return dao.storeNameUpdate(stupmap);
 	}
 	
+	// 4-0) 주문 확인 가게 선택
+	@Override
+	public List<businessOrderDTO> b_OrderSelect(String u_b_id) throws Exception {
+		return dao.b_OrderSelect(u_b_id);
+
+	}
+
 	// 4-1) 주문 확인
 	@Override
-	public List<businessOrderDTO> orderCheck() throws Exception {
-		return dao.orderCheck();
+	public List<businessOrderDTO> orderCheck(String u_s_id) throws Exception {
+		return dao.orderCheck(u_s_id);
 	}
 	
 	// 4-2) 주문 상세 내역
@@ -111,6 +118,9 @@ public class businessServiceImpl implements businessService {
 	public int updateMemo(Map<String, Object> upmemap) throws Exception {
 		return dao.updateMemo(upmemap);
 	}
+
+
+	
 
 
 

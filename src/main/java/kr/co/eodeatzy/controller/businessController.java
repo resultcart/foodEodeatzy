@@ -255,11 +255,25 @@ public class businessController {
 		return "redirect:selectStore";
 	}	
 	
+	// 4-0) 메뉴 조회 가게 선택
+			@RequestMapping(value = "b_OrderSelect", method=RequestMethod.GET)
+			public ModelAndView b_OrderSelect(HttpSession session) throws Exception {
+				ModelAndView mav = new ModelAndView();
+				String u_b_id = (String)session.getAttribute("user_id");
+				
+				List<businessOrderDTO> b_OrderSelect = service.b_OrderSelect(u_b_id);
+				mav.addObject("b_OrderSelect", b_OrderSelect);
+				mav.setViewName("b_OrderSelect");
+				
+				return mav;
+			}
+	
+	
 	// 4-1) 주문 확인 페이지
 	@RequestMapping(value = "b_Order", method = RequestMethod.GET)
-	public ModelAndView b_Order() throws Exception {
+	public ModelAndView b_Order(String u_s_id) throws Exception {
 	    ModelAndView mav = new ModelAndView();
-	    List<businessOrderDTO> orderCheck = service.orderCheck();
+	    List<businessOrderDTO> orderCheck = service.orderCheck(u_s_id);
 	    mav.addObject("orderCheck", orderCheck);
 	    mav.setViewName("b_Order");  
 		return mav;

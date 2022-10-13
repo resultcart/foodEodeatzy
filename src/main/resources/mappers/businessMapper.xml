@@ -137,6 +137,12 @@
                and u_s_id = #{u_s_id}
         </update>
         
+        <!-- 주문 확인 가게 선택 -->
+        <select id="b_OrderSelect" parameterType="java.lang.String" resultType="businessOrderDTO">
+        select * 
+        from tb_store
+        where u_b_id = #{u_b_id}  
+        </select>
         
         <!-- 주문 확인 -->
         <select id="orderCheck" parameterType="businessOrderDTO" resultType="businessOrderDTO">
@@ -154,6 +160,7 @@
         	left outer join tb_p_memo 
         	on tb_order.u_s_id = tb_p_memo.u_s_id
         	and tb_order.u_p_id = tb_p_memo.u_p_id
+        	where tb_order.u_s_id = #{tb_order.u_s_id}
         	order by 
         	tb_order.u_s_id     
         </select>

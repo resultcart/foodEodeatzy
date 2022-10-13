@@ -45,8 +45,11 @@ public interface businessDAO {
 	// 3-2) 가게 정보 수정
 	public int storeNameUpdate(Map<String, Object> stupmap) throws Exception;
 	
+	// 4-0) 주문 확인 가게 선택
+	public List<businessOrderDTO> b_OrderSelect(String u_b_id) throws Exception;
+	
 	// 4-1) 주문 확인
-	public List<businessOrderDTO> orderCheck() throws Exception;
+	public List<businessOrderDTO> orderCheck(String u_s_id) throws Exception;
 	
 	// 4-2) 주문 확인 상세
 	public List<businessOrderDTO> orderdetail(String o_number) throws Exception;
