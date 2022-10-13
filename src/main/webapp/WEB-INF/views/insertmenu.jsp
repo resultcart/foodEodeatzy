@@ -66,46 +66,47 @@
 						<h3 class="title">메뉴 추가</h3>
 					</div>				
 						<div class="blog-details-form-item">
-					<form action="${pageContext.request.contextPath }/insertmenu" method="post" accept-charset="UTF-8">
+					<form action="${pageContext.request.contextPath }/insertmenu" id="insertmenu_form" name="insertmenu_form" method="post">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="input-box mt-30">
-										<label>가게 내부 id</label><input type="text" name="u_s_id" placeholder="Type">
+										<label>가게 id</label><input type="text" id="u_s_id" name="u_s_id"  placeholder="가게 id를 꼭 확인하세요.">
+									</div>
+									</div>
+																	
+									
+									<div class="col-lg-6">
+									<div class="input-box mt-30">
+										<label>메뉴 id</label><input type="number" id="m_id" name="m_id" placeholder="메뉴 id는 중복이 불가능합니다.">
 									</div>
 									</div>
 									
 									<div class="col-lg-6">
 									<div class="input-box mt-30">
-										<label>메뉴 id</label><input type="text" name="m_id" placeholder="Type">
-									</div>
-									</div>
-									
-									<div class="col-lg-6">
-									<div class="input-box mt-30">
-										<label>메뉴명</label><input type="text" name="m_name" placeholder="Type">
+										<label>메뉴명</label><input type="text" id="m_name" name="m_name" placeholder="메뉴 이름">
 									</div>
 									</div>
 																		
 									<div class="col-lg-6">
 									<div class="input-box mt-30">
-										<label>가격</label><input type="text" name="m_price" placeholder="Type">
+										<label>가격</label><input type="number" id="m_price" name="m_price" placeholder="숫자만 입력해 주세요.">
 									</div>					
 									</div>									
 									
 									<div class="col-lg-6">												
 									<div class="input-box mt-30">
-										<label>판매 가능 수량</label><input type="text" name="m_stock" placeholder="Type">
+										<label>판매 가능 수량</label><input type="number" id="m_stock" name="m_stock" placeholder="숫자만 입력해 주세요.">
 									</div>
 									</div>
 																		
 									<div class="col-lg-6">
 									<div class="input-box mt-30">
-										<label>조리 소요 시간</label><input type="text" name="m_ltime" placeholder="Type">
+										<label>조리 소요 시간</label><input type="number" id="m_ltime" name="m_ltime" placeholder="숫자만 입력해 주세요.">
 									</div>
 									</div>	
 										
 									<div class="col-lg-12">									
-									<button type="submit" class="main-btn mt-20" style = "margin-left : 18px;">메뉴 추가</button>									
+									<button type="button" onclick="menuAddchk();" id="btn_submit" class="main-btn mt-20" style = "margin-left : 18px;">추가</button>								
 									</div>						
 										
 										</div>
@@ -131,5 +132,42 @@
 <%@ include file="include/footer.jsp" %>
 <!--====== FOOTER PART ENDS ======-->
 <!--====== GO TO TOP PART ENDS ======-->
+
+	<script>
+	function menuAddchk() {
+		// 0) 공백 확인용
+		if(($('#u_s_id').val()).trim() == ""){
+			alert('가게 내부 id는 비워 둘 수 없습니다. 확인 후 입력해 주세요.');
+			return false;
+		}
+		if(($('#m_id').val()).trim() == ""){
+			alert('메뉴 id는 비워 둘 수 없습니다. 확인 후 입력해 주세요.');
+			return false;
+		}
+		if(($('#m_name').val()).trim() == ""){
+			alert('메뉴명은 비워 둘 수 없습니다. 확인 후 입력해 주세요.');
+			return false;
+		}
+		if(($('#m_price').val()).trim() == ""){
+			alert('가격은 비워 둘 수 없습니다.');
+			return false;
+		}
+		if(($('#m_stock').val()).trim() == ""){
+			alert('판매 가능 수량은 비워 둘 수 없습니다.');
+			return false;
+		}
+		if(($('#m_ltime').val()).trim() == ""){
+			alert('소요 시간은 비워 둘 수 없습니다.');
+			return false;
+		}
+
+		document.getElementById("insertmenu_form").submit();
+		alert('메뉴 추가가 완료되었습니다.');
+		
+	}
+	
+	</script>
+
+
 </body>
 </html>

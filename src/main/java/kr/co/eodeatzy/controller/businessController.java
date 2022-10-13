@@ -177,7 +177,7 @@ public class businessController {
 	public ModelAndView insertmenu(@RequestParam Map<String, Object> inmap) throws Exception {
 		ModelAndView insertmav = new ModelAndView();
 		insertmav.addObject("inmap", inmap);
-		insertmav.setViewName("insertmenu");		
+		insertmav.setViewName("insertmenu");			
 		return insertmav;				
 	}	
 		
@@ -189,11 +189,11 @@ public class businessController {
 		
 		if (r>0) {
 			rttr.addFlashAttribute("msg", "추가 완료");
-			return "redirect:selectMenu";
+			return "redirect:selectMenu?u_s_id=" + inmap.get("u_s_id");
 		}
 				
 		rttr.addFlashAttribute("msg", "추가 실패");
-		return "redirect:selectMenu";
+		return "redirect:selectMenu?u_s_id=" + inmap.get("u_s_id");
 		
 	}
 
@@ -305,20 +305,17 @@ public class businessController {
 		System.out.println("확인111111111111111");
 		// 이미지 유효성 검사(2)
 		for(MultipartFile multipartFile: uploadFile) {
-			System.out.println("확인22222222222222");
 			File checkfile = new File(multipartFile.getOriginalFilename());
 			String type = null;
 			
 			try {
 				type = Files.probeContentType(checkfile.toPath());
 				logger.info("타입 확인 : " + type);
-				System.out.println("확인33333333333333");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
 			if(!type.startsWith("image")) {
-				System.out.println("확인44444444444444444");
 				List<AttachImageVO> list = null;
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 				

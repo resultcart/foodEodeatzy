@@ -67,7 +67,7 @@
 									
 						<form role="form" method="post">
 							<div class="blog-details-form-item">
-                        <form role="form" action="${pageContext.request.contextPath }/businessController.java" method="post">
+                        <form role="form" action="${pageContext.request.contextPath }/businessController.java" id="menuUpdate_form" name="menuUpdate_form" method="post">
 		                            <div class="row">
 		                            </div> 
 		                                                                                   
@@ -76,22 +76,22 @@
 									<div class="col-lg-6">
 										<div class="input-box mt-30">
 											<label>메뉴명</label>
-											<input type="text"  name="m_name" value="${detailmap.m_name}">	
+											<input type="text" name="m_name" id="m_name" value="${detailmap.m_name}">	
 										</div>
 										<div class="input-box mt-30">
-											<label>가격<input type="text" name="m_price" value="${detailmap.m_price}"></label>
+											<label>가격<input type="number" name="m_price" id="m_price" value="${detailmap.m_price}"></label>
 										</div>								    
 										<div class="input-box mt-30">
-											<label>판매 가능 수량</label><input type="text" name="m_stock" value="${detailmap.m_stock}">
+											<label>판매 가능 수량</label><input type="number" name="m_stock" id="m_stock" value="${detailmap.m_stock}">
 										</div>
 										<div class="input-box mt-30">
-											<label>조리 소요 시간</label><input type="text" name="m_ltime" value="${detailmap.m_ltime}">
+											<label>조리 소요 시간</label><input type="number" name="m_ltime" id="m_ltime" value="${detailmap.m_ltime}">
 										</div>
 										<div class="col-lg-12">
 										</div>
 										<div class="input-box mt-10">
 										<input type="hidden" id="u_s_id" name="u_s_id" value="${detailmap.u_s_id}">									
-										<button type="submit" class="main-btn mt-30">수정</button>
+										<button type="submit" class="main-btn mt-20" style = "margin-left : 18px;">수정7</button>	
 										</div>
 									</div>
 								</div>
@@ -118,5 +118,6 @@
 <%@ include file="include/footer.jsp" %>
 <!--====== FOOTER PART ENDS ======-->
 <!--====== GO TO TOP PART ENDS ======-->
+
 </body>
 </html>
