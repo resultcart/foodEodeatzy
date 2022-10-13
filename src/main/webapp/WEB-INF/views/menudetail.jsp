@@ -91,7 +91,7 @@
 										</div>
 										<div class="input-box mt-10">
 										<input type="hidden" id="u_s_id" name="u_s_id" value="${detailmap.u_s_id}">									
-										<button type="submit" class="main-btn mt-20" style = "margin-left : 18px;">수정7</button>	
+										<button type="submit" class="main-btn mt-20" style = "margin-left : 18px;">수정</button>	
 										</div>
 									</div>
 								</div>
